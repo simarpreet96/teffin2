@@ -1,0 +1,24 @@
+<!--    forms    -->
+
+def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['configure'].queryset = Configure.objects.none()
+
+        if 'attributes' in self.data:
+            try:
+                attributes_id = int(self.data.get('attributes'))
+                self.fields['configure'].queryset = Configure.objects.filter(id=attributes_id).order_by('slug')
+            except (ValueError, TypeError):
+                pass  # invalid input from the client; ignore and fallback to empty City queryset
+        elif self.instance.pk:
+            self.fields['configure'].queryset = self.instance.attributes.configure_set.order_by('slug')
+
+
+<!-- ajax-view  -->
+
+# AJAX
+def load_cities(request):
+    attributes_id = request.GET.get('attributes_id')
+    configs = Configure.objects.filter(attributes_id=attributes_id).all()
+    return render(request, 'dashboard/configure-select.html', {'configs': configs})
+    # return JsonResponse(list(cities.values('id', 'name')), safe=False)

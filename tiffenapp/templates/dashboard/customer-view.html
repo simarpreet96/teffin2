@@ -1,0 +1,70 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+         <!-- main section -->
+         <section>
+           <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-12">
+               <div class="wt-body-wrap">
+               <div class="wt-main-admin1">
+                    <div class="post">
+               <div class="row">
+                  <div class="col-md-3">
+                  <img src="/media/{{ post.image }}" class="images-fluid pro vendor-img ">
+                  </div>
+                  <div class="col-md-9">
+                      <div class="row">
+
+
+                          <div class="col-md-6">
+                              <div class="wt-admin-detail">
+                  <h4>{{post.username}}</h4>
+                  <span class="wtemid">Vendor ID : {{post.id}}</span>
+                  <p class="wtemgmail">Email : {{post.email}}</p>
+                  <p class="wtemdate">Slug : {{post.slug}}</p>
+                  </div>
+                          </div>
+                           <div class="col-md-6">
+                              <div class="wtadmindetailright1">
+                                  <div class="wt-edit-pr">
+                                      <a   data-toggle="modal" data-target="#wtadmineditpr{{post.slug}}" href="{% url 'user_vendor_edit' post.slug %}" ><i class="fas fa-edit"></i></a>
+
+                                  </div>
+
+                                  <ul>
+                                      <li>GST. TIN : {{post.vendor_gstno}}</li>
+                                      <li>Phone Number : {{post.phone}}</li>
+                                      <li>Alternate No. : {{post.vendor_alternatphone}}</li>
+
+                                  </ul>
+                              </div>
+                          </div>
+                      </div>
+
+                  </div>
+
+
+                </div>
+                        </div>
+               </div>
+               </div>
+              </div>
+            </div>
+           </div>
+         </section>
+
+     <!-- main section close-->
+
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="/static/dashboard/js/jquery.min.js"></script>
+  <script src="/static/dashboard/js/bootstrap.bundle.min.js"></script>
+  <script src="/static/dashboard/js/bootstrap.js"></script>
+  <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block content %}
+
+        {% for i in variant %}
+            {{ i.title }}
+            {{ i.product }}
+            {{ i.color }}
+            {{ i.size }}
+            {{ i.image_id }}
+            {{ i.quantity }}
+            {{ i.price }}
+        {% endfor %}
+
+{% endblock %}

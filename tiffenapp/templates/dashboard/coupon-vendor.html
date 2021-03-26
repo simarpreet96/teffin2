@@ -1,0 +1,135 @@
+ {% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block content %}
+
+         <!-- main section -->
+     <section>
+       <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="wt-body-wrap">
+              <div class="row">
+               <div class="col-md-6">
+                <h3 class="wt-toptitle"><i class="fas fa-users wttitlewticon"></i>Vendor Coupon</h3>
+               </div>
+               <div class="col-md-6">
+                <a href="add-coupon-vendor.html" class="wtadduser">Add New Coupon</a>
+               </div>
+              </div>
+              <div class="wt-tablebody table-responsive">
+              <table id="example" class="table table-striped table-bordered" style="width:100%">
+              <thead class="wt-table-dark">
+                  <tr>
+                      <th>Vendor Image</th>
+                      <th>Code</th>
+                      <th>Coupon type</th>
+                      <th>Coupon amount</th>
+                      <th style="width:150px;">Description</th>
+                      <th>Product IDs</th>
+                      <th>Usage / Limit</th>
+                      <th>Expiry Date</th>
+                      <th>Action</th>
+                  </tr>
+              </thead>
+              <tbody class="">
+                  <tr>
+                      <td><img src="images/admin.jpg" class="img-fluid wtprlistimg"></td>
+                      <td>Tiger Nixon</td>
+                      <td>Percentage discount</td>
+                      <td>10</td>
+                      <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</td>
+                      <td>-</td>
+                      <td>Only 2 Days</td>
+                      <td>January 15, 2021</td>
+                      <td>
+                        <div class="dropdown">
+                        <button class="actionbtn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                         <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item" href="edit-coupon-vendor.html">Edit</a>
+                          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#deleteModal">Delete</a>
+                        </div>
+                      </div>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td><img src="images/admin.jpg" class="img-fluid wtprlistimg"></td>
+                      <td>Tiger Nixon</td>
+                      <td>Percentage discount</td>
+                      <td>10</td>
+                      <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</td>
+                      <td>-</td>
+                      <td>Only 2 Days</td>
+                      <td>January 15, 2021</td>
+                      <td>
+                        <div class="dropdown">
+                        <button class="actionbtn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                         <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item" href="edit-coupon-vendor.html">Edit</a>
+                          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#deleteModal">Delete</a>
+                        </div>
+                      </div>
+                      </td>
+                  </tr>
+
+              </tbody>
+          </table>
+        </div>
+     <div class="wtmultycouponwrap">
+         <h3 class="wt_coupon_title">Recommended coupon extensions</h3>
+         <p class="wt_coupon_des">Take your coupon marketing to the next level with our recommended coupon extensions.</p>
+         <div class="row">
+             <div class="col-md-4">
+                 <div class="wtcouponbrwrap">
+                 <h5>Personalized Coupons</h5>
+                 <p>Generate dynamic personalized coupons for your customers that increase purchase rates.</p>
+                 </div>
+             </div>
+             <div class="col-md-4">
+                 <div class="wtcouponbrwrap">
+                 <h5>Smart Coupons</h5>
+                 <p>Powerful, "all in one" solution for gift certificates, store credits, discount coupons and vouchers.</p>
+                 </div>
+             </div>
+             <div class="col-md-4">
+                 <div class="wtcouponbrwrap">
+                 <h5>URL Coupons</h5>
+                 <p>Create a unique URL that applies a discount and optionally adds one or more products to the customer's cart.</p>
+                 </div>
+             </div>
+             <div class="col-md-4">
+                 <div class="wtcouponbrwrap">
+                 <h5>WooCommerce Store Credit</h5>
+                 <p>Create "store credit" coupons for customers which are redeemable at checkout.</p>
+                 </div>
+             </div>
+             <div class="col-md-4">
+                 <div class="wtcouponbrwrap">
+                 <h5>Free Gift Coupons</h5>
+                 <p>Give away a free item to any customer with the coupon code.</p>
+                 </div>
+             </div>
+             <div class="col-md-4">
+                 <div class="wtcouponbrwrap">
+                 <h5>Group Coupons</h5>
+                 <p>Coupons for groups. Provides the option to have coupons that are restricted to group members or roles. Works with the free Groups plugin.</p>
+                 </div>
+             </div>
+         </div>
+     </div>
+</div>
+</div>
+</div>
+</div>
+</section>
+     <!-- main section close-->
+	   <!-- End of Content Wrapper -->
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+
+ {% endblock %}

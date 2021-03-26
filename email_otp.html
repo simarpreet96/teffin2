@@ -1,0 +1,15 @@
+def otp_match(request):
+    if request.method == 'POST':
+        otp=request.POST.get('otp','')
+        email=request.POST.get('email','')
+
+        # here is Email is database email and email=frontend email.
+        obj_email = Member.objects.get(Email=email)
+
+        # here is obj_email.otp is database otp and simple otp is frontend otp.
+        if obj_email.otp==otp:
+            return redirect('login_a')
+        else:
+            return HttpResponse('invalid OTP.')
+    else:
+        return render(request,'otp_match.html')

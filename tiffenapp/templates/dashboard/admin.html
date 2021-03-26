@@ -1,0 +1,95 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+        .hiddeninput {
+            display: none;
+        }
+</style>
+
+<!-- main section -->
+<section>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="wt-main-admin">
+                            {% for admin in currentadmin %}
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <img src="/media/{{ admin.image }}" class="images-fluid pro vendor-img" />
+                                    <!--   <a href="{% url 'current_user_edit' admin.slug %}"><i class="fas fa-edit"></i></a>-->
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="row">
+
+                                        <div class="col-md-6">
+                                            <div class="wt-admin-detail">
+                                        <h4>{{ admin.username }}</h4>
+                                        <a href="#">{{ admin.email }}</a>
+                                        <p><i class="fas fa-phone-alt fontcall"></i>{{ admin.phone }}</p>
+                                    </div>
+                                        </div>
+                                             <div class="col-md-6">
+                            <div class="wtadmindetailright">
+                                <div class="wt-edit-pr">
+                                    <a href="#" data-toggle="modal" data-target="#wtadmineditpr{{admin.slug}}"><i class="fas fa-edit"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- main section close-->
+
+<!-- edit admin profile -->
+<div class="modal fade" id="wtadmineditpr{{admin.slug}}" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Edit Admin Profile</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form class="form-row" enctype="multipart/form-data" method="POST" action="{% url 'current_user_edit' admin.slug %}">
+                {% csrf_token %}
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Admin Image Upload</label>
+                        <input type="file" name="image" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" name="username" class="form-control" placeholder="Enter Name" />
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" name="email" class="form-control" placeholder="Enter Email" />
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="text" name="phone" class="form-control" placeholder="Enter Phone Number" />
+                    </div>
+         <input type="hiddin" name="role" value="1" class="form-control hiddeninput" id="id_role" placeholder="admin" />
+                    <div class="modal-footer">
+                        <button type="submit" class="wtsubmitbtn">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+<script src="/static/dashboard/js/jquery.min.js"></script>
+<script src="/static/dashboard/js/bootstrap.bundle.min.js"></script>
+<script src="/static/dashboard/js/bootstrap.js"></script>
+
+{% endblock %}

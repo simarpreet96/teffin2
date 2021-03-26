@@ -1,0 +1,67 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block content %}
+
+         <!-- main section -->
+     <section>
+       <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="wt-body-wrap">
+              <div class="row">
+               <div class="col-md-6">
+                <h3 class="wt-toptitle"><i class="fas fa-users wttitlewticon"></i>Edit Terms</h3>
+               </div>
+               <div class="col-md-6">
+                <a href="{% url 'attributeslist' %}" class="wtadduser">Attributes List</a>
+               </div>
+              </div>
+              <div class="row mt-3">
+                <div class="col-md-12">
+                  <form enctype="multipart/form-data" method="post" class="form-row">
+                     {% csrf_token %}
+              <div class="form-group col-md-6">
+                  <label>Title</label>
+                  <input type="text" name="configuresname" class="form-control" placeholder="" />
+              </div>
+              <div class="form-group col-md-6">
+                  <label>Slug</label>
+                  <input type="text" name="slug" class="form-control" placeholder="" />
+              </div>
+              <div class="form-group col-md-12">
+                  <label>Description</label>
+                  <textarea name="detail_text" class="form-control" rows="3"></textarea>
+              </div>
+                 <div class="form-group col-md-12">
+                  <div class="wt-modal-btn">
+                  <button type="submit" class="wtmodalsubmitbtn">Submit</button>
+                </div>
+                </div>
+               </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+       </div>
+     </section>
+     <!-- main section close-->
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script>
+  $(document).ready(function () {
+    $('#selectall').click(function () {
+        $('.selectedId').prop('checked', this.checked);
+    });
+
+    $('.selectedId').change(function () {
+        var check = ($('.selectedId').filter(":checked").length == $('.selectedId').length);
+        $('#selectall').prop("checked", check);
+    });
+});
+</script>
+
+{% endblock %}

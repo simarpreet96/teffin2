@@ -1,0 +1,232 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block content %}
+
+  <!-- BREADCRUMB -->
+    <div id="breadcrumb">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li>Home </li>
+                <li>/ category-name:{{ product.category.subcategoryname }}</li>
+                <li>/ product-name:{{ product.name }}</li>
+            </ul>
+        </div>
+        <div class="container-right">
+
+        </div>
+    </div>
+    <!-- /BREADCRUMB -->
+
+
+        <div>
+<!--            {% if variant.image_id > 0 %}-->
+<!--            <div>-->
+<!--                <img src="{{ variant.image }}" alt="" style="height: 300px">-->
+<!--                <p>1</p>-->
+<!--            </div>-->
+<!--            {% else %}-->
+<!--            <div>-->
+<!--                <img src="{{ product.image.url }}" alt="" style="height: 300px">-->
+<!--                <p>2</p>-->
+<!--            </div>-->
+<!--            {% endif %}-->
+
+<!--            {% for rs in images %}-->
+<!--            <div>-->
+<!--                <img src="{{ rs.image.url }}" alt="" style="height: 40px">-->
+<!--                <p>3</p>-->
+<!--            </div>-->
+<!--            {% endfor %}-->
+
+<div class="row">
+        <div class="column">
+            <div>
+                 <div>
+                     <img src="{{ product.main_image.url }}" style="height: 300px" >
+                     <p>4</p>
+                 </div>
+                <div class="row">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    {% for pro in product_image %}
+                    <div class="column"><img src="{{ pro.gallery_image.url }}" style="height: 40px"></div>
+                    <br><br>
+                    {% endfor %}
+
+                 {% for rs in images %}
+                     <div>
+                         <div class="column"><img src="{{ rs.image.url }}" style="height: 40px" ></div>
+                         <br><br>
+                     </div>
+                 {% endfor %}
+                    </div>
+            </div>
+<div>
+</div>
+                </div>
+
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<div class="column">
+                {% if product.variant == 'size-color' %}
+                    <form method="POST" id="post-form">
+                        <input type="hidden" name="productid" id="productid" value="{{ product.id }}">
+                        <span>Size 12:</span>
+                        {% csrf_token %}
+                        <select name="size" id="size">
+                            {% for rs in sizes %}
+                            <option {% if variant.size_id == rs.size_id %} selected {% endif %} value="{{ rs.size_id }}">{{ rs.size.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </form>
+
+                <form method="post" action="?q=selectvariant" id="post-color">
+                    {% csrf_token %}
+                    <div id="appendHere">
+                        <input type="hidden" name="size" id="size" value="{{ size_id }}">
+                        <ul class="color-option" >
+                            <li><span class="text-uppercase">Color 34:</span></li>
+                            {% for rs in colors %}
+                            <input type="radio"  {% if variant.id == rs.id %} checked {% endif %} name="variantid" id="variantid" value="{{ rs.id }}" onchange="this.form.submit();">
+                            <li  {% if variant.id == rs.id %} class="active" {% endif %}>
+                                <a style="background-color:{{ rs.color.code }}; color: #D9D9D9; text-shadow: 1px 1px #000000; width: 90px">
+                                    {{ rs.price }} {{ rs.color }}
+                                </a>
+                                <img src="{{ rs.image }}" style="height: 70px">
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </form>
+
+
+                {% elif product.variant == 'size' %}
+                <form method="post" action="?q=selectvariant" id="post-color">
+                    {% csrf_token %}
+                    <div id="appendHere">
+                        <input type="hidden" name="size" id="size" value="{{ size_id }}">
+                        <ul class="color-option" >
+                            <li><span class="text-uppercase">Size 56:</span></li>
+                            {% for rs in sizes %}
+                            <input type="radio"  {% if variant.id == rs.id %} checked {% endif %} name="variantid" id="variantid" value="{{ rs.id }}" onchange="this.form.submit();">
+                            <li  {% if variant.id == rs.id %} class="active" {% endif %}>
+                                <a style=" color: #204d74;  width: 90px">
+                                    {{ rs.size }}<br> ${{ rs.price }}
+                                </a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </form>
+                <br><br>
+
+                    {% elif product.variant == 'color' %}
+                    <form method="post" action="?q=selectvariant" id="post-color">
+                        {% csrf_token %}
+                        <div id="appendHere">
+                            <input type="hidden" name="size" id="size" value="{{ size_id }}">
+                            <ul class="color-option" >
+                                <li><span class="text-uppercase">Color 78:</span></li>
+                                {% for rs in colors %}
+                                <input type="radio"  {% if variant.id == rs.id %} checked {% endif %} name="variantid" id="variantid" value="{{ rs.id }}" onchange="this.form.submit();">
+                                <li  {% if variant.id == rs.id %} class="active" {% endif %}>
+                                    <a style="background-color:{{ rs.color.code }}; color: #D9D9D9; text-shadow: 1px 1px #000000; width: 90px">
+                                        ${{ rs.price }} ( {{ rs.color }} )
+                                    </a>
+                                    <img src="{{ rs.image }}" style="height: 70px">
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+
+                    </form>
+                    {% endif %}
+</div>
+
+            <!-- jQuery !-->
+  <script src="/static/dashboard/js/jquery.min.js"></script>
+                <script>
+                                $(document).on('change', '#size',function(e){
+                               console.log("111111111");
+
+                                   $.ajax({
+        url : "/ajaxcolor/", // the endpoint
+        type : "POST", // http method
+        data_type : 'html',
+                                         data:{
+                                           productid:$('#productid').val(),
+                                           size:$('#size').val(),
+                                           csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                                         action: 'post'
+                                      },
+        // handle a successful response
+        success : function(data) {
+            $('#appendHere').html(data);
+            console.log("success"); 
+        },
+
+        // handle a non-successful response
+        error : function(xhr,errmsg,err) {
+            $('#appendHere').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: "+errmsg+ "</div>"); // add the error to the dom
+            
+        }
+    });
+                                   });
+</script>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<div class="column">
+                 {% if  product.variant != 'None'   %}
+                                <form action="{{ product.id }}" method="post"  id="addchart-form">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="variantid" id="variantid" value="{{ variant.id }}">
+                                    <div id="SelectedProduct">
+                                        <p><strong>Availability 910:</strong> {% if variant.quantity > 0  %} In Stock {% else %} Out of Stock {% endif %}</p>
+                                        <p><strong>Selected 1112:</strong> Size : {{ variant.size }}  Color : {{ variant.color }} </p>
+                                        <h3 class="product-price">${{ variant.price}}</h3>
+                                         <a href="{% url 'product_list' %}"><button type="button" class="wtmodalsubmitbtn">Product List</button></a>
+<!--                                        <div class="qty-input">-->
+<!--                                            <span class="text-uppercase">QTY: </span>-->
+<!--                                            <input class="input" name="quantity" type="number" value="1" min="1" max="{{ variant.quantity }}">-->
+<!--                                            <button type="submit" {% if variant.quantity < 1  %} disabled {% endif %} >-->
+<!--                                                <i class="fa fa-shopping-cart"></i> Add to Cart-->
+<!--                                            </button>-->
+<!--                                        </div>-->
+                                    </div>
+                                </form>
+                            {% else %}
+
+                                <form action="/order/addtoshopcart/{{ product.id }}" method="post"  id="addchart-form">
+                                    {% csrf_token %}
+                                    <div>
+<!--                                        <p><strong>Availability :</strong> {% if product.amount > 0  %} In Stock {% else %} Out of Stock {% endif %}</p>-->
+                                        <h2> {{ product.name }} </h2>
+                                        {% if product.discount <= 0 %}
+                                             <h3> Price: {{ product.price }}</h3>
+                                              {% else %}
+                                              <h3>Actual Price: <s>{{ product.price }}</s></h3>
+                                                <h3>Discount Price: {{ product.discount_price }} on {{product.discount}}% off on actual price</h3>
+                                        {% endif %}
+                                        <h4>category: {{ product.category }} </h4>
+                                        <h4>type: {{ product.type }} </h4>
+                                        <h4>description: {{ product.detail_text }} </h4>
+                                        <a href="{% url 'product_list' %}"><button type="button" class="wtmodalsubmitbtn">Product List</button></a>
+<!--                                        <div class="qty-input">-->
+<!--                                            <span class="text-uppercase">QTY: </span>-->
+<!--                                            <input class="input" name="quantity" type="number" value="1" min="1" max="{{ product.amount }}">-->
+<!--                                            <button type="submit" {% if product.amount < 1  %} disabled {% endif %} >-->
+<!--                                                <i class="fa fa-shopping-cart"></i> Add to Cart-->
+<!--                                            </button>-->
+<!--                                        </div>-->
+                                    </div>
+                                </form>
+
+                            {% endif %}
+    </div>
+
+        </div>
+            </div>
+
+
+{% endblock %}

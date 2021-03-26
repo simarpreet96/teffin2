@@ -1,0 +1,213 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<style>
+        .hiddeninput {
+            display: none;
+        }
+    </style>
+
+         <!-- main section -->
+     <section>
+       <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="wt-body-wrap">
+              <div class="row">
+               <div class="col-md-6">
+                <h3 class="wt-toptitle"><i class="fas fa-users wttitlewticon"></i> All Customers</h3>
+               </div>
+               <div class="col-md-6">
+                <button class="wtadduser" data-toggle="modal" data-target="#wtaddvendorpr">Add New Customers</button>
+               </div>
+              </div>
+
+              <div class="row">
+                   {% for customer in customer_list %}
+                <div class="col-md-6">
+                  <div class="wt-vendor-wrap">
+                    <div class="wtquestionicon">
+                     <div class="dropdown">
+                      <a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-ellipsis-v"></i>
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                       <a class="dropdown-item" data-toggle="modal" data-target="#wteditvendorpr{{customer.slug}}" href="#" ><i class="fas fa-user-edit fontcall pr-3"></i>Edit</a>
+                        <a class="dropdown-item" href="{% url 'user_customer_detail' customer.slug %}"><i class="fa fa-eye fontcall pr-3"></i>View</a>
+                       <a class="dropdown-item" data-toggle="modal" data-target="#wtdeletevendorpr{{customer.slug}}" href="#" ><i class="fas fa-trash-alt fontcall pr-3"></i>Delete</a>
+                    </div>
+                  </div>
+                    <div class="wt-vendor-detail">
+                      <img src="/media/{{ customer.image }}" class="images-fluid float-left">
+					  <div class="wt-vendor-detail-text">
+                      <h3>Name: {{ customer.name }}</h3>
+                      <p>Email: {{ customer.email }}</p>
+                       <p>Address:{{ customer.customer_address }}</p>
+                       <p>Slug: {{ customer.slug }}</p>
+                      <a href="#"><i class="fas fa-phone-alt fontcall"></i>{{ customer.phone }}</a>
+					  </div>
+                    </div>
+                  </div>
+                </div>
+                </div>
+
+
+
+                     <!-- edit vendor detail -->
+
+      <div class="modal fade" id="wteditvendorpr{{customer.slug}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" >Edit Profile</h5>  <!-- id="exampleModalLongTitle" -->
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form class="form-row" enctype="multipart/form-data" method="POST" action="{% url 'user_customer_edit' customer.slug %}">
+                {% csrf_token %}
+                <div class="form-group col-md-12">
+                <label>Upload Image</label>
+                <input type="file" name="image" class="form-control" placeholder="">
+              </div>
+              <div class="form-group col-md-12">
+                <label>Name</label>
+                <input type="text" name="username" class="form-control" placeholder="">
+              </div>
+              <div class="form-group col-md-12">
+                <label>Email</label>
+                <input type="text" name="email"  class="form-control" placeholder="">
+              </div>
+              <div class="form-group col-md-12">
+                <label>Phone Number</label>
+                <input type="text"  name="phone" class="form-control" placeholder="">
+              </div>
+                   <div class="form-group col-md-6">
+                <label>Password</label>
+                <input type="text" class="form-control" name="password1" placeholder="">
+              </div>
+                 <div class="form-group col-md-6">
+                <label>Re-enter Password</label>
+                <input type="text" class="form-control" name="password2" placeholder="">
+              </div>
+              <div class="form-group col-md-12">
+                <label>Address</label>
+                <textarea class="form-control" name="customer_address" rows="3"></textarea>
+              </div>
+          <input type="hiddin" name="role" value="4" class="form-control hiddeninput" id="id_role" placeholder="customer" />
+              <div class="form-group col-md-12">
+                <div class="wt-modal-btn">
+                <button type="button" class="wtclosebtn" data-dismiss="modal">Close</button>
+                <button type="submit" class="wtmodalsubmitbtn">Submit</button>
+              </div>
+              </div>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+                    <!-- Delete vendor detail -->
+
+      <div class="modal fade" id="wtdeletevendorpr{{customer.slug}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" >Delete User</h5>  <!--  id="exampleModalLongTitle" -->
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Are you sure want to delete?</p>
+              <div class="wt-modal-btn">
+               <form enctype="multipart/form-data" method="POST" action="{% url 'user_customer_del' customer.slug %}">
+                {% csrf_token %}
+                 <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                 <button type="submit" class="btn btn-primary">Delete</button>
+                   </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+                  {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+       </div>
+     </section>
+     <!-- main section close-->
+
+      <!-- Add vendor detail -->
+        
+      <div class="modal fade" id="wtaddvendorpr" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header" enctype="multipart/form-data" method="post" >
+              <h5 class="modal-title" id="exampleModalLongTitle">Add New Customer</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form enctype="multipart/form-data" method="post" class="form-row">
+                 {% csrf_token %}
+                <div class="form-group col-md-12">
+                <label>Upload Image</label>
+                <input type="file" class="form-control" name="image " placeholder="">
+              </div>
+              <div class="form-group col-md-12">
+                <label>Name</label>
+                <input type="text" class="form-control" name="username" placeholder="">
+              </div>
+              <div class="form-group col-md-12">
+                <label>Email</label>
+                <input type="text" class="form-control" name="email" placeholder="">
+              </div>
+              <div class="form-group col-md-12">
+                <label>Phone Number</label>
+                <input type="text" class="form-control" name="phone" placeholder="">
+              </div>
+                 <div class="form-group col-md-12">
+                <label>Password</label>
+                <input type="text" class="form-control" name="password1" placeholder="">
+              </div>
+                 <div class="form-group col-md-12">
+                <label>Re-enter Password</label>
+                <input type="text" class="form-control" name="password2" placeholder="">
+              </div>
+                <div class="form-group col-md-12">
+                <label>Address</label>
+                <textarea class="form-control" rows="3" name="customer_address"></textarea>
+              </div>
+
+        <input type="hiddin" name="role" value="4" class="form-control hiddeninput" id="id_role" placeholder="customer" />
+
+              <div class="form-group col-md-12">
+                <div class="wt-modal-btn">
+                <button type="button" class="wtclosebtn" data-dismiss="modal">Close</button>
+                <button type="submit" class="wtmodalsubmitbtn">Submit</button>
+              </div>  
+              </div>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="/static/dashboard/js/jquery.min.js"></script>
+  <script src="/static/dashboard/js/bootstrap.bundle.min.js"></script>
+  <script src="/static/dashboard/js/bootstrap.js"></script>
+  <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+
+{% endblock %}

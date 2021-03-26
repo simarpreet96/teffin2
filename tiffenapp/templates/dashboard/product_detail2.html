@@ -1,0 +1,302 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!--    &lt;!&ndash; view vendor detail &ndash;&gt;-->
+<!--&lt;!&ndash;<div class="modal fade" id="viewprModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">&ndash;&gt;-->
+<!--&lt;!&ndash;<div class="modal-dialog modal-dialog-centered" role="document">&ndash;&gt;-->
+<!--&lt;!&ndash;  <div class="modal-content">&ndash;&gt;-->
+<!--    <div class="header">-->
+<!--      <h5 class="title">View Product</h5>-->
+<!--&lt;!&ndash;      <button type="button" class="close" data-dismiss="modal" aria-label="Close">&ndash;&gt;-->
+<!--&lt;!&ndash;        <span aria-hidden="true">&times;</span>&ndash;&gt;-->
+<!--&lt;!&ndash;      </button>&ndash;&gt;-->
+<!--    </div>-->
+<!--    <div class="post">-->
+<!--      <form class="form-row">-->
+<!--      &nbsp<ul class="viewmodalul">-->
+<!--          <br>-->
+<!--          <li>Image : <img src="/media/{{ post.main_image }}" width="250" height="250" class="wtviewprimg"></li>-->
+<!--          <br>-->
+<!--               {% for image in post.product_images.all %}-->
+<!--                                <img height="70" width="70" alt="" src="{{ image.gallery_image.url }}">-->
+<!--               {% endfor %}-->
+<!--          <br><br>-->
+<!--          <li>Title :{{ post.name }}</li>-->
+<!--          <br>-->
+<!--           <br>-->
+<!--          {% if post.discount <= 0 %}-->
+<!--            <li> Price: {{ post.price }}</li>-->
+<!--          {% else %}-->
+<!--          <li>Actual Price: <s>{{ post.price }}</s></li>-->
+<!--            <li>Discount Price: {{ post.discount_price }} on {{post.discount}}% off on actual price</li>-->
+<!--          {% endif %}-->
+<!--          <br>-->
+<!--&lt;!&ndash;          <li> Size:&ndash;&gt;-->
+<!--&lt;!&ndash;              {% csrf_token %}&ndash;&gt;-->
+<!--&lt;!&ndash;              {% for config in provariant %}&ndash;&gt;-->
+<!--&lt;!&ndash;                 <select name="size" class='form-control' id="size">&ndash;&gt;-->
+<!--&lt;!&ndash;                   <option value="{{config.id}}" data-variation-id-1='16'>&ndash;&gt;-->
+<!--&lt;!&ndash;                   {{ config.configuresname }}</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                 </select>&ndash;&gt;-->
+<!--&lt;!&ndash;              {% endfor %}&ndash;&gt;-->
+<!--&lt;!&ndash;          </li>&ndash;&gt;-->
+<!--            <li>Category : {{ post.category }}</li>-->
+<!--          <br>-->
+<!--            <li>Description : {{post.detail_text }} </li>-->
+<!--          <br>-->
+<!--            <li>Type : {{post.type }} </li>-->
+<!--          <br>-->
+<!--            <li>Slug : {{post.slug }} </li>-->
+<!--      </ul>-->
+<!--      <div class="form-group col-md-12">-->
+<!--        <div class="wt-modal-btn">-->
+<!--            <br>-->
+<!--            <button type="button" class="wtclosebtn" ><a class="wtclosebtn" href="{% url 'product_list' %}" data-dismiss="modal">Back</a></button>-->
+<!--      </div>-->
+<!--      </div>-->
+<!--    </form>-->
+<!--    </div>-->
+<!--<div class="modal fade" id="wtdeletevendorpr" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">-->
+<!--  <div class="modal-dialog modal-dialog-centered" role="document">-->
+<!--    <div class="modal-content">-->
+<!--      <div class="modal-header">-->
+<!--        <h5 class="modal-title" id="exampleModalLongTitle">Delete Product-->
+<!--       </h5>-->
+<!--        <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--          <span aria-hidden="true">&times;</span>-->
+<!--        </button>-->
+<!--      </div>-->
+<!--      <div class="modal-body">-->
+<!--        <p>Are you sure want to delete?</p>-->
+<!--      </div>-->
+<!--      <div class="modal-footer">-->
+<!--        <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>-->
+<!--        <button type="button" class="btn btn-primary">Delete</button>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+
+
+
+
+
+
+  <!-- BREADCRUMB -->
+    <div id="breadcrumb">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li>Home </li>
+                <li>/ category-name:{{ product.category.maincategoryname }}</li>
+                <li class="">/ product-name:{{ product.name }}</li>
+            </ul>
+        </div>
+    </div>
+    <!-- /BREADCRUMB -->
+
+
+        <div>
+<!--            {% if variant.image_id > 0 %}-->
+<!--            <div>-->
+<!--                <img src="{{ variant.image }}" alt="" style="height: 300px">-->
+<!--                <p>1</p>-->
+<!--            </div>-->
+<!--            {% else %}-->
+<!--            <div>-->
+<!--                <img src="{{ product.image.url }}" alt="" style="height: 300px">-->
+<!--                <p>2</p>-->
+<!--            </div>-->
+<!--            {% endif %}-->
+
+<!--            {% for rs in images %}-->
+<!--            <div>-->
+<!--                <img src="{{ rs.image.url }}" alt="" style="height: 40px">-->
+<!--                <p>3</p>-->
+<!--            </div>-->
+<!--            {% endfor %}-->
+
+<div class="row">
+        <div class="column">
+            <div>
+                 <div>
+                     <img src="{{ product.main_image.url }}" style="height: 300px" >
+                     <p>4</p>
+                 </div>
+                <div class="row">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                {% for rs in galleryimages %}
+                    <div>
+                         <div class="column"><img src="{{ rs.gallery_image.url }}" style="height: 40px" ></div>
+                         <p>4.5</p>
+                     </div>
+                 {% endfor %}
+
+                 {% for rs in images %}
+                     <div>
+                         <div class="column"><img src="{{ rs.image.url }}" style="height: 40px" ></div>
+                         <p>5</p>
+                     </div>
+                 {% endfor %}
+                    </div>
+            </div>
+<div>
+</div>
+                </div>
+
+
+                              
+
+
+<div class="column">
+                {% if product.variant == 'size-color' %}
+                    <form method="POST" id="post-form">
+                        <input type="hidden" name="productid" id="productid" value="{{ product.id }}">
+                        <span>Size 12:</span>
+                        {% csrf_token %}
+                        <select name="size" id="size">
+                            {% for rs in sizes %}
+                            <option {% if variant.size_id == rs.size_id %} selected {% endif %} value="{{ rs.size_id }}">{{ rs.size.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </form>
+
+                <form method="post" action="?q=selectvariant" id="post-color">
+                    {% csrf_token %}
+                    <div id="appendHere">
+                        <input type="hidden" name="size" id="size" value="{{ size_id }}">
+                        <ul class="color-option" >
+                            <li><span class="text-uppercase">Color 34:</span></li>
+                            {% for rs in colors %}
+                            <input type="radio"  {% if variant.id == rs.id %} checked {% endif %} name="variantid" id="variantid" value="{{ rs.id }}" onchange="this.form.submit();">
+                            <li  {% if variant.id == rs.id %} class="active" {% endif %}>
+                                <a style="background-color:{{ rs.color.code }}; color: #D9D9D9; text-shadow: 1px 1px #000000; width: 90px">
+                                    {{ rs.price }} {{ rs.color }}
+                                </a>
+                                <img src="{{ rs.image }}" style="height: 70px">
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </form>
+
+
+                {% elif product.variant == 'size' %}
+                <form method="post" action="?q=selectvariant" id="post-color">
+                    {% csrf_token %}
+                    <div id="appendHere">
+                        <input type="hidden" name="size" id="size" value="{{ size_id }}">
+                        <ul class="color-option" >
+                            <li><span class="text-uppercase">Size56:</span></li>
+                            {% for rs in sizes %}
+                            <input type="radio"  {% if variant.id == rs.id %} checked {% endif %} name="variantid" id="variantid" value="{{ rs.id }}" onchange="this.form.submit();">
+                            <li  {% if variant.id == rs.id %} class="active" {% endif %}>
+                                <a style=" color: #204d74;  width: 90px">
+                                    {{ rs.size }}<br> ${{ rs.price }}
+                                </a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </form>
+                <br><br>
+
+                    {% elif product.variant == 'color' %}
+                    <form method="post" action="?q=selectvariant" id="post-color">
+                        {% csrf_token %}
+                        <div id="appendHere">
+                            <input type="hidden" name="size" id="size" value="{{ size_id }}">
+                            <ul class="color-option" >
+                                <li><span class="text-uppercase">Color 78:</span></li>
+                                {% for rs in colors %}
+                                <input type="radio"  {% if variant.id == rs.id %} checked {% endif %} name="variantid" id="variantid" value="{{ rs.id }}" onchange="this.form.submit();">
+                                <li  {% if variant.id == rs.id %} class="active" {% endif %}>
+                                    <a style="background-color:{{ rs.color.code }}; color: #D9D9D9; text-shadow: 1px 1px #000000; width: 90px">
+                                        ${{ rs.price }} ( {{ rs.color }} )
+                                    </a>
+                                    <img src="{{ rs.image }}" style="height: 70px">
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+
+                    </form>
+                    {% endif %}
+</div>
+
+            <!-- jQuery !-->
+  <script src="/static/dashboard/js/jquery.min.js"></script>
+                <script>
+                                $(document).on('change', '#size',function(e){
+                               console.log("111111111");
+
+                                   $.ajax({
+        url : "/ajaxcolor/", // the endpoint
+        type : "POST", // http method
+        data_type : 'html',
+                                         data:{
+                                           productid:$('#productid').val(),
+                                           size:$('#size').val(),
+                                           csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                                         action: 'post'
+                                      },
+        // handle a successful response
+        success : function(json) {
+            $('#appendHere').html(data.rendered_table);
+            console.log("success"); 
+        },
+
+        // handle a non-successful response
+        error : function(xhr,errmsg,err) {
+            $('#appendHere').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: "+errmsg+ "</div>"); // add the error to the dom
+            
+        }
+    });
+                                   });
+</script>
+
+<div class="column">
+                 {% if  product.variant != 'None'   %}
+                                <form action="{{ product.id }}" method="post"  id="addchart-form">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="variantid" id="variantid" value="{{ variant.id }}">
+                                    <div id="SelectedProduct">
+                                        <p><strong>Availability 910:</strong> {% if variant.quantity > 0  %} In Stock {% else %} Out of Stock {% endif %}</p>
+                                        <p><strong>Selected 1112:</strong> Size : {{ variant.size }}  Color : {{ variant.color }} </p>
+                                        <h3 class="product-price">${{ variant.price}}</h3>
+                                        <div class="qty-input">
+                                            <span class="text-uppercase">QTY: </span>
+                                            <input class="input" name="quantity" type="number" value="1" min="1" max="{{ variant.quantity }}">
+                                            <button type="submit" {% if variant.quantity < 1  %} disabled {% endif %} >
+                                                <i class="fa fa-shopping-cart"></i> Add to Cart
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            {% else %}
+
+                                <form action="/order/addtoshopcart/{{ product.id }}" method="post"  id="addchart-form">
+                                    {% csrf_token %}
+                                    <div id="SelectedProduct">
+                                        <p><strong>Availability 1314:</strong> {% if product.amount > 0  %} In Stock {% else %} Out of Stock {% endif %}</p>
+                                        <h3 class="product-price">{{ product.price }} </h3>
+                                        <div class="qty-input">
+                                            <span class="text-uppercase">QTY: </span>
+                                            <input class="input" name="quantity" type="number" value="1" min="1" max="{{ product.amount }}">
+                                            <button type="submit" {% if product.amount < 1  %} disabled {% endif %} >
+                                                <i class="fa fa-shopping-cart"></i> Add to Cart
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            {% endif %}
+    </div>
+
+        </div>
+            </div>
+
+
+{% endblock %}

@@ -1,0 +1,186 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block content %}
+
+         <!-- main section -->
+         <style type="text/css">
+           a i {
+    color: #e16129;
+}
+.modal-button {
+    margin-top: 5px;
+    text-align: center;
+}
+button.btn.btn-delete {
+    background: #e16129;
+    color: #fff;
+    margin-left: 30px;
+}
+.modal-text p {
+
+    position: relative;
+    top: 12px;
+    }
+    a:hover{
+      text-decoration: none;
+    }
+         </style>
+     <section>
+       <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="wt-body-wrap">
+              <div class="row">
+               <div class="col-md-6">
+                <h3 class="wt-toptitle"><i class="fa fa-list-ul  wttitlewticon"></i> Category List</h3>
+               </div>
+               <div class="col-md-6">
+                <a href="{% url 'add_blogcategory' %}" class="wtadduser">Add New Category</a>
+               </div>
+              </div>
+              <section class="admin-listCategory-content">
+                     <div class="col-xs-12 padd-none">
+                        <div class="admin-listCategory-content-inner">
+                           <div class="col-xs-12 padd-none">
+                           </div>
+                           <div class="col-xs-12 padd-none">
+                              <div class="wt-tablebody table-responsive ">
+                                 <table class="table table-striped table-bordered dataTable no-footer">
+                                    <thead>
+                                       <tr>
+                                          <th>Sr. No.</th>
+                                          <th>Title</th>
+                                          <th>Edit</th>
+                                           <th>View</th>
+                                          <th>Delete</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for blogcat in blogcategorylist %}
+                                       <tr>
+                                          <td>{{ forloop.counter }}</td>
+                                          <td> {{ blogcat.blogcategoryname }}</td>
+                                          <td>
+                                             <div class="text-center">
+                                                <a href="{% url 'blogcategorylist_edit' blogcat.slug %}" class="edit-button"><i class="fas fa-edit"></i></a>
+                                             </div>
+                                          </td>
+                                           <td>
+                                             <div class="text-center">
+                                                <a href="#" data-toggle="modal" data-target="#wtviewblogcategory{{blogcat.slug}}" class="edit-button"><i class="fa fa-eye fontcall pr-3"></i></a>
+                                             </div>
+                                          </td>
+                                          <td>
+                                             <div class="text-center">
+                                                <a href="#" class="delete-button" data-toggle="modal" data-target="#wtdeleteblogcategory{{blogcat.slug}}"><i class="fas fa-trash-alt"></i></a>
+                                             </div>
+                                          </td>
+                                       </tr>
+
+
+
+                     <!-- view vendor detail -->
+                        <div class="modal fade" id="wtviewblogcategory{{blogcat.slug}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" >View Category</h5>   <!--  id="exampleModalLongTitle" -->
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form class="form-row">
+                                            <ul class="viewmodalul">
+                                                <li>Title : {{ blogcat.blogcategoryname }}</li>
+                                                <li>Image : <img src="/media/{{ blogcat.image }}" class="wtviewprimg" /></li>
+                                            </ul>
+                                            <div class="form-group col-md-12">
+                                                <div class="wt-modal-btn">
+                                                    <button type="button" class="wtclosebtn" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+    <!-- Delete vendor detail -->
+      <div class="modal fade" id="wtdeleteblogcategory{{blogcat.slug}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" >Delete Vendor</h5>    <!-- id="exampleModalLongTitle" -->
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Are you sure want to delete?</p>
+              <div class="wt-modal-btn">
+                <form enctype="multipart/form-data" method="POST" action="{% url 'blogcategory_del' blogcat.slug %}">
+                    {% csrf_token %}
+                    <button type="button" class="wtclosebtn" data-dismiss="modal">Close</button>
+                    <button type="submit" class="wtmodalsubmitbtn">Submit</button>
+                 </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+                                    {% endfor %}
+                                    </tbody>
+                                 
+                                 </table>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </section>
+</div>
+</div>
+</div>
+</div>
+</section>
+<div class="modal fade" id="deleteblog" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+         <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+               <div class="modal-body">
+                  <div class="row">
+                     <div class="col-md-6">
+                        <div class="modal-text">
+                           <p>Are you sure want to delete?</p>
+                        </div>
+                     </div>
+                     <div class="col-md-6 ">
+                        <div class="modal-button">
+                           <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                           <button type="button" class="btn btn-delete">Delete</button>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+
+  <script src="/static/dashboard/js/jquery.min.js"></script>
+  <script src="/static/dashboard/js/bootstrap.bundle.min.js"></script>
+  <script src="/static/dashboard/js/bootstrap.js"></script>
+  <script>
+  $(document).ready(function () {
+    $('#selectall').click(function () {
+        $('.selectedId').prop('checked', this.checked);
+    });
+
+    $('.selectedId').change(function () {
+        var check = ($('.selectedId').filter(":checked").length == $('.selectedId').length);
+        $('#selectall').prop("checked", check);
+    });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,238 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block content %}
+
+         <!-- main section -->
+         <section>
+           <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-12">
+               <div class="wt-body-wrap">
+               <div class="wt-main-admin1">
+                    <div class="post">
+
+                  <div class="row">
+                  <div class="col-md-3">
+                  <img src="/media/{{ post.image }}" class="images-fluid pro vendor-img ">
+                  </div>
+                  <div class="col-md-9">
+                      <div class="row">
+
+
+                          <div class="col-md-6">
+                              <div class="wt-admin-detail">
+                  <h4>{{post.username}}</h4>
+                  <span class="wtemid">Vendor ID : {{post.id}}</span>
+                  <p class="wtemgmail">Email : {{post.email}}</p>
+                  <p class="wtemdate">Slug : {{post.slug}}</p>
+                  </div>
+                          </div>
+                           <div class="col-md-6">
+                              <div class="wtadmindetailright1">
+                                  <div class="wt-edit-pr">
+                                      <a   data-toggle="modal" data-target="#wtadmineditpr{{post.slug}}" href="{% url 'user_vendor_edit' post.slug %}" ><i class="fas fa-edit"></i></a>
+
+                                  </div>
+
+                                  <ul>
+                                      <li>GST. TIN : {{post.vendor_gstno}}</li>
+                                      <li>Phone Number : {{post.phone}}</li>
+                                      <li>Alternate No. : {{post.vendor_alternatphone}}</li>
+
+                                  </ul>
+                              </div>
+                          </div>
+                      </div>
+
+                  </div>
+
+
+                </div>
+
+                         <!-- edit vendor detail -->
+
+      <div class="modal fade" id="wtadmineditpr{{post.slug}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Edit Profile</h5>   <!--  id="exampleModalLongTitle" -->
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+             <form class="form-row" enctype="multipart/form-data" method="POST" action="{% url 'user_vendor_edit' post.slug  %}">
+                {% csrf_token %}
+                  <div class="form-group col-md-12">
+                  <label>Upload Image</label>
+                  <input type="file" class="form-control" name="image" placeholder="">
+                </div>
+              <div class="form-group col-md-12">
+                <label>Name</label>
+                <input type="text" name="username" class="form-control" placeholder="">
+              </div>
+              <div class="form-group col-md-12">
+                <label>GST. TIN</label>
+                <input type="text" name="vendor_gstno" class="form-control" placeholder="">
+              </div>
+              <div class="form-group col-md-12">
+                <label>Email</label>
+                <input type="text" name="email" class="form-control" placeholder="">
+              </div>
+                <div class="form-group col-md-6">
+                <label>Password</label>
+                <input type="text" class="form-control" name="password1" placeholder="">
+              </div>
+                 <div class="form-group col-md-6">
+                <label>Re-enter Password</label>
+                <input type="text" class="form-control" name="password2" placeholder="">
+              </div>
+              <div class="form-group col-md-12">
+                <label>Phone Number</label>
+                <input type="text" name="phone" class="form-control" placeholder="">
+              </div>
+              <div class="form-group col-md-12">
+                <label>Alternate no.</label>
+                <input type="text" name="vendor_alternatphone" class="form-control" placeholder="">
+              </div>
+                  <div class="form-group col-md-6">
+                  <label>Role</label>
+                    <select class="custom-select" name="role">
+                        <option value="3">Vendor</option>
+                    </select>
+                </div>
+              <div class="form-group col-md-12">
+                <div class="wt-modal-btn">
+                <button type="button" class="wtclosebtn" data-dismiss="modal">Close</button>
+                <button type="submit" class="wtmodalsubmitbtn">Submit</button>
+              </div>
+              </div>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+                        </div>
+				<div class="row">
+				<div class="col-md-12">
+				   <a href="vendor-history.html" class="wthistorylink">Vendor History</a>
+				</div>
+				</div>
+				</div>
+                <div class="ms-product-panel">
+                <div class="row">
+                  <div class="col-md-12"> 
+                    <div class="wtprdetail">
+                    <h5>Product Detail</h5>
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                      <a class="nav-link active" id="Products-tab" data-toggle="tab" href="#Products" role="tab" aria-controls="Products" aria-selected="true">All Products</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" id="Veg-tab" data-toggle="tab" href="#Veg" role="tab" aria-controls="Veg" aria-selected="false">Veg</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" id="Non-Veg-tab" data-toggle="tab" href="#Non-Veg" role="tab" aria-controls="Non-Veg" aria-selected="false">Non-Veg </a>
+                    </li>
+                  </ul>
+                  <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="Products" role="tabpanel" aria-labelledby="Products-tab">
+                        <div class="row">
+                            {% for allpros in vendor_pro %}
+                        <div class="col-md-3">
+                          <div class="wtpanelcardwrap">
+                            <img src="/media/{{ allpros.main_image }}" class="wtimgfluid">
+                            <div class="wtprdec">
+                            <h6>{{ allpros.type }}</h6>
+                            <select class="wtselect">
+                            <option selected><span>1 kg - <i class="fas fa-rupee-sign"></i>52.47</span></option>
+                            </select>
+                            <div>
+                              <p>{{ allpros.name }}</p>
+                                {% if allpros.discount <= 0 %}
+                                <p> Price: {{ allpros.price }}</p>
+                                     {% else %}
+                                     <li>Actual Price: <s>{{ allpros.price }}</s></li>
+                                       <li>Discount Price: {{ allpros.discount_price }} on {{allpros.discount}}% off on actual price</li>
+                                {% endif %}
+                            </div>
+                          </div>
+                          </div>
+                        </div>
+                            {% endfor %}
+                      </div>
+                    </div>
+                    <div class="tab-pane fade" id="Veg" role="tabpanel" aria-labelledby="Veg-tab">
+                       <div class="row">
+                           {% for vegallpros in vendor_veg %}
+                        <div class="col-md-3">
+                          <div class="wtpanelcardwrap">
+                            <img src="/media/{{ vegallpros.main_image }}" class="wtimgfluid">
+                            <div class="wtprdec">
+                            <h6>{{ vegallpros.type }}</h6>
+                            <select class="wtselect">
+                            <option selected><span>1 kg - <i class="fas fa-rupee-sign"></i>52.47</span></option>
+                            </select>
+                             <div>
+                              <p>{{ vegallpros.name }}</p>
+                                {% if vegallpros.discount <= 0 %}
+                                <p> Price: {{ vegallpros.price }}</p>
+                                     {% else %}
+                                     <li>Actual Price: <s>{{ vegallpros.price }}</s></li>
+                                       <li>Discount Price: {{ vegallpros.discount_price }} on {{vegallpros.discount}}% off on actual price</li>
+                                {% endif %}
+                            </div>
+                          </div>
+                          </div>
+                        </div>
+                            {% endfor %}
+                      </div>
+                    </div>
+                    <div class="tab-pane fade" id="Non-Veg" role="tabpanel" aria-labelledby="Non-Veg-tab">
+                       <div class="row">
+                            {% for nonvegallpros in vendor_nonveg %}
+                        <div class="col-md-3">
+                          <div class="wtpanelcardwrap">
+                            <img src="/media/{{ nonvegallpros.main_image }}" class="wtimgfluid">
+                            <div class="wtprdec">
+                            <h6>{{ nonvegallpros.type }}</h6>
+                            <select class="wtselect">
+                            <option selected><span>1 kg - <i class="fas fa-rupee-sign"></i>52.47</span></option>
+                            </select>
+                            <div>
+                              <p>{{ nonvegallpros.name }}</p>
+                                {% if nonvegallpros.discount <= 0 %}
+                                <p> Price: {{ nonvegallpros.price }}</p>
+                                     {% else %}
+                                     <li>Actual Price: <s>{{ nonvegallpros.price }}</s></li>
+                                       <li>Discount Price: {{ nonvegallpros.discount_price }} on {{nonvegallpros.discount}}% off on actual price</li>
+                                {% endif %}
+                            </div>
+                          </div>
+                          </div>
+                        </div>
+                           {% endfor %}
+                      </div>
+                    </div> 
+                  </div>
+                    </div>
+                   </div>
+                </div>
+                </div>
+               </div>
+              </div>
+            </div>
+           </div>
+         </section>
+       <!-- main section close-->
+
+  <script src="/static/dashboard/js/jquery.min.js"></script>
+  <script src="/static/dashboard/js/bootstrap.bundle.min.js"></script>
+  <script src="/static/dashboard/js/bootstrap.js"></script>
+
+
+
+{% endblock %}

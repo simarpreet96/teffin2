@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<section class="resetsection">
+<div class="container">
+    <div class="row">
+      <div class="col-md-6 mx-auto">
+        <div class="signup-wrap">
+          <h3>Sign IN</h3>
+
+          <form class="form-row" method="post">
+        {% csrf_token %}
+ <input type="hidden" name="entered_phone_number" value="{{entered_phone_number}}">
+
+          <div class="form-group col-md-12">
+            <label>Enter OTP sent on your phone number</label>
+           <input type="text" class="form-control" placeholder="Enter 5 digits OTP" name="otp">
+            <i class="fa fa-lock addonicon"></i>
+          </div>
+
+
+          <div class="signbtntype">
+          <button type="submit" class="signupbtn" name="otp_entered">Confirm </button>
+                 {% if otp_expired %}
+            <div class="alert alert-danger alert-dismissible">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>Error !</strong> Invalid or Expired OTP.
+</div>
+            {% endif %}
+              <small><a href="/signin-with-phone" class="text-info">Resend OTP?</a> </small>
+        </div>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

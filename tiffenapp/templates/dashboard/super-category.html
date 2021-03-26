@@ -1,0 +1,183 @@
+{% extends 'dashboard/base.html' %} {% load static %} {% block content %}
+
+<!-- main section -->
+<section>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="wt-body-wrap">
+                    <div class="row mb-2">
+                        <div class="col-md-6">
+                            <h3 class="wt-toptitle"><i class="fa fa-shopping-cart wttitlewticon"></i>Super Categories</h3>
+                        </div>
+                        <div class="col-md-6">
+                            <button class="wtadduser" data-toggle="modal" data-target="#wtaddvendorpr">Add New Categories</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!-- category list  -->
+                        {% for supercat in allsupercategory %}
+                        <div class="col-md-3">
+                            <div class="wt-vendor-wrap1">
+                                <div class="wtquestionicon supercatdropdown">
+                                    <div class="dropdown">
+                                        <a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fa-elli fas fa-ellipsis-v"></i>
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                            <a class="dropdown-item" data-toggle="modal" data-target="#wteditvendorpr{{supercat.slug}}" href="#"><i class="fas fa-user-edit fontcall pr-3"></i>Edit</a>
+                                            <a class="dropdown-item" data-toggle="modal" data-target="#wtviewcategory{{supercat.slug}}" href="#"><i class="fa fa-eye fontcall pr-3"></i>View</a>
+                                            <a class="dropdown-item" data-toggle="modal" data-target="#wtdeletevendorpr{{supercat.slug}}" href="#"><i class="fas fa-trash-alt fontcall pr-3"></i>Delete</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="wt-vendor-detail1">
+                                    <a href="{% url 'subcategory_list' %}">
+                                        <img src="/media/{{ supercat.image }}" class="img-fluid rounded-circle" />
+                                        <h5 class="text-center">{{ supercat.supercategoryname }}</h5>
+                                        <p class="text-center">Fresh Vegetables</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- view vendor detail -->
+                        <div class="modal fade" id="wtviewcategory{{supercat.slug}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">View Category</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form class="form-row">
+                                            <ul class="viewmodalul">
+                                                <li>Title : {{ supercat.supercategoryname }}</li>
+                                                <li>Image : <img src="/media/{{ supercat.image }}" class="wtviewprimg" /></li>
+                                            </ul>
+                                            <div class="form-group col-md-12">
+                                                <div class="wt-modal-btn">
+                                                    <button type="button" class="wtclosebtn" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- edit vendor detail -->
+                        <div class="modal fade" id="wteditvendorpr{{supercat.slug}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Edit Category</h5>
+                                        <!-- id="exampleModalLongTitle" -->
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form class="form-row" enctype="multipart/form-data" method="POST" action="{% url 'supercategorylist_edit' supercat.slug %}">
+                                            {% csrf_token %}
+                                            <div class="form-group col-md-12">
+                                                <label>Image</label>
+                                                <input type="file" class="form-control" name="image" placeholder="" />
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <label>Category Title</label>
+                                                <input type="text" class="form-control" name="supercategoryname" placeholder="" />
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <div class="wt-modal-btn">
+                                                    <button type="button" class="wtclosebtn" data-dismiss="modal">Close</button>
+                                                    <button type="submit" class="wtmodalsubmitbtn">Submit</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Delete category detail -->
+                        <div class="modal fade" id="wtdeletevendorpr{{supercat.slug}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Delete Category</h5>
+                                        <!-- id="exampleModalLongTitle"-->
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Are you sure want to delete?</p>
+                                        <div class="wt-modal-btn">
+                                            <form enctype="multipart/form-data" method="POST" action="{% url 'supercategory_del' supercat.slug %}">
+                                                {% csrf_token %}
+                                                <button type="button" class="wtclosebtn" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="wtmodalsubmitbtn">Submit</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- main section close-->
+
+<!-- Add category detail -->
+<div class="modal fade" id="wtaddvendorpr" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add New Category</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form enctype="multipart/form-data" method="post" class="form-row">
+                    {% csrf_token %}
+                    <div class="form-group col-md-12">
+                        <label>Image</label>
+                        <input type="file" class="form-control" name="image" placeholder="" />
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label>Category Title</label>
+                        <input type="text" class="form-control" name="supercategoryname" placeholder="" />
+                    </div>
+                    <div class="form-group col-md-12">
+                        <div class="wt-modal-btn">
+                            <button type="button" class="wtclosebtn" data-dismiss="modal">Close</button>
+                            <button type="submit" class="wtmodalsubmitbtn">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript-->
+<script src="/static/dashboard/vendor/jquery/jquery.min.js"></script>
+<script src="/static/dashboard/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/static/dashboard/js/bootstrap.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#example").DataTable();
+    });
+</script>
+
+{% endblock %}

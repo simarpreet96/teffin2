@@ -1,0 +1,136 @@
+{% extends 'dashboard/base.html' %} {% load static %} {% block content %}
+
+<!-- main section -->
+<section>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="wt-body-wrap">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3 class="wt-toptitle"><i class="fas fa-users wttitlewticon"></i>Add Configure</h3>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="{% url 'attributeslist' %}" class="wtadduser">Attributes List</a>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12">
+                            <form enctype="multipart/form-data" method="post" class="form-row">
+                                {% csrf_token %}
+                                <div class="form-group col-md-6">
+                                    <label>Title</label>
+                                    <input type="text" name="configuresname" class="form-control" placeholder="" />
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Slug</label>
+                                    <input type="text" name="slug" class="form-control" placeholder="" />
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label>Description</label>
+                                    <textarea name="detail_text" class="form-control" rows="3"></textarea>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <div class="wt-modal-btn">
+                                        <button type="submit" class="wtmodalsubmitbtn">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="wtitemswrap">
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h6 class="wtallitems">3 Items</h6>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <button class="alldeletebtn"><a href="#">Delete All</a></button>
+                                        </div>
+                                    </div>
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col"><input type="checkbox" class="wtcheckspace" id="selectall" />Select all</th>
+                                                <th scope="col">Discription</th>
+                                                <th scope="col">Slug</th>
+                                                <th scope="col">User</th>
+                                                <th scope="col" class="text-center">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for config in allconfiguresname %}
+                                            <tr>
+                                                <td><input type="checkbox" class="selectedId wtcheckspace" name="selectedId" />{{ config.configuresname }}</td>
+                                                <td>{{ config.detail_text }}</td>
+                                                <td>{{ config.slug }}</td>
+                                                <td>{{ config.user }}</td>
+                                                <td>
+                                                    <div class="dropdown">
+                                                        <button class="actionbtn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                            <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                                                        </button>
+                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                            <a class="dropdown-item" href="{% url 'configlist_edit' config.slug %}">Edit</a>
+                                                            <a class="dropdown-item" data-toggle="modal" data-target="#deleteModal{{config.slug}}" href="#">Delete</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <!-- delet configure detail  -->
+                                            <div class="modal fade" id="deleteModal{{config.slug}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">Delete Configure</h5>
+                                                            <!-- id="exampleModalLongTitle"-->
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>Are you sure want to delete?</p>
+                                                            <div class="wt-modal-btn">
+                                                                <form enctype="multipart/form-data" method="POST" action="{% url 'config_del' config.slug %}">
+                                                                    {% csrf_token %}
+                                                                    <button type="button" class="wtclosebtn" data-dismiss="modal">Close</button>
+                                                                    <button type="submit" class="wtmodalsubmitbtn">Submit</button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- main section close-->
+
+<script src="/static/dashboard/js/jquery.min.js"></script>
+<script src="/static/dashboard/js/bootstrap.bundle.min.js"></script>
+<script src="/static/dashboard/js/bootstrap.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#selectall").click(function () {
+            $(".selectedId").prop("checked", this.checked);
+        });
+
+        $(".selectedId").change(function () {
+            var check = $(".selectedId").filter(":checked").length == $(".selectedId").length;
+            $("#selectall").prop("checked", check);
+        });
+    });
+</script>
+
+{% endblock %}

@@ -1,0 +1,220 @@
+{% extends 'dashboard/base.html' %} {% load static %} {% block content %}
+
+<!-- main section -->
+<section>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="wt-body-wrap">
+                    <div class="row mb-2">
+                        <div class="col-md-6">
+                            <h3 class="wt-toptitle"><i class="fa fa-shopping-cart wttitlewticon"></i>Sub Categories</h3>
+                        </div>
+                        <div class="col-md-6">
+                            <button class="wtadduser" data-toggle="modal" data-target="#wtaddvendorpr">Add New Categories</button>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!--  category list  -->
+                        {% for subercat in allsubcategory %}
+                        <div class="col-md-3">
+                            <div class="wt-vendor-wrap1">
+                                <div class="wtquestionicon supercatdropdown">
+                                    <div class="dropdown">
+                                        <a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fa-elli fas fa-ellipsis-v"></i>
+                                        </a>
+
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                            <a class="dropdown-item" data-toggle="modal" data-target="#wteditvendorpr{{subercat.slug}}" href="#"><i class="fas fa-user-edit fontcall pr-3"></i>Edit</a>
+                                            <a class="dropdown-item" data-toggle="modal" data-target="#wtviewcategory{{subercat.slug}}" href="#"><i class="fa fa-eye fontcall pr-3"></i>View</a>
+                                            <a class="dropdown-item" data-toggle="modal" data-target="#wtdeletevendorpr{{subercat.slug}}" href="#"><i class="fas fa-trash-alt fontcall pr-3"></i>Delete</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="wt-vendor-detail1">
+                                    <img src="/media/{{ subercat.image }}" class="img-fluid rounded-circle" />
+                                    <h5 class="text-center">{{ subercat.subcategoryname }}</h5>
+                                    <p class="text-center">Main-category: {{ subercat.maincategory.maincategoryname }}</p>
+                                    <div class="text-center span"><span>Super-category: {{ subercat.supercategory.supercategoryname }}</span></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- view category detail -->
+                        <div class="modal fade" id="wtviewcategory{{subercat.slug}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">View Category</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form class="form-row">
+                                            <ul class="viewmodalul">
+                                                <li>Image : <img src="/media/{{ subercat.image }}" class="wtviewprimg" /></li>
+                                                <li>Title : {{ subercat.subcategoryname }}</li>
+                                                <li>Main Category : {{ subercat.maincategory.maincategoryname }}</li>
+                                                <li>Super Category : {{ subercat.supercategory.supercategoryname }}</li>
+                                            </ul>
+                                            <div class="form-group col-md-12">
+                                                <div class="wt-modal-btn">
+                                                    <button type="button" class="wtclosebtn" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- edit category detail -->
+                        <div class="modal fade" id="wteditvendorpr{{subercat.slug}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                       <h5 class="modal-title">Edit Category</h5> <!-- id="exampleModalLongTitle"-->
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form class="form-row" enctype="multipart/form-data" method="POST" action="{% url 'subcategorylist_edit' subercat.slug  %}">
+                                            {% csrf_token %}
+                                            <div class="form-group col-md-12">
+                                                <label> Image</label>
+                                                <input type="file" class="form-control" name="image" placeholder="" />
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <label>Title</label>
+                                                <input type="text" class="form-control" name="subcategoryname" placeholder="" />
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <label>Main Category</label>
+                                                <select class="custom-select" name="maincategory">
+                                                    <option selected>Open this select menu</option>
+                                                    {% for main in allmaincategory %}
+                                                    <option value="{{main.id}}">{{ main.maincategoryname }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <label>Sub Category</label>
+                                                <select class="custom-select" name="supercategory">
+                                                    <option selected>Open this select menu</option>
+                                                    {% for super in allsupercategory %}
+                                                    <option value="{{super.id}}">{{ super.supercategoryname }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <div class="wt-modal-btn">
+                                                    <button type="button" class="wtclosebtn" data-dismiss="modal">Close</button>
+                                                    <button type="submit" class="wtmodalsubmitbtn">Submit</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Delete category detail -->
+                        <div class="modal fade" id="wtdeletevendorpr{{subercat.slug}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Delete Category</h5>   <!-- id="exampleModalLongTitle"-->
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Are you sure want to delete?</p>
+                                        <div class="wt-modal-btn">
+                                            <form enctype="multipart/form-data" method="POST" action="{% url 'subcategory_del' subercat.slug %}">
+                                                {% csrf_token %}
+                                                <button type="button" class="wtclosebtn" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="wtmodalsubmitbtn">Submit</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- main section close-->
+
+<!-- Add vendor detail -->
+<div class="modal fade" id="wtaddvendorpr" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Add New Category</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form enctype="multipart/form-data" method="post" class="form-row">
+                    {% csrf_token %}
+                    <div class="form-group col-md-12">
+                        <label> Image</label>
+                        <input type="file" class="form-control" name="image" placeholder="" />
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label>Title</label>
+                        <input type="text" class="form-control" name="subcategoryname" placeholder="" />
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label>Main Category</label>
+                        <select class="custom-select" name="maincategory">
+                            <option selected>Open this select menu</option>
+                            {% for main in allmaincategory %}
+                            <option value="{{main.id}}">{{ main.maincategoryname }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label>Sub Category</label>
+                        <select class="custom-select" name="maincategory">
+                            <option selected>Open this select menu</option>
+                            {% for super in allsupercategory %}
+                            <option value="{{super.id}}">{{ super.supercategoryname }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <div class="wt-modal-btn">
+                            <button type="button" class="wtclosebtn" data-dismiss="modal">Close</button>
+                            <button type="submit" class="wtmodalsubmitbtn">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript-->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#example").DataTable();
+    });
+</script>
+
+{% endblock %}

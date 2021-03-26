@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>example home page</title>
+    </head>
+<body>
+        <li class="mix color-2 check1 radio3 option1">
+				    <div class="posts-list profile-item  horizontal-list-2" data-contents-per-item="1" data-width="108" data-height="108" data-stagepadding="0" data-margin="0" data-full-width="" data-center="" data-loop="">
+						    <div class="filterable beverages burgers pasta pizza sandwiches seafood soup-and-salads showed even">
+                                <div class="entry profile-item post-58 azl_profile type-azl_profile status-publish has-post-thumbnail hentry delivery-type-delivery delivery-type-pickup">
+                                    <div class="entry-thumbnail">
+                                        <a href="#">
+                                            <div class="image " style="background-image: url(&quot;images/tratoria-108x108.jpg&quot;); height: 108px;" data-width="108" data-height="108"></div>
+										</a>
+                                    </div>
+									{% for pro in allproducts %}
+                                    <div class="entry-data">
+                                        <div class="entry-header">
+		                                    <h2 class="entry-title">
+		                                        <a href="#" rel="bookmark">pro.name</a>
+		                                    </h2>
+	                                    </div>
+                                        <div class="entry-summary">pro.detail_text</div>
+                                        <div class="entry-footer">
+										<span class="meta-field address ">
+										    <span class="value">pro.category
+										        <span class="units"></span>
+										    </span>
+										</span>
+											<div class="star-rating" title="Rated 5 out of 5">
+                                            <span style="width:100%">
+                                                <strong class="rating">pro.author</strong>
+												<span class="rating"></span>
+											</span>
+                                        </div>
+                                        <span class="reviews">
+                                            <a href="#"><span class="rating">pro.published_date</span></a>
+                                        </span>
+                                        </div>
+                                    </div>
+									{% endfor %}
+                                </div>
+                            </div>
+						</div>
+				</li>
+</body>
+</html>

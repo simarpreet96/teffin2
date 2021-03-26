@@ -1,0 +1,134 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block content %}
+
+         <!-- main section -->
+     <section>
+       <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="wt-body-wrap">
+              <div class="row">
+               <div class="col-md-6">
+                <h3 class="wt-toptitle"><i class="fas fa-users wttitlewticon"></i>Attributes</h3>
+               </div>
+               <div class="col-md-6">
+                <a href="{% url 'add_attributes' %}" class="wtadduser">Add New Attributes</a>
+               </div>
+              </div>
+              <div class="wt-tablebody table-responsive">
+              <table id="example" class="table table-striped table-bordered" style="width:100%">
+              <thead class="wt-table-dark">
+                  <tr>
+                      <th>Sr.</th>
+                      <th>Title</th>
+                      <th>Slug</th>
+                      <th>Terms</th>
+                      <th style="width:100px;">Action</th>
+                  </tr>
+              </thead>
+              <tbody class="">
+              {% for attr in allattributesname %}
+                  <tr>
+                      <td>{{ forloop.counter }}</td>
+                      <td>{{ attr.atributesname }}</td>
+                      <td>{{ attr.slug }}</td>
+                     <td style="width:400px">
+                                 {% for attrconfig in attr.product_attributes.all %}
+                                        {{ attrconfig.configuresname }},
+                                 {% endfor %}
+                         <br><a href="{% url 'configureslist' attr.slug %}" class="termsaddlink">Configure terms</a> </td>
+                      <td>
+                        <div class="dropdown">
+                        <button class="actionbtn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                         <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item" href="{% url 'attributeslist_edit' attr.slug %}">Edit</a>
+                         <a class="dropdown-item" data-toggle="modal" data-target="#wtviewemployee{{attr.slug}}" href="#" >View</a>
+                          <a class="dropdown-item" data-toggle="modal" data-target="#deleteModal{{attr.slug}}" href="#" >Delete</a>
+                        </div>
+                      </div>
+                      </td>
+                  </tr>
+
+     <!-- view Attributes detail -->
+      <div class="modal fade" id="wtviewemployee{{attr.slug}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">View Attributes</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form class="form-row">
+              <ul class="viewmodalul">
+                  <li>Title :{{attr.atributesname}}</li>
+                  <li>Slug : {{attr.slug}}</li>
+                  <li>Description : {{attr.detail_text}}</li>
+              </ul>
+              <div class="form-group col-md-12">
+                <div class="wt-modal-btn">
+                <button type="button" class="wtclosebtn" data-dismiss="modal">Close</button>
+              </div>
+              </div>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+<!-- Delete attribute detail -->
+                        <div class="modal fade" id="deleteModal{{attr.slug}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Delete Category</h5>
+                                        <!-- id="exampleModalLongTitle"-->
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Are you sure want to delete?</p>
+                                        <div class="wt-modal-btn">
+                                            <form enctype="multipart/form-data" method="POST" action="{% url 'attribute_del' attr.slug %}">
+                                                {% csrf_token %}
+                                                <button type="button" class="wtclosebtn" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="wtmodalsubmitbtn">Submit</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+              {% endfor %}
+              </tbody>
+          </table>
+        </div>
+            </div>
+          </div>
+        </div>
+       </div>
+     </section>
+     <!-- main section close-->
+
+
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="/static/dashboard/vendor/jquery/jquery.min.js"></script>
+  <script src="/static/dashboard/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/static/dashboard/js/bootstrap.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+  <script>
+    $(document).ready(function() {
+    $('#example').DataTable();
+  } );
+  </script>
+{% endblock %}

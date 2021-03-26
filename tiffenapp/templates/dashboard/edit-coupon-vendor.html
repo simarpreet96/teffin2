@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Online Tiffin Delivery</title>
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <link rel="icon" type="image/png" href="images/logo-fevi.png"/>
+  <link href="css/bootstrap.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+ <style>
+ .nav-link {
+    display: block;
+    padding: .5rem 1rem;
+    color: #de5317;
+}
+a.tooltipbtn {
+    color: unset;
+}
+ </style>
+   
+</head>
+
+<body id="page-top">
+  <div id="wrapper">
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+       <img src="images/logo.png" class="weblogo">
+       <img src="images/favicon.png" class="smlogo">
+      </a>
+      <li class="nav-item active">
+        <a class="nav-link" href="index.html">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Dashboard</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-user-friends"></i>
+          <span>Users</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="py-2 collapse-inner rounded">
+            <a class="collapse-item" href="admin.html">Admin</a>
+            <a class="collapse-item" href="employee.html">Employee</a>
+            <a class="collapse-item" href="vendor.html">Vendor</a>
+            <a class="collapse-item" href="customer.html">Customers</a>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+          <i class="fab fa-product-hunt"></i>
+          <span>Product Categories</span>
+        </a>
+        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+          <div class="py-2 collapse-inner rounded">
+            <a class="collapse-item" href="super-category.html">Super Categories</a>
+            <a class="collapse-item" href="main-cotegory.html">Main Categories </a>
+            <a class="collapse-item" href="sub-category.html">Sub Categories </a>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities1" aria-expanded="true" aria-controls="collapseUtilities1">
+          <i class="fab fa-product-hunt"></i>
+          <span>Product</span>
+        </a>
+        <div id="collapseUtilities1" class="collapse" aria-labelledby="headingUtilities1" data-parent="#accordionSidebar">
+          <div class="py-2 collapse-inner rounded">
+            <a class="collapse-item" href="product-list.html">Product List </a>
+            <a class="collapse-item" href="attributes.html">Attributes </a>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities2" aria-expanded="true" aria-controls="collapseUtilities2">
+          <i class="fa fa-male"></i>
+          <span>Manage Vendor</span>
+        </a>
+        <div id="collapseUtilities2" class="collapse" aria-labelledby="headingUtilities2" data-parent="#accordionSidebar">
+          <div class="py-2 collapse-inner rounded">
+            <a class="collapse-item" href="all-vendor-list.html">Vendor Products</a>
+            <a class="collapse-item" href="coupon-vendor.html">Vendor Coupon </a>
+            <a class="collapse-item" href="#">Vendor Report </a>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities3" aria-expanded="true" aria-controls="collapseUtilities3">
+          <i class="fa fa-users"></i>
+          <span>Customers</span>
+        </a>
+        <div id="collapseUtilities3" class="collapse" aria-labelledby="headingUtilities3" data-parent="#accordionSidebar">
+          <div class="py-2 collapse-inner rounded">
+            <a class="collapse-item" href="#">Customers Order</a>
+            <a class="collapse-item" href="#">Customers Report</a>
+            <a class="collapse-item" href="#">Customers Refund</a>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities4" aria-expanded="true" aria-controls="collapseUtilities4">
+          <i class="fa fa-th-large"></i>
+          <span>Blogs</span>
+        </a>
+        <div id="collapseUtilities4" class="collapse" aria-labelledby="headingUtilities4" data-parent="#accordionSidebar">
+          <div class="py-2 collapse-inner rounded">
+            <a class="collapse-item" href="#">Blog List</a>
+            <a class="collapse-item" href="#">Blog Category</a>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="">
+         <i class="fa fa-question-circle"></i>
+          <span>Inquiry</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="">
+         <i class="fa fa-calculator"></i>
+          <span>Exclusive Subscription</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="">
+         <i class="fa fa-bell"></i>
+          <span>Notification</span></a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" href="">
+         <i class="fa fa-user-circle"></i>
+          <span>Accounts</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#websitecollapsePages" aria-expanded="true" aria-controls="websitecollapsePages">
+          <i class="fa fa-film"></i>
+          <span>Website</span>
+        </a>
+        <div id="websitecollapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+          <div class="py-2 collapse-inner rounded">
+            <a class="collapse-item" href="">Front Banner</a>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#mobilecollapsePages" aria-expanded="true" aria-controls="mobilecollapsePages">
+          <i class="fa fa-mobile"></i>
+          <span>Mobile</span>
+        </a>
+        <div id="mobilecollapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+          <div class="py-2 collapse-inner rounded">
+            <a class="collapse-item" href="">Mobile Banner</a>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+          <i class="fas fa-user-cog"></i>
+          <span>Setting</span>
+        </a>
+        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+          <div class="py-2 collapse-inner rounded">
+            <a class="collapse-item" href="">Website Setting</a>
+            <a class="collapse-item" href="">Mobile App Setting</a>
+          </div>
+        </div>
+      </li>
+      <hr class="sidebar-divider d-none d-md-block">
+      <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+      <div id="content">
+        <nav class="navbar navbar-expand navbar-light bg-yellow topbar mb-4 static-top shadow">
+          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+          </button>
+          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+            <div class="input-group">
+              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="button">
+                  <i class="fas fa-search fa-sm"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown no-arrow d-sm-none">
+              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-search fa-fw"></i>
+              </a>
+              <!-- Dropdown - Messages -->
+              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                <form class="form-inline mr-auto w-100 navbar-search">
+                  <div class="input-group">
+                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                      <button class="btn btn-primary" type="button">
+                        <i class="fas fa-search fa-sm"></i>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </li>
+            <li class="nav-item dropdown no-arrow mx-1">
+              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-bell fa-fw"></i>
+                <span class="badge badge-danger badge-counter">2+</span>
+              </a>
+              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+                <h6 class="dropdown-header">
+                  Alerts Center
+                </h6>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                  <div class="mr-3">
+                    <div class="icon-circle bg-primary">
+                      <i class="fas fa-file-alt text-white"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="small text-gray-500">December 12, 2019</div>
+                    <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                  </div>
+                </a>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                  <div class="mr-3">
+                    <div class="icon-circle bg-success">
+                      <i class="fas fa-donate text-white"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="small text-gray-500">December 7, 2019</div>
+                    $290.29 has been deposited into your account!
+                  </div>
+                </a>
+                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+              </div>
+            </li>
+
+            <div class="topbar-divider d-none d-sm-block"></div>
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-white small">Valerie Luna</span>
+                <img class="img-profile rounded-circle" src="images/admin.jpg">
+              </a>
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="#">
+                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Profile
+                </a>
+                <a class="dropdown-item" href="#">
+                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Settings
+                </a>
+                <a class="dropdown-item" href="#">
+                  <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Activity Log
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Logout
+                </a>
+              </div>
+            </li>
+          </ul>
+        </nav>
+        <!-- End of Topbar -->
+ <!-- main section -->
+
+     <section>
+       <div class="container-fluid">
+        <div class="wt-body-wrap">
+       <div class="row">
+           <div class="col-md-6">
+            <h3 class="wt-toptitle"><i class="fas fa-users wttitlewticon"></i>Edit New Coupon</h3>
+           </div>
+           <div class="col-md-6">
+            <a class="wtadduser" href="coupon-vendor.html">All Coupon List</a>
+           </div>
+          </div>
+         <form class="form-row">
+        <div class="form-group col-md-12">
+          <label>Coupon code</label>
+          <input type="text" class="form-control" placeholder="">
+        </div>
+         <div class="form-group col-md-12">
+         <button type="button" class="wtclosebtn">Generate coupon code</button>
+         </div>
+         <div class="form-group col-md-12">
+          <label>Description</label>
+          <textarea class="form-control" rows="3"></textarea>
+        </div>
+         <div class="form-group col-md-12">
+          <div class="wt-modal-btn">
+          <button type="button" class="wtclosebtn" data-dismiss="modal">Close</button>
+          <button type="button" class="wtmodalsubmitbtn">Submit</button>
+        </div>
+        </div>
+         </form>
+
+         <div class="col-md-12">
+           <h4 class="wtcoupontabs">Coupon data</h4>
+             <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" id="General-tab" data-toggle="tab" href="#General" role="tab" aria-controls="General" aria-selected="true">General</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="restriction-tab" data-toggle="tab" href="#restriction" role="tab" aria-controls="restriction" aria-selected="false">Usage restriction</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="limits-tab" data-toggle="tab" href="#limits" role="tab" aria-controls="limits" aria-selected="false">Usage limits</a>
+              </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+             <div class="tab-pane fade show active" id="General" role="tabpanel" aria-labelledby="General-tab">
+             <div class="form-row">
+             <div class="form-group col-md-6">
+                <label>Discount type</label>
+                <a href="#" class="tooltipbtn" data-toggle="tooltip" data-placement="right" title="Lorem Ipsum is simply dummy text of the printing and typesetting industry."><i class="fa fa-question-circle"></i></a>
+                <select class="form-control">
+                  <option>Percentage discount</option>
+                  <option>Fixed cart discount</option>
+                  <option>Fixed product discount</option>
+                </select>
+              </div>
+                <div class="form-group col-md-6">
+                  <label>Coupon amount</label>
+                   <a href="#" class="tooltipbtn" data-toggle="tooltip" data-placement="right" title="Lorem Ipsum is simply dummy text of the printing and typesetting industry."><i class="fa fa-question-circle"></i></a>
+                  <input type="text" class="form-control" placeholder="">
+                </div>
+                <div class="form-group col-md-12 ">
+                 <label>Allow free shipping</label>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                  <span class="wtchecklable">
+                    Check this box if the coupon grants free shipping. A <a href="#">free shipping method </a>must be enabled in your shipping zone and be set to<br> require "a valid free shipping coupon" (see the "Free Shipping Requires" setting).
+                  </span>
+                </div>
+                </div>
+                 <div class="form-group col-md-6">
+                  <label>Coupon expiry date</label>
+                  <a href="#" class="tooltipbtn" data-toggle="tooltip" data-placement="right" title="Lorem Ipsum is simply dummy text of the printing and typesetting industry."><i class="fa fa-question-circle"></i></a>
+                  <input type="date" class="form-control" placeholder="">
+                </div>
+              </div>
+             </div>
+              <div class="tab-pane fade" id="restriction" role="tabpanel" aria-labelledby="restriction-tab">
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Minimum spend</label>
+                  <a href="#" class="tooltipbtn" data-toggle="tooltip" data-placement="right" title="Lorem Ipsum is simply dummy text of the printing and typesetting industry."><i class="fa fa-question-circle"></i></a>
+                  <input type="text" class="form-control" placeholder="">
+                </div>
+                   <div class="form-group col-md-6">
+                  <label>Maximum spend</label>
+                  <a href="#" class="tooltipbtn" data-toggle="tooltip" data-placement="right" title="Lorem Ipsum is simply dummy text of the printing and typesetting industry."><i class="fa fa-question-circle"></i></a>
+                  <input type="text" class="form-control" placeholder="">
+                </div>
+                <div class="form-group col-md-6">
+                 <label>Individual use only</label>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                  <span class="wtchecklable">Check this box if the coupon cannot be used in conjunction with other coupons.</span>
+                </div>
+                </div>
+                   <div class="form-group col-md-6 ">
+                 <label>Exclude sale items</label>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck3">
+                  <span class="wtchecklable">
+                    Check this box if the coupon should not apply to items on sale. Per-item coupons will only work if the item is not on sale.
+                      Per-cart coupons will only work if there are items in the cart that are not on sale.</span>
+                </div>
+                </div>
+                 <div class="form-group col-md-6">
+                  <label>Products</label>
+                  <a href="#" class="tooltipbtn" data-toggle="tooltip" data-placement="right" title="Lorem Ipsum is simply dummy text of the printing and typesetting industry."><i class="fa fa-question-circle"></i></a>
+                  <input type="text" class="form-control" placeholder="">
+                </div>
+                  <div class="form-group col-md-6">
+                  <label>Exclude products</label>
+                  <a href="#" class="tooltipbtn" data-toggle="tooltip" data-placement="right" title="Lorem Ipsum is simply dummy text of the printing and typesetting industry."><i class="fa fa-question-circle"></i></a>
+                  <input type="text" class="form-control" placeholder="">
+                </div>
+                  <div class="form-group col-md-6">
+                  <label>Product categories</label>
+                  <a href="#" class="tooltipbtn" data-toggle="tooltip" data-placement="right" title="Lorem Ipsum is simply dummy text of the printing and typesetting industry."><i class="fa fa-question-circle"></i></a>
+                  <input type="text" class="form-control" placeholder="">
+                </div>
+                  <div class="form-group col-md-6">
+                  <label>Exclude categories</label>
+                  <a href="#" class="tooltipbtn" data-toggle="tooltip" data-placement="right" title="Lorem Ipsum is simply dummy text of the printing and typesetting industry."><i class="fa fa-question-circle"></i></a>
+                  <input type="text" class="form-control" placeholder="">
+                </div>
+                  <div class="form-group col-md-6">
+                  <label>Allowed emails</label>
+                  <a href="#" class="tooltipbtn" data-toggle="tooltip" data-placement="right" title="Lorem Ipsum is simply dummy text of the printing and typesetting industry."><i class="fa fa-question-circle"></i></a>
+                  <input type="text" class="form-control" placeholder="">
+                </div>
+              </div>
+              </div>
+              <div class="tab-pane fade" id="limits" role="tabpanel" aria-labelledby="limits-tab">
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Usage limit per coupon</label>
+                  <a href="#" class="tooltipbtn" data-toggle="tooltip" data-placement="right" title="Lorem Ipsum is simply dummy text of the printing and typesetting industry."><i class="fa fa-question-circle"></i></a>
+                  <input type="text" class="form-control" placeholder="">
+                </div>
+                 <div class="form-group col-md-6">
+                  <label>Usage limit per user</label>
+                 <a href="#" class="tooltipbtn" data-toggle="tooltip" data-placement="right" title="Lorem Ipsum is simply dummy text of the printing and typesetting industry."><i class="fa fa-question-circle"></i></a>
+                  <input type="text" class="form-control" placeholder="">
+                </div>
+              </div>
+              </div>
+            </div>
+         </div>
+      </div>
+   </div>
+ </section>
+  <!-- Footer -->
+      <footer class="sticky-footer">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>© Copyright Webtunix. All Rights Reserved </span>
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
+	   <!-- End of Content Wrapper -->
+  </div>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script>
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
+</body>
+
+</html>
+

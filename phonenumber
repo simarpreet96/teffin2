@@ -1,0 +1,121 @@
+gedit
+
+
+def signup_with_phone_number(request):
+    digits = [i for i in range(0, 10)]
+    random_str = ""
+    for i in range(5):
+        index_1 = math.floor(random.random() * 10)
+        random_str += str(digits[index_1])
+    print(random_str)
+    if 'signupwith' in request.POST:
+        print(1)
+        form = SignUpForm(request.POST)
+        print(form)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.is_active = False
+            user.is_seller = True
+            user.otp=random_str
+            user.username= str(request.POST['phone'])
+            request.session['username']=str(request.POST['phone'])
+            phone_number = request.POST['phone']
+            user.save()
+            check_message_sent=sendotp(key,phone_number,random_str)
+            if check_message_sent:
+                return render(request, 'confirm_otp.html', locals())
+            else:
+                print("error")
+        else:
+            form = SignUpForm(request.POST)
+    else:
+        form = SignUpForm()
+    if 'otp_entered' in request.POST:
+        otp=request.POST['otp']
+        user=User.objects.get(username=request.session['username'])
+        user_otp=user.otp
+        if otp==user_otp:
+            user.is_active=True
+            user.save()
+            login(request, user,backend='django.contrib.auth.backends.ModelBackend')
+            return redirect('post_property')
+        else:
+            incorrect_otp=True
+    try:
+        print(request.session['username'])
+    except:
+        print("not")
+    return render(request, 'signup_phone.html', locals())
+
+def otp_check(request):
+    return render(request, 'confirm_otp.html', locals())
+
+
+
+def signin_with_phone(request):
+    digits = [i for i in range(0, 10)]
+    generated_otp = ""
+    for i in range(5):
+        index_1 = math.floor(random.random() * 10)
+        generated_otp += str(digits[index_1])
+    print(generated_otp)
+    form = SignUpForm()
+    if 'step1_phone' in request.POST:
+        entered_phone_number=request.POST['phone_number']
+        print(entered_phone_number,type(entered_phone_number))
+        if User.objects.filter(phone=entered_phone_number).exists():
+            user=User.objects.get(phone=entered_phone_number)
+            user.otp=generated_otp
+            user.set_password(generated_otp)
+            user.otp_expired=False
+            user.save()
+            check_message_sent = sendotp(key, entered_phone_number, generated_otp)
+            if check_message_sent:
+                return render(request, 'confirm_otp.html', locals())
+            else:
+                phone_error = True
+                print("error")
+            print("exists")
+        else:
+            form = SignUpForm(request.POST)
+            print(form)
+            # if form.is_valid():
+            user=User.objects.create_user(username=str(request.POST['phone_number']),
+                                         password=generated_otp,
+                                         is_active = False,
+                                         is_seller = True,
+                                         otp = generated_otp,
+                                         otp_expired = False,
+                                         phone=str(request.POST['phone_number']))
+
+            phone_number = request.POST['phone_number']
+
+            check_message_sent = sendotp(key, phone_number, generated_otp)
+            if check_message_sent:
+                return render(request, 'confirm_otp.html', locals())
+            else:
+                phone_error=True
+
+    if 'otp_entered' in request.POST:
+        entered_phone_number = request.POST['entered_phone_number']
+        entered_otp=request.POST['otp']
+        user = User.objects.get(phone=entered_phone_number)
+        if check_password(entered_otp,user.password):
+            print("matched")
+            if not user.otp_expired:
+                user.otp_expired = False
+                user.is_active=True
+                user.save()
+                login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+                # login(request, user)
+                return redirect('post_property')
+            elif user.otp_expired:
+                otp_expired = True
+                return render(request, 'confirm_otp.html', locals())
+
+
+        else:
+            otp_expired = True
+            return render(request, 'confirm_otp.html', locals())
+    return render(request, 'login_phone1.html', locals())
+

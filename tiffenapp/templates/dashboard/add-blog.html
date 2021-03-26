@@ -1,0 +1,230 @@
+{% extends 'dashboard/base.html' %} {% load static %} {% block content %}
+
+<!-- main section -->
+<style type="text/css">
+    .image-upload {
+        padding-bottom: 36px !important;
+        margin-top: 14px;
+        padding-top: 6px !important;
+    }
+    button,
+    input,
+    optgroup,
+    select,
+    textarea {
+        margin: 0;
+        font-family: inherit;
+        font-size: inherit;
+        line-height: inherit;
+    }
+
+    textarea {
+        overflow: auto;
+        resize: vertical;
+    }
+    p {
+        color: #fff !important;
+    }
+    select {
+        color: #636363;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+        margin: 5px 0 22px 0;
+        display: inline-block;
+        background: transparent;
+        border: 1px solid #eee;
+        border-radius: 5px;
+        padding: 9px;
+        width: 100%;
+    }
+    select:focus {
+        border-color: #bac8f3;
+        outline: 0;
+        box-shadow: 0 0 0 0.2rem rgb(78 115 223 / 25%);
+    }
+    .categorie {
+        color: #636363 !important;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+        margin: 5px 0 22px 0;
+        display: inline-block;
+        background: transparent !important;
+        border: 1px solid #eee;
+        border-radius: 5px;
+        padding: 9px;
+        width: 100%;
+    }
+    .select {
+        padding: 11px;
+    }
+    input[type="text"],
+    input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0 22px 0;
+        display: inline-block;
+        border: none;
+        background: transparent;
+        border: 1px solid #d1d3e2;
+        border-radius: 5px;
+    }
+    input.submit-button {
+        background-color: #e16129;
+        color: #fff;
+        padding: 10px 25px;
+        text-align: center;
+        border: none;
+        margin: 10px 0px;
+        float: right;
+        border-radius: 5px;
+        box-shadow: 1px 0px 4px #5d5c5c;
+    }
+</style>
+<section>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="wt-body-wrap">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3 class="wt-toptitle"><i class="fas fa-plus wttitlewticon"></i> Add Blog</h3>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="{% url 'blog_list' %}" class="wtadduser">Blog List</a>
+                        </div>
+                    </div>
+                    <div class="admin-addCategory-content1">
+                        <div class="col-xs-12">
+                            <form class="form-row" enctype="multipart/form-data" method="POST">
+                                {% csrf_token %}
+                                    <div class="form-group col-md-12">
+                                        <label>Title</label>
+                                        <input type="text" name="title" placeholder="Title" value="" />
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label>Image</label>
+                                        <input type="file" class="form-control image-upload" name="image" />
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label>Description</label>
+                                        <textarea class="form-control" name="description" rows="3"></textarea>
+                                    </div>
+                                <div class="form-group col-md-12">
+                                    <label> Category</label>
+                                    <select class="select" name="blogcategory">
+                                        {% for bcat in allblogcategory %}
+                                        <option value="{{bcat.id}}">{{bcat.blogcategoryname}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label>Meta Title</label>
+                                    <input type="text" name="meta_title" placeholder=" Meta Title" value="" />
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label>Slug</label>
+                                    <input type="text" name="slug" placeholder="slug" value="" />
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label>Meta keyword</label>
+                                    <input type="text" name="meta_keyword" placeholder=" Meta keyword" value="" />
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label>Meta Description </label>
+                                    <textarea class="form-control" name="meta_description" rows="3"></textarea>
+                                </div>
+                                <div class="btn-group">
+                                    <input type="submit" class="submit-button" value="Submit" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+<script>
+    tinymce.init({
+        selector: "textarea#editor",
+        menubar: false,
+    });
+</script>
+<script>
+    tinymce.init({
+        selector: "textarea#editor",
+        skin: "bootstrap",
+        plugins: "lists, link, image, media",
+        toolbar: "h1 h2 bold italic strikethrough blockquote bullist numlist backcolor | link image media | removeformat help",
+        menubar: false,
+    });
+</script>
+<script>
+    tinymce.init({
+        selector: "textarea#editor",
+        skin: "bootstrap",
+        plugins: "lists, link, image, media",
+        toolbar: "h1 h2 bold italic strikethrough blockquote bullist numlist backcolor | link image media | removeformat help",
+        menubar: false,
+        setup: (editor) => {
+            // Apply the focus effect
+            editor.on("init", () => {
+                editor.getContainer().style.transition = "border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out";
+            });
+            editor.on("focus", () => {
+                (editor.getContainer().style.boxShadow = "0 0 0 .2rem rgba(0, 123, 255, .25)"), (editor.getContainer().style.borderColor = "#80bdff");
+            });
+            editor.on("blur", () => {
+                (editor.getContainer().style.boxShadow = ""), (editor.getContainer().style.borderColor = "");
+            });
+        },
+    });
+</script>
+<script>
+    tinymce.init({
+        selector: "textarea#editor1",
+        menubar: false,
+    });
+</script>
+<script>
+    tinymce.init({
+        selector: "textarea#editor1",
+        skin: "bootstrap",
+        plugins: "lists, link, image, media",
+        toolbar: "h1 h2 bold italic strikethrough blockquote bullist numlist backcolor | link image media | removeformat help",
+        menubar: false,
+    });
+</script>
+<script>
+    tinymce.init({
+        selector: "textarea#editor1",
+        skin: "bootstrap",
+        plugins: "lists, link, image, media",
+        toolbar: "h1 h2 bold italic strikethrough blockquote bullist numlist backcolor | link image media | removeformat help",
+        menubar: false,
+        setup: (editor) => {
+            // Apply the focus effect
+            editor.on("init", () => {
+                editor.getContainer().style.transition = "border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out";
+            });
+            editor.on("focus", () => {
+                (editor.getContainer().style.boxShadow = "0 0 0 .2rem rgba(0, 123, 255, .25)"), (editor.getContainer().style.borderColor = "#80bdff");
+            });
+            editor.on("blur", () => {
+                (editor.getContainer().style.boxShadow = ""), (editor.getContainer().style.borderColor = "");
+            });
+        },
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,136 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- main section -->
+     <section>
+       <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="wt-body-wrap">
+              <div class="row">
+               <div class="col-md-6">
+                <h3 class="wt-toptitle"><i class="fas fa-users wttitlewticon"></i>Vendor List</h3>
+               </div>
+               <div class="col-md-6">
+                <button class="wtadduser" data-toggle="modal" data-target="#wtaddvendorpr">Add New Vendor</button>
+               </div>
+              </div>
+
+
+
+                 <div class="row">
+                       {% for allpros in vendor_pro %}
+                        <div class="col-md-3">
+
+                          <div class="wtpanelcardwrap">
+                            <img src="/media/{{ allpros.main_image }}" class="wtimgfluid">
+                            <div class="wtprdec">
+                            <h6>{{ allpros.type }}</h6>
+                            <select class="wtselect">
+                            <option selected><span>1 kg - <i class="fas fa-rupee-sign"></i>52.47</span></option>
+                            </select>
+                           <div>
+                              <p>{{ allpros.name }}</p>
+                                {% if allpros.discount <= 0 %}
+                                <p> Price: {{ allpros.price }}</p>
+                                     {% else %}
+                                     <li>Actual Price: <s>{{ allpros.price }}</s></li>
+                                       <li>Discount Price: {{ allpros.discount_price }} on {{allpros.discount}}% off on actual price</li>
+                                {% endif %}
+                            </div>
+                          </div>
+                          </div>
+
+                        </div>
+                      {% endfor %}
+                      </div>
+                        <br>
+
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="wt-vendor-wrap">
+                    <div class="wt-vendor-detail">
+                      <img src="images/admin.jpg" class="img-fluid float-left">
+					  <div class="row">
+					  <div class="col-m-6">
+					  <div class="wt-vendor-detail-text1">
+                      <h3>John Doe</h3>
+                      <p class="wtgstno">#787 Sector 35C Chandigarh</p>
+                      <div class="wtvendorcall"><a href="#"><i class="fas fa-phone-alt fontcall"></i>45034054359</a></div>
+					  </div>
+					  </div>
+					  <div class="col-m-6">
+					  <div class="Vi-btn">
+                      <a href="detail-vendor-products.html" class="wtvendorview1"><i class="fa fa-eye" aria-hidden="true"></i></a>
+					  </div>
+					  </div>
+					  </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+       </div>
+     </section>
+     <!-- main section close-->
+
+      <!-- Add vendor detail -->
+
+      <div class="modal fade" id="wtaddvendorpr" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Add New Vendor</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+               <form class="form-row">
+              <div class="form-group col-md-12">
+                <label>Name</label>
+                <input type="text" class="form-control" placeholder="">
+              </div>
+              <div class="form-group col-md-12">
+                <label>GST. TIN</label>
+                <input type="text" class="form-control" placeholder="">
+              </div>
+              <div class="form-group col-md-12">
+                <label>Email</label>
+                <input type="text" class="form-control" placeholder="">
+              </div>
+                <div class="form-group col-md-12">
+                <label>Password</label>
+                <input type="text" class="form-control" placeholder="">
+              </div>
+              <div class="form-group col-md-12">
+                <label>Phone Number</label>
+                <input type="text" class="form-control" placeholder="">
+              </div>
+              <div class="form-group col-md-12">
+                <label>Alternate no.</label>
+                <input type="text" class="form-control" placeholder="">
+              </div>
+              <div class="form-group col-md-12">
+                <div class="wt-modal-btn">
+                <button type="button" class="wtclosebtn" data-dismiss="modal">Close</button>
+                <button type="button" class="wtmodalsubmitbtn">Submit</button>
+              </div>
+              </div>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <!-- End of Content Wrapper -->
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+
+{% endblock %}

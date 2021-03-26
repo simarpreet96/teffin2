@@ -1,0 +1,287 @@
+{% extends 'dashboard/base.html' %} {% load static %} {% block content %}
+
+<!-- main section -->
+<section>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="wt-body-wrap">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3 class="wt-toptitle"><i class="fas fa-users wttitlewticon"></i>All Product</h3>
+                        </div>
+                        <div class="col-md-6">
+                            <button class="wtadduser" data-toggle="modal" data-target="#wtaddemployee">Add New Product</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        {% for pro in allproducts %}
+                        <div class="col-md-3">
+                            <div class="wt-vendor-wrap1">
+                                <div class="wtquestionicon supercatdropdown">
+                                    <div class="dropdown">
+                                        <a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fa-elli fas fa-ellipsis-v"></i>
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                            <a class="dropdown-item" data-toggle="modal" data-target="#wteditproduct{{pro.slug}}" href="#"><i class="fas fa-user-edit fontcall pr-3"></i>Edit</a>
+                                            <a class="dropdown-item" data-toggle="modal" data-target="#viewprModal{{pro.slug}}" href="#"><i class="fa fa-eye fontcall pr-3"></i>View</a>
+                                            <a class="dropdown-item" data-toggle="modal" data-target="#wtdeletevendor{{pro.slug}}" href="#"><i class="fas fa-trash-alt fontcall pr-3"></i>Delete</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="wtproductsec text-center">
+                                    <img src="/media/{{ pro.main_image }}" class="img-fluid rounded-circle" />
+                                </div>
+                                <div class="wtprdetails text-center">
+                                    <h5>{{ pro.name }}</h5>
+                                    {% if pro.discount <= 0 %}
+                                    <p class="wtweiwrap">Price: {{ pro.price }}</p>
+                                    {% else %}
+                                    <p class="wtweiwrap">Actual Price: <s>{{ pro.price }} </s> </p>
+                                    <p class="wtweiwrap">Discount Price: {{ pro.discount_price }} on {{pro.discount}}% off on actual price</p>
+                                    {% endif %}
+                                    <p class="wtweiwrap">Category - {{ pro.category }}</p>
+                                    <p class="wtweiwrap">User - {{ pro.user }}</p>
+                                    <p class="wtweiwrap">Type - {{ pro.type }}</p>
+                                    {% if pro.attribute == None %}
+                                    {% else %}
+                                    <p class="wtweiwrap">{{pro.attribute}} - {{ pro.configure }}</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Delete product detail -->
+                        <div class="modal fade" id="wtdeletevendor{{pro.slug}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Delete Product</h5>
+                                        <!-- -->
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Are you sure want to delete?</p>
+                                        <div class="wt-modal-btn">
+                                            <form enctype="multipart/form-data" method="POST" action="{% url 'product_del' pro.slug %}">
+                                                {% csrf_token %}
+                                                <button type="button" class="wtclosebtn" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="wtmodalsubmitbtn">Submit</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- edit new product  -->
+                        <div class="modal fade" id="wteditproduct{{pro.slug}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Edit Product</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+
+                                    <div class="modal-body">
+                                        <form method="post" id="personForm" action="{% url 'product_edit' pro.slug %}" enctype="multipart/form-data" data-cities-url="{% url 'load_configures' %}" class="form-row">
+                                            {% csrf_token %}
+                                            {% for field in form %}
+                                                {{ field.label_tag }}
+                                                {{ field }}
+                                            {% endfor %}
+
+                                            <!--           <div class="form-group col-md-12">-->
+                                            <!--          <label>Upload Image</label>-->
+                                            <!--          <input type="file" name="main_image" class="form-control" placeholder="">-->
+                                            <!--        </div>-->
+                                            <!--        <div class="form-group col-md-12">-->
+                                            <!--          <label>Title</label>-->
+                                            <!--          <input type="text" name="name" class="form-control" placeholder="">-->
+                                            <!--        </div>-->
+                                            <!--           <div class="form-group col-md-12">-->
+                                            <!--               <label>Category</label>-->
+                                            <!--        <select name="category" class="custom-select">-->
+                                            <!--        <option selected>Fresh Vegetables</option>-->
+                                            <!--            {% for maincat in allmaincategory %}-->
+                                            <!--        <option value="{{maincat.id}}">{{maincat.maincategoryname}}</option>-->
+                                            <!--            {% endfor %}-->
+                                            <!--        </select>-->
+                                            <!--           </div>-->
+                                            <!--           <div class="form-group col-md-12">-->
+                                            <!--               <label>Attribute</label>-->
+                                            <!--        <select name="attribute" class="custom-select">-->
+                                            <!--        <option selected>Select an option </option>-->
+                                            <!--            {% for attr in allattribute %}-->
+                                            <!--        <option value="{{attr.id}}">{{attr.atributesname}}</option>-->
+                                            <!--            {% endfor %}-->
+                                            <!--        </select>-->
+                                            <!--           </div>-->
+                                            <!--           <div class="form-group col-md-12">-->
+                                            <!--               <label>Configure</label>-->
+                                            <!--        <select name="configure" class="custom-select">-->
+                                            <!--        <option selected>Select an option</option>-->
+                                            <!--            {% for config in allconfigure %}-->
+                                            <!--        <option value="{{config.id}}">{{config.configuresname}}</option>-->
+                                            <!--            {% endfor %}-->
+                                            <!--        </select>-->
+                                            <!--           </div>-->
+
+                                            <div class="form-group col-md-12">
+                                                <div class="wt-modal-btn">
+                                                    <br />
+                                                    <button type="button" class="wtclosebtn" data-dismiss="modal">Close</button>
+                                                    <button type="submit" class="wtmodalsubmitbtn">Submit</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- view product detail -->
+                        <div class="modal fade" id="viewprModal{{pro.slug}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">View Product</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form class="form-row">
+                                            <ul class="viewmodalul">
+                                                <li>Image : <img src="/media/{{ pro.main_image }}" class="wtviewprimg" /></li>
+                                                <li>Title : {{pro.name}}</li>
+                                                <li>Category :{{pro.category}}</li>
+                                                <li>Attribute : {{pro.attribute.atributesname}}</li>
+                                                <li>Configure : {{pro.configure.configuresname}}</li>
+                                            </ul>
+                                            <div class="form-group col-md-12">
+                                                <div class="wt-modal-btn">
+                                                    <button type="button" class="wtclosebtn" data-dismiss="modal">Close</button>
+                                                    <a href="{% url 'product_detail' pro.id pro.slug %}"><button type="button" class="wtmodalsubmitbtn">Product Detail</button></a>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- main section close-->
+
+<!-- add new product  -->
+<div class="modal fade" id="wtaddemployee" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add New Product</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <form method="post" id="personForm" enctype="multipart/form-data" data-cities-url="{% url 'load_configures' %}" class="form-row">
+                    {% csrf_token %} {% for field in form %} {{ field.label_tag }} {{ field }} {% endfor %}
+
+                    <!--           <div class="form-group col-md-12">-->
+                    <!--          <label>Upload Image</label>-->
+                    <!--          <input type="file" name="main_image" class="form-control" placeholder="">-->
+                    <!--        </div>-->
+                    <!--        <div class="form-group col-md-12">-->
+                    <!--          <label>Title</label>-->
+                    <!--          <input type="text" name="name" class="form-control" placeholder="">-->
+                    <!--        </div>-->
+                    <!--           <div class="form-group col-md-12">-->
+                    <!--               <label>Category</label>-->
+                    <!--        <select name="category" class="custom-select">-->
+                    <!--        <option selected>Fresh Vegetables</option>-->
+                    <!--            {% for maincat in allmaincategory %}-->
+                    <!--        <option value="{{maincat.id}}">{{maincat.maincategoryname}}</option>-->
+                    <!--            {% endfor %}-->
+                    <!--        </select>-->
+                    <!--           </div>-->
+                    <!--           <div class="form-group col-md-12">-->
+                    <!--               <label>Attribute</label>-->
+                    <!--        <select name="attribute" class="custom-select">-->
+                    <!--        <option selected>Select an option </option>-->
+                    <!--            {% for attr in allattribute %}-->
+                    <!--        <option value="{{attr.id}}">{{attr.atributesname}}</option>-->
+                    <!--            {% endfor %}-->
+                    <!--        </select>-->
+                    <!--           </div>-->
+                    <!--           <div class="form-group col-md-12">-->
+                    <!--               <label>Configure</label>-->
+                    <!--        <select name="configure" class="custom-select">-->
+                    <!--        <option selected>Select an option</option>-->
+                    <!--            {% for config in allconfigure %}-->
+                    <!--        <option value="{{config.id}}">{{config.configuresname}}</option>-->
+                    <!--            {% endfor %}-->
+                    <!--        </select>-->
+                    <!--           </div>-->
+
+                    <div class="form-group col-md-12">
+                        <div class="wt-modal-btn">
+                            <br />
+                            <button type="button" class="wtclosebtn" data-dismiss="modal">Close</button>
+                            <button type="submit" class="wtmodalsubmitbtn">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script>
+    $("#id_attribute").change(function () {
+        const url = $("#personForm").attr("data-cities-url"); // get the url of the `load_cities` view
+        const attributeId = $(this).val(); // get the selected country ID from the HTML input
+
+        $.ajax({
+            // initialize an AJAX request
+            url: url, // set the url of the request (= /persons/ajax/load-cities/ )
+            data: {
+                attribute_id: attributeId, // add the country id to the GET parameters
+            },
+            success: function (data) {
+                // `data` is the return of the `load_cities` view function
+                $("#id_configure").html(data); // replace the contents of the city input with the data that came from the server
+                /*
+
+                let html_data = '<option value="">---------</option>';
+                data.forEach(function (configure) {
+                    html_data += `<option value="${configure.id}">${configure.slug}</option>`
+                });
+                console.log(html_data);
+                $("#id_configure").html(html_data);
+
+                */
+            },
+        });
+    });
+</script>
+
+<script src="/static/dashboard/js/jquery.min.js"></script>
+<script src="/static/dashboard/js/bootstrap.bundle.min.js"></script>
+<script src="/static/dashboard/js/bootstrap.js"></script>
+
+{% endblock %}

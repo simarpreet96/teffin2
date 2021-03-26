@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Tiffin</title>
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <link rel="icon" type="image/png" href="images/favicon.png"/>
+  <link rel="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+  <link href="css/bootstrap.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+  <div id="wrapper">
+  <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+       <img src="images/logo.png" class="weblogo">
+       <img src="img/favicon.png" class="smlogo">
+      </a>
+      <li class="nav-item active">
+        <a class="nav-link" href="index.html">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Dashboard</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-user-friends"></i>
+          <span>Users</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="py-2 collapse-inner rounded">
+            <a class="collapse-item" href="#">Admin</a>
+            <a class="collapse-item" href="#">Employee</a>
+            <a class="collapse-item" href="#">Vendor</a>
+            <a class="collapse-item" href="#">Customers</a>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+          <i class="fab fa-product-hunt"></i>
+          <span>Product Categories</span>
+        </a>
+        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+          <div class="py-2 collapse-inner rounded">
+            <a class="collapse-item" href="#">Super Categories</a>
+            <a class="collapse-item" href="#">Sub Categories </a>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities1" aria-expanded="true" aria-controls="collapseUtilities1">
+          <i class="fab fa-product-hunt"></i>
+          <span>Product</span>
+        </a>
+        <div id="collapseUtilities1" class="collapse" aria-labelledby="headingUtilities1" data-parent="#accordionSidebar">
+          <div class="py-2 collapse-inner rounded">
+            <a class="collapse-item" href="#">Product List </a>
+            <a class="collapse-item" href="#">Attributes </a>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities2" aria-expanded="true" aria-controls="collapseUtilities2">
+          <i class="fa fa-male"></i>
+          <span>Manage Vendor</span>
+        </a>
+        <div id="collapseUtilities2" class="collapse" aria-labelledby="headingUtilities2" data-parent="#accordionSidebar">
+          <div class="py-2 collapse-inner rounded">
+            <a class="collapse-item" href="#">Vendor Products</a>
+            <a class="collapse-item" href="#">Vendor Coupon </a>
+            <a class="collapse-item" href="#">Vendor Report </a>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities3" aria-expanded="true" aria-controls="collapseUtilities3">
+          <i class="fa fa-users"></i>
+          <span>Customers</span>
+        </a>
+        <div id="collapseUtilities3" class="collapse" aria-labelledby="headingUtilities3" data-parent="#accordionSidebar">
+          <div class="py-2 collapse-inner rounded">
+            <a class="collapse-item" href="#">Customers Order</a>
+            <a class="collapse-item" href="#">Customers Report</a>
+            <a class="collapse-item" href="#">Customers Refund</a>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities4" aria-expanded="true" aria-controls="collapseUtilities4">
+          <i class="fa fa-th-large"></i>
+          <span>Blogs</span>
+        </a>
+        <div id="collapseUtilities4" class="collapse" aria-labelledby="headingUtilities4" data-parent="#accordionSidebar">
+          <div class="py-2 collapse-inner rounded">
+            <a class="collapse-item" href="#">Blog List</a>
+            <a class="collapse-item" href="#">Blog Category</a>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="charts.html">
+         <i class="fa fa-question-circle"></i>
+          <span>Inquiry</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="charts.html">
+         <i class="fa fa-calculator"></i>
+          <span>Exclusive Subscription</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="charts.html">
+         <i class="fa fa-bell"></i>
+          <span>Notification</span></a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" href="charts.html">
+         <i class="fa fa-user-circle"></i>
+          <span>Accounts</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#websitecollapsePages" aria-expanded="true" aria-controls="websitecollapsePages">
+          <i class="fa fa-film"></i>
+          <span>Website</span>
+        </a>
+        <div id="websitecollapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+          <div class="py-2 collapse-inner rounded">
+            <a class="collapse-item" href="login.html">Front Banner</a>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#mobilecollapsePages" aria-expanded="true" aria-controls="mobilecollapsePages">
+          <i class="fa fa-mobile"></i>
+          <span>Mobile</span>
+        </a>
+        <div id="mobilecollapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+          <div class="py-2 collapse-inner rounded">
+            <a class="collapse-item" href="login.html">Mobile Banner</a>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+          <i class="fas fa-user-cog"></i>
+          <span>Setting</span>
+        </a>
+        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+          <div class="py-2 collapse-inner rounded">
+            <a class="collapse-item" href="login.html">Website Setting</a>
+            <a class="collapse-item" href="login.html">Mobile App Setting</a>
+          </div>
+        </div>
+      </li>
+      <hr class="sidebar-divider d-none d-md-block">
+      <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+      <div id="content">
+        <nav class="navbar navbar-expand navbar-light bg-yellow topbar mb-4 static-top shadow">
+          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+          </button>
+          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+            <div class="input-group">
+              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="button">
+                  <i class="fas fa-search fa-sm"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown no-arrow d-sm-none">
+              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-search fa-fw"></i>
+              </a>
+              <!-- Dropdown - Messages -->
+              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                <form class="form-inline mr-auto w-100 navbar-search">
+                  <div class="input-group">
+                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                      <button class="btn btn-primary" type="button">
+                        <i class="fas fa-search fa-sm"></i>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </li>
+            <li class="nav-item dropdown no-arrow mx-1">
+              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-bell fa-fw"></i>
+                <span class="badge badge-danger badge-counter">2+</span>
+              </a>
+              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+                <h6 class="dropdown-header">
+                  Alerts Center
+                </h6>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                  <div class="mr-3">
+                    <div class="icon-circle bg-primary">
+                      <i class="fas fa-file-alt text-white"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="small text-gray-500">December 12, 2019</div>
+                    <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                  </div>
+                </a>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                  <div class="mr-3">
+                    <div class="icon-circle bg-success">
+                      <i class="fas fa-donate text-white"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="small text-gray-500">December 7, 2019</div>
+                    $290.29 has been deposited into your account!
+                  </div>
+                </a>
+                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+              </div>
+            </li>
+
+            <div class="topbar-divider d-none d-sm-block"></div>
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-white small">Valerie Luna</span>
+                <img class="img-profile rounded-circle" src="images/admin.jpg">
+              </a>
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="#">
+                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Profile
+                </a>
+                <a class="dropdown-item" href="#">
+                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Settings
+                </a>
+                <a class="dropdown-item" href="#">
+                  <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Activity Log
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Logout
+                </a>
+              </div>
+            </li>
+          </ul>
+        </nav>
+        <!-- End of Topbar -->
+<!-- main section -->
+<section>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="wt-body-wrap">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3 class="wt-toptitle"><i class="fa fa-plus wttitlewticon"></i>Add New Product</h3>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="detail-vendor-products.html" class="wtadduser">Product List</a>
+                        </div>
+                    </div>
+<!--                    category-->
+                    <div class="row mt-3">
+                        <div class="col-md-3">
+                            <label class="wtcatlable">Category</label>
+                            <select class="form-control" id="mySelect" onChange="check(this);" type="search">
+                                <option value="">--</option>
+                                <option value="Dairy & Bakery Product">Dairy & Bakery Product</option>
+                                <option value="Fruits">Fruits</option>
+                                <option value="Grocery">Grocery</option>
+                                <option value="Non-veg">Non-veg</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3" id="fruits_veg">
+                            <label class="wtcatlable">Fruits</label>
+                            <select class="form-control" id="mySelect1" disabled="disabled">
+                                <option>fresh vegitables</option>
+                                <option>herbs</option>
+                                <option>fresh fruit</option>
+                                <option>organic fruits</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3" id="grocery">
+                            <label class="wtcatlable">Grocery</label>
+                            <select class="form-control" id="mySelect2" disabled="disabled">
+                                <option>potato</option>
+                                <option>onion</option>
+                                <option>card</option>
+                                <option>radish</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3" id="dairy">
+                            <label class="wtcatlable">Dairy & Bakery Product</label>
+                            <select class="form-control" id="mySelect3" disabled="disabled">
+                                <option>biskit</option>
+                                <option>milk</option>
+                                <option>cake</option>
+                                <option>bread</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3" id="non_veg">
+                            <label class="wtcatlable">Non-veg</label>
+                            <select class="form-control" id="mySelect4" disabled="disabled">
+                                <option>egg</option>
+                                <option>chiken</option>
+                                <option>ham</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-12 mt-3">
+                            <div class="wtitemswrap">
+                                <h6 class="wtallitems">All Product</h6>
+                                <div id="accordion">
+                                  <div class="card">
+                                    <div class="card-header" id="headingOne">
+                                      <div class="mb-0">
+                                        <a href="#" class="" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                          Fresh Onion
+                                        </a>
+                                      </div>
+                                    </div>
+                                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                                      <div class="card-body">
+                                       <div class="row">
+                                            <div class="col-md-2">
+                                           <label>Item</label>
+                                            <input type="text" class="form-control" placeholder="Onion" readonly>
+                                            </div>
+                                             <div class="col-md-2">
+                                               <label>Flavior</label>
+                                                <select class="form-control">
+                                                  <option selected>Flavior</option>
+                                                  <option>2</option>
+                                                  <option>3</option>
+                                                </select>
+                                            </div>
+                                             <div class="col-md-1">
+                                                 <label>Weight</label>
+                                               <select class="form-control">
+                                                  <option>1</option>
+                                                  <option>2</option>
+                                                  <option>3</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-1">
+                                               <label>Qyt</label>
+                                               <select class="form-control">
+                                                  <option>1</option>
+                                                  <option>2</option>
+                                                  <option>3</option>
+                                                </select>
+                                            </div>
+                                             <div class="col-md-2">
+                                             <div class="">
+                                             <div class="form-group">
+                                             <label>Discount Price</label>
+                                             <input type="text" class="form-control" placeholder="">
+                                             </div>
+                                             </div>
+                                             </div>
+                                             <div class="col-md-2">
+                                             <div class="">
+                                             <div class="form-group">
+                                             <label>Actual Price</label>
+                                             <input type="text" class="form-control" placeholder="">
+                                            </div>
+                                             </div>
+                                             </div>
+                                             <div class="col-md-2">
+                                                <div class="form-check wtcheckadd">
+                                            <input type="checkbox" class="selectedId wtcheckspace" name="selectedId"/>
+                                            <label class="form-check-label">Available</label>
+                                          </div>
+                                             </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                   <div class="card">
+                                    <div class="card-header" id="headingtwo">
+                                      <div class="mb-0">
+                                        <a href="#" class="" data-toggle="collapse" data-target="#collapsetwo" aria-expanded="true" aria-controls="collapsetwo">
+                                          Fresh Onion
+                                        </a>
+                                      </div>
+                                    </div>
+                                    <div id="collapsetwo" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                                     <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                           <label>Item</label>
+                                            <input type="text" class="form-control" placeholder="Onion" readonly>
+                                            </div>
+                                             <div class="col-md-2">
+                                               <label>Flavior</label>
+                                                <select class="form-control">
+                                                  <option selected>Flavior</option>
+                                                  <option>2</option>
+                                                  <option>3</option>
+                                                </select>
+                                            </div>
+                                             <div class="col-md-1">
+                                                 <label>Weight</label>
+                                               <select class="form-control">
+                                                  <option>1</option>
+                                                  <option>2</option>
+                                                  <option>3</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-1">
+                                               <label>Qyt</label>
+                                               <select class="form-control">
+                                                  <option>1</option>
+                                                  <option>2</option>
+                                                  <option>3</option>
+                                                </select>
+                                            </div>
+                                             <div class="col-md-2">
+                                             <div class="">
+                                             <div class="form-group">
+                                             <label>Discount Price</label>
+                                             <input type="text" class="form-control" placeholder="">
+                                             </div>
+                                             </div>
+                                             </div>
+                                             <div class="col-md-2">
+                                             <div class="">
+                                             <div class="form-group">
+                                             <label>Actual Price</label>
+                                             <input type="text" class="form-control" placeholder="">
+                                            </div>
+                                             </div>
+                                             </div>
+                                             <div class="col-md-2">
+                                                <div class="form-check wtcheckadd">
+                                            <input type="checkbox" class="selectedId wtcheckspace" name="selectedId"/>
+                                            <label class="form-check-label">Available</label>
+                                          </div>
+                                             </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div class="card">
+                                    <div class="card-header" id="headingthree">
+                                      <div class="mb-0">
+                                        <a href="#" class="" data-toggle="collapse" data-target="#collapsethree" aria-expanded="true" aria-controls="collapsethree">
+                                          Fresh Onion
+                                        </a>
+                                      </div>
+                                    </div>
+                                    <div id="collapsethree" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                                      <div class="card-body">
+                                          <div class="row">
+                                            <div class="col-md-2">
+                                           <label>Item</label>
+                                            <input type="text" class="form-control" placeholder="Onion" readonly>
+                                            </div>
+                                             <div class="col-md-2">
+                                               <label>Flavior</label>
+                                                <select class="form-control">
+                                                  <option selected>Flavior</option>
+                                                  <option>2</option>
+                                                  <option>3</option>
+                                                </select>
+                                            </div>
+                                             <div class="col-md-1">
+                                                 <label>Weight</label>
+                                               <select class="form-control">
+                                                  <option>1</option>
+                                                  <option>2</option>
+                                                  <option>3</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-1">
+                                               <label>Qyt</label>
+                                               <select class="form-control">
+                                                  <option>1</option>
+                                                  <option>2</option>
+                                                  <option>3</option>
+                                                </select>
+                                            </div>
+                                             <div class="col-md-2">
+                                             <div class="">
+                                             <div class="form-group">
+                                             <label>Discount Price</label>
+                                             <input type="text" class="form-control" placeholder="">
+                                             </div>
+                                             </div>
+                                             </div>
+                                             <div class="col-md-2">
+                                             <div class="">
+                                             <div class="form-group">
+                                             <label>Actual Price</label>
+                                             <input type="text" class="form-control" placeholder="">
+                                            </div>
+                                             </div>
+                                             </div>
+                                             <div class="col-md-2">
+                                                <div class="form-check wtcheckadd">
+                                            <input type="checkbox" class="selectedId wtcheckspace" name="selectedId"/>
+                                            <label class="form-check-label">Available</label>
+                                          </div>
+                                             </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="wt-modal-btn">
+                                <button type="button" class="wtmodalsubmitbtn">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- main section close-->
+<!-- End of Content Wrapper -->
+
+<!-- Footer -->
+      <footer class="sticky-footer">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>© Copyright Radeonn. All Rights Reserved</span>
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+  </div>
+
+  
+<!-- delete popup -->
+
+<div class="modal fade" id="deletmodal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Delete Employee
+       </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure want to delete?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- Bootstrap core JavaScript-->
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+  <script>
+    $(document).ready(function() {
+    $('#example').DataTable();
+  } );
+  </script>
+  <!--category filter script-->
+<script>
+    $("#dairy").hide();
+    $("#grocery").hide();
+    $("#fruits_veg").hide();
+    $("#non_veg").hide();
+
+    function check(elem) {
+        if (elem.value == 'Grocery' ) {
+         $("#grocery").show();
+         $("#dairy").hide();
+        $("#fruits_veg").hide();
+        $("#non_veg").hide();
+          document.getElementById('mySelect2').disabled = !elem.selectedIndex;
+        }
+        if (elem.value == 'Fruits') {
+            $("#fruits_veg").show();
+            $("#dairy").hide();
+            $("#grocery").hide();
+            $("#non_veg").hide();
+          document.getElementById('mySelect1').disabled = !elem.selectedIndex;
+        }
+        if (elem.value == 'Dairy & Bakery Product' ) {
+        $("#dairy").show();
+        $("#grocery").hide();
+        $("#fruits_veg").hide();
+        $("#non_veg").hide();
+          document.getElementById('mySelect3').disabled = !elem.selectedIndex;
+        }
+        if (elem.value == 'Non-veg' ) {
+        $("#non_veg").show();
+        $("#dairy").hide();
+        $("#grocery").hide();
+        $("#fruits_veg").hide();
+          document.getElementById('mySelect4').disabled = !elem.selectedIndex;
+        }
+    }
+</script>
+
+
+</body>
+
+</html>
+

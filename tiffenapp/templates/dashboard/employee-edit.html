@@ -1,0 +1,211 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block content %}
+
+ <style>
+        .hiddeninput {
+            display: none;
+        }
+    </style>
+
+
+         <!-- main section -->
+         <section>
+           <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-12">
+               <div class="wt-body-wrap">
+   <form enctype="multipart/form-data" method="post" class="form-row">
+       {% csrf_token %}
+        <div class="form-group col-md-6">
+          <label>Upload Image</label>
+          <input type="file" class="form-control" name="image" placeholder="">
+        </div>
+        <div class="form-group col-md-6">
+          <label>Name</label>
+          <input type="text" class="form-control" name="username" placeholder="">
+        </div>
+        <div class="form-group col-md-6">
+          <label>Email</label>
+          <input type="text" class="form-control" name="email" placeholder="">
+        </div>
+        <div class="form-group col-md-6">
+          <label>Phone Number</label>
+          <input type="text" class="form-control" name="phone" placeholder="">
+        </div>
+        <div class="form-group col-md-4">
+                <label>Password</label>
+                <input type="text" class="form-control" name="password1" placeholder="">
+              </div>
+                 <div class="form-group col-md-4">
+                <label>Re-enter Password</label>
+                <input type="text" class="form-control" name="password2" placeholder="">
+              </div>
+        <div class="form-group col-md-4">
+          <label>Expiry Date</label>
+          <input type="text" class="form-control" name="employee_expiry_date" placeholder="">
+        </div>
+        <div class="form-group col-md-12">
+          <label>Address</label>
+         <textarea class="form-control" name="employee_address" rows="3"></textarea>
+        </div>
+         <div class="form-group col-md-12">
+        <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Module Permission</th>
+            <th>Read</th>
+            <th>Write</th>
+            <th>Create</th>
+            <th>Delete</th>
+            <th>Import</th>
+            <th>Export</th>
+          </tr>
+        </thead>
+          <tbody>
+                  <tr>
+                      <td>Users</td>
+                      <td><input type="checkbox" name="employee_user_read" value="1"><br></td>
+                      <td><input type="checkbox" name="employee_user_write" value="1"></td>
+                      <td><input type="checkbox" name="employee_user_create" value="1"></td>
+                      <td><input type="checkbox" name="employee_user_delete" value="1"></td>
+                      <td><input type="checkbox" name="employee_user_import" value="1"></td>
+                      <td><input type="checkbox" name="employee_user_export" value="1"></td>
+                   </tr>
+                   <tr>
+                       <td>Product Categories</td>
+                       <td><input type="checkbox" name="employee_product_categories_read" value="1"><br></td>
+                       <td><input type="checkbox" name="employee_product_categories_write" value="1"></td>
+                       <td><input type="checkbox" name="employee_product_categories_create" value="1"></td>
+                       <td><input type="checkbox" name="employee_product_categories_delete" value="1"></td>
+                       <td><input type="checkbox" name="employee_product_categories_import" value="1"></td>
+                       <td><input type="checkbox" name="employee_product_categories_export" value="1"></td>
+                   </tr>
+                   <tr>
+                       <td>Product</td>
+                       <td><input type="checkbox" name="employee_product_read" value="1"><br></td>
+                       <td><input type="checkbox" name="employee_product_write" value="1"></td>
+                       <td><input type="checkbox" name="employee_product_create" value="1"></td>
+                       <td><input type="checkbox" name="employee_product_delete" value="1"></td>
+                       <td><input type="checkbox" name="employee_product_import" value="1"></td>
+                       <td><input type="checkbox" name="employee_product_export" value="1"></td>
+                   </tr>
+                   <tr>
+                       <td>Manage Vendor</td>
+                       <td><input type="checkbox" name="employee_manager_vendor_read" value="1"><br></td>
+                       <td><input type="checkbox" name="employee_manager_vendor_write" value="1"></td>
+                       <td><input type="checkbox" name="employee_manager_vendor_create" value="1"></td>
+                       <td><input type="checkbox" name="employee_manager_vendor_delete" value="1"></td>
+                       <td><input type="checkbox" name="employee_manager_vendor_import" value="1"></td>
+                       <td><input type="checkbox" name="employee_manager_vendor_export" value="1"></td>
+                   </tr>
+                   <tr>
+                       <td>Customers</td>
+                       <td><input type="checkbox" name="employee_customer_read" value="1"><br></td>
+                       <td><input type="checkbox" name="employee_customer_write" value="1"></td>
+                       <td><input type="checkbox" name="employee_customer_create" value="1"></td>
+                       <td><input type="checkbox" name="employee_customer_delete" value="1"></td>
+                       <td><input type="checkbox" name="employee_customer_import" value="1"></td>
+                       <td><input type="checkbox" name="employee_customer_export" value="1"></td>
+                   </tr>
+                  <tr>
+                      <td>Blogs</td>
+                      <td><input type="checkbox" name="employee_blog_read" value="1"><br></td>
+                      <td><input type="checkbox" name="employee_blog_write" value="1"></td>
+                      <td><input type="checkbox" name="employee_blog_create" value="1"></td>
+                      <td><input type="checkbox" name="employee_blog_delete" value="1"></td>
+                      <td><input type="checkbox" name="employee_blog_import" value="1"></td>
+                      <td><input type="checkbox" name="employee_blog_export" value="1"></td>
+                  </tr>
+                  <tr>
+                      <td>Inquiry</td>
+                      <td><input type="checkbox" name="employee_inquiry_read" value="1"><br></td>
+                      <td><input type="checkbox" name="employee_inquiry_write" value="1"></td>
+                      <td><input type="checkbox" name="employee_inquiry_create" value="1"></td>
+                      <td><input type="checkbox" name="employee_inquiry_delete" value="1"></td>
+                      <td><input type="checkbox" name="employee_inquiry_import" value="1"></td>
+                      <td><input type="checkbox" name="employee_inquiry_export" value="1"></td>
+                  </tr>
+                  <tr>
+                      <td>Exclusive Subscription</td>
+                      <td><input type="checkbox" name="employee_exclusive_subscription_read" value="1"><br></td>
+                      <td><input type="checkbox" name="employee_exclusive_subscription_write" value="1"></td>
+                      <td><input type="checkbox" name="employee_exclusive_subscription_create" value="1"></td>
+                      <td><input type="checkbox" name="employee_exclusive_subscription_delete" value="1"></td>
+                      <td><input type="checkbox" name="employee_exclusive_subscription_import" value="1"></td>
+                      <td><input type="checkbox" name="employee_exclusive_subscription_export" value="1"></td>
+                  </tr>
+                   <tr>
+                      <td>Notification</td>
+                      <td><input type="checkbox" name="employee_notification_read" value="1"><br></td>
+                      <td><input type="checkbox" name="employee_notification_write" value="1"></td>
+                      <td><input type="checkbox" name="employee_notification_create" value="1"></td>
+                      <td><input type="checkbox" name="employee_notification_delete" value="1"></td>
+                      <td><input type="checkbox" name="employee_notification_import" value="1"></td>
+                      <td><input type="checkbox" name="employee_notification_export" value="1"></td>
+                  </tr>
+                   <tr>
+                      <td>Accounts</td>
+                      <td><input type="checkbox" name="employee_account_read" value="1"><br></td>
+                      <td><input type="checkbox" name="employee_account_write" value="1"></td>
+                      <td><input type="checkbox" name="employee_account_create" value="1"></td>
+                      <td><input type="checkbox" name="employee_account_delete" value="1"></td>
+                      <td><input type="checkbox" name="employee_account_import" value="1"></td>
+                      <td><input type="checkbox" name="employee_account_export" value="1"></td>
+                  </tr>
+                   <tr>
+                      <td>Website</td>
+                      <td><input type="checkbox" name="employee_website_read" value="1"><br></td>
+                      <td><input type="checkbox" name="employee_website_write" value="1"></td>
+                      <td><input type="checkbox" name="employee_website_create" value="1"></td>
+                      <td><input type="checkbox" name="employee_website_delete" value="1"></td>
+                      <td><input type="checkbox" name="employee_website_import" value="1"></td>
+                      <td><input type="checkbox" name="employee_website_export" value="1"></td>
+                  </tr>
+                   <tr>
+                      <td>Mobile</td>
+                      <td><input type="checkbox" name="employee_mobile_read" value="1"><br></td>
+                      <td><input type="checkbox" name="employee_mobile_write" value="1"></td>
+                      <td><input type="checkbox" name="employee_mobile_create" value="1"></td>
+                      <td><input type="checkbox" name="employee_mobile_delete" value="1"></td>
+                      <td><input type="checkbox" name="employee_mobile_import" value="1"></td>
+                      <td><input type="checkbox" name="employee_mobile_export" value="1"></td>
+                  </tr>
+                   <tr>
+                      <td>Setting</td>
+                      <td><input type="checkbox" name="employee_setting_read" value="1"><br></td>
+                      <td><input type="checkbox" name="employee_setting_write" value="1"></td>
+                      <td><input type="checkbox" name="employee_setting_create" value="1"></td>
+                      <td><input type="checkbox" name="employee_setting_delete" value="1"></td>
+                      <td><input type="checkbox" name="employee_setting_import" value="1"></td>
+                      <td><input type="checkbox" name="employee_setting_export" value="1"></td>
+                  </tr>
+
+          </tbody>
+        </table>
+        </div>
+   <input type="hiddin" name="role" value="2" class="form-control hiddeninput" id="id_role" placeholder="customer" />
+
+         <div class="form-group col-md-12">
+          <div class="wt-modal-btn">
+          <a href="{% url 'user_employee_list' %}"><button type="button" class="wtmodalsubmitbtn">Back</button></a>
+          <button type="submit" class="wtmodalsubmitbtn">Submit</button>
+        </div>
+        </div>
+       </form>
+               </div>
+              </div>
+            </div>
+           </div>
+         </section>
+       <!-- main section close-->
+<!--      </div>-->
+
+
+  <script src="/static/dashboard/js/jquery.min.js"></script>
+  <script src="/static/dashboard/js/bootstrap.bundle.min.js"></script>
+  <script src="/static/dashboard/js/bootstrap.js"></script>
+
+
+{% endblock %}

@@ -1,0 +1,131 @@
+<div class="form-group col-md-12">
+             <label>Configues</label>
+        <select class="custom-select">
+            {% if attributes.value=1 %}
+        <option name="configure">
+                {% for config in weightconfig %}
+                {{ config.configuresname }}
+                {% endfor %}
+            {% elif attributes.value=2 %}
+                {% for config in healthconfig %}
+                {{ config.configuresname }}
+                {% endfor %}
+            {% else %}
+                {% for config in sizeconfig %}
+                {{ config.configuresname }}
+                {% endfor %}
+            {% endif %}
+        </option>
+            {% endif %}
+        </select>
+         </div>
+
+
+<div class="form-group col-md-12">
+             <label>Configues</label>
+        <select class="custom-select">
+            {% if attributes.value == 1 %}
+        <option name="configure">
+                {% for x in configure.attributes == 'weight' %}
+                    {{ x.configuresname }}
+                {% endfor %}
+            {% elif attributes.value=2 %}
+                {% for x in configure.attributes == 'healthy' %}
+                    {{ x.configuresname }}
+                {% endfor %}
+            {% else %}
+                {% for x in configure.attributes == 'size' %}
+                    {{ x.configuresname }}
+                {% endfor %}
+        </option>
+            {% endif %}
+        </select>
+         </div>
+
+
+
+ <div class="form-group col-md-12">
+             <label>Configues</label>
+        <select class="custom-select">
+            {% if attributes.atributesname == 'weight' %}
+                <option name="configure">
+                        {% for x in configure.attributes.atributesname == 'weight' %}
+                            <label>{{ x.configuresname }}</label>
+                        {% endfor %}
+                </option>
+            {% endif %}
+            {% if attributes.atributesname == 'healthy' %}
+                <option name="configure">
+                    {% for x in configure.attributes == 'healthy' %}
+                       <label>{{ x.configuresname }}</label>
+                    {% endfor %}
+                </option>
+            {% endif %}
+           {% if attributes.atributesname == 'size' %}
+                <option name="configure">
+                    {% for x in configure.attributes == 'size' %}
+                        <label>{{ x.configuresname }}</label>
+                    {% endfor %}
+                </option>
+            {% endif %}
+        </select>
+         </div>
+
+
+
+<div class="form-group col-md-12">
+             <label>Configues</label>
+        <select class="custom-select">
+            {% if attributes.atributesname == 'weight' %}
+                <option name="configure">
+                        {% for x in configure.attributes.atributesname %}
+                            <label>{{ x.configuresname }}</label>
+                        {% endfor %}
+                </option>
+            {% endif %}
+            {% if attributes.atributesname == 'healthy' %}
+                <option name="configure">
+                    {% for x in configure.attributes %}
+                       <label>{{ x.configuresname }}</label>
+                    {% endfor %}
+                </option>
+            {% endif %}
+           {% if attributes.atributesname == 'size' %}
+                <option name="configure">
+                    {% for x in configure.attributes == 'size' %}
+                        <label>{{ x.configuresname }}</label>
+           {% endfor %}
+                </option>
+            {% endif %}
+        </select>
+         </div>
+
+
+def all_employee(request):
+    employee_list = employee_profile.objects.filter()
+    company_list = company_profile.objects.filter()
+    roles_list = roles.objects.filter()
+    dept = Department.objects.filter()
+    desi = Designation.objects.filter()
+    if request.method == 'POST':
+        form = employeeForm(request.POST)
+        if form.is_valid():
+            f= form.save(commit=False)
+            f.role_id =roles.objects.get(role_id=request.POST.get('role_id'))
+            # f.department_id = department.objects.get(department_id=request.POST.get('department_id'))
+            # f.department_id_id = request.POST.get('department_id')
+            # f.designation_id = designation.objects.get(designation_id=request.POST.get('designation_id'))
+            f.save()
+    return render(request, "dashboard/all-employee.html", locals())
+
+
+
+<div class="form-group">
+  <label>Department <span class="text-danger">*</span></label>
+     <select class="browser-default custom-select" id="selected_department" name="department_id">
+           <option value="0" disabled selected>-- Department --</option>
+                 {% for d in dept %}
+                     <option value="{{d.id}}">{{d.department_name}}</option>
+                 {% endfor %}
+      </select>
+</div>
