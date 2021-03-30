@@ -1,260 +1,254 @@
 {% load static %}
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width">
-		<link rel="icon" type="image/png" href="{% static 'images/logo-fevi.png' %}"/>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/png" href="{% static 'images/logo-fevi.png' %}" />
         <title>Home-Tiffen-Dilivery</title>
 
-        <link rel='stylesheet' href="{% static 'css/style.css' %}" />
-        <link rel='stylesheet' href="{% static 'css/animate.css' %}" />
-        <link rel='stylesheet' href="{% static 'css/bootstrap.min.css' %}" />
-        <link rel='stylesheet' href="{% static 'css/bootstrap.css' %}" />
-		<link rel="stylesheet" href='https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css'>
-		<link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
-		<link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css'>
-        <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700%7CKarla:400,700%7CMontserrat:100,200,300,400,500,600,700,800,900%7CAllura:400%7CPlayfair+Display:400,400i,700,700i,900%7CRoboto:100,300,400,500,700%7CLora:400,700%7CHerr+Von+Muellerhoff:400%7CPoppins:400%7COpen+Sans:400%7COswald:400,500,600,700%7CRoboto+Slab:100,300,400,700&#038;subset=latin,latin-ext' />
+        <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/animate.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+        <link
+            rel="stylesheet"
+            href="http://fonts.googleapis.com/css?family=Droid+Serif:400,700%7CKarla:400,700%7CMontserrat:100,200,300,400,500,600,700,800,900%7CAllura:400%7CPlayfair+Display:400,400i,700,700i,900%7CRoboto:100,300,400,500,700%7CLora:400,700%7CHerr+Von+Muellerhoff:400%7CPoppins:400%7COpen+Sans:400%7COswald:400,500,600,700%7CRoboto+Slab:100,300,400,700&#038;subset=latin,latin-ext"
+        />
 
         <script src="/static/js/jquery.js"></script>
         <script src="/static/js/bootstrap.min.js"></script>
         <script src="/static/js/bootstrap.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-
-	</head>
-    <body class="home page-template page-template-page-templates page-template-without-container page-template-page-templateswithout-container-php page page-id-4 nopaper">        
-    <div class="wrapper">
-	    <section class="">
-		    <div class="row clearfix">
-			    <div class="col-lg-6 col-md-6 col-sm-12 main-top">
-				<header id="masthead" class="site-header clearfix">
-                <div class="header-main clearfix">
-                    <div class="header-parts container">
-					   <div class="container">
-                        <a class="site-title1" href="#"><img src="{% static 'images/logo.png' %}" alt="logo"></a>
-                       </div>
-					   <div class="container">
-						<div class="header-my-account ">
-                            <div class="dropdown">
-                                <input id="login-register-toggle" type="checkbox">
-                                <div class="link" data-toggle="modal" data-target="#loginModal">
-                                    <a href="#">
-                                        <span>Login / SignUp</span>
-                                    </a>
-                                </div>
-							</div>
-						</div>
-						</div>
-                    </div>
-                </div>
-				<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header border-bottom-0">
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body">
-                          <div class="form-title ">
-                            <ul class="nav nav-tabs">
-		                      <li class="active"><a data-toggle="tab" href="#login" class="float-left" ><h4>Login</h4></a></li>
-                              <li><a data-toggle="tab" href="#create-account" class="float-right"><h4>Create an account</h4></a></li>
-                           </ul>
-                        </div>
-	                <div class="tab-content">
-                        <div id="login" class="tab-pane active">
-                            <div class="d-flex flex-column ">
-                              <form method="post" action="{% url 'login' %}">
-                                    {% csrf_token %}
-                                <div class="form-group">
-			                      <label>Phone Number</label>
-                                  <input type="Phnoe" name="phone" class="form-control" id="Phone" placeholder=" Phone Number">
-                                <!--  <div class="form-group">-->
-<!--			                      <label>Password</label>-->
-<!--                                  <input type="Password" name="password1" class="form-control" id="Password" placeholder=" Password">-->
-<!--                                </div>-->
-								</div>
-                                <button type="button" class="btn btn-login btn-block btn-round">Login</button>
-                              </form>
-                          </div>
-                          <div class="modal-footer d-flex justify-content-center">
-                            </div>
-	                    </div>
-	                    <div id="create-account" class="tab-pane fade">
-                          <div class="d-flex flex-column ">
-                              <form enctype="multipart/form-data" method="post" action="{% url 'signup' %}">
-                                  {% csrf_token %}
-                                <div class="form-group">
-			                      <label>Phone Number</label>
-                                  <input type="Phone" name="phone" class="form-control" id="Phone" placeholder=" Phone Number">
-                                </div>
-			                     <div class="form-group">
-			                      <label>Name</label>
-                                  <input type="Name" name="username" class="form-control" id="Name" placeholder=" Name">
-                                </div>
-			                     <div class="form-group">
-			                      <label>Email</label>
-                                  <input type="Email" name="email" class="form-control" id="Email" placeholder=" Email">
-                                </div>
-			                     <div class="form-group">
-			                      <label>Password</label>
-                                  <input type="Password" name="password1" class="form-control" id="Password" placeholder=" Password">
-                                </div>
-                                   <div class="form-group">
-			                      <label>Re-enter Password</label>
-                                  <input type="Password" name="password2" class="form-control" id="Password" placeholder=" Password">
-                                </div>
-<!--                                   <div class="form-group">-->
-<!--                                       <label>Role</label>-->
-<!--                                         <select class="custom-select" name="role">-->
-<!--                                             <option value="0"><&#45;&#45; Select Option &ndash;&gt;</option>-->
-<!--                                             <option value="1">Admin</option>-->
-<!--                                             <option value="2">Employee </option>-->
-<!--                                             <option value="3">Vendor</option>-->
-<!--                                             <option value="4">Customer</option>-->
-<!--                                         </select>-->
-<!--                                     </div>-->
-                                <button type="submit" class="btn btn-login btn-block btn-round">Login</button>
-                              </form>
-                          </div>
-	                    </div>
-		            </div>
-                </div>
-                </div>
-                </div>
-                </div>
-                <div id="middle" class="sidebar-container " role="complementary">
-                    <div class="sidebar-inner">
-                        <div class="widget-area clearfix">
-                            <div id="azh_widget-4" class="widget widget_azh_widget">
-					            <section>
-
-                                    <div class="static-header homepage-header">
-                                        <div class="container">
-								            <h1>Enter Your Delivery Location </h1>
-                                            <p>Find restaurants, specials, and coupons for free</p>
-                                                <form method="get" class="azqf-query-form profiles" data-name="profiles" action="">
-											        <span class="toggle"></span>
-													<div class="wrapper">
-													    <div class="geo-location">
-														    <div class="location">
-															    <input name="location" type="text" placeholder="What is your location ?" value="" class="pac-target-input" autocomplete="off">
-											                    <input name="latitude" type="hidden" value="">
-											                    <input name="longitude" type="hidden" value="">
-											                    <span class="locate"></span>
-															</div>
-											                <div class="radius">
-											                    <input id="glr-24831095" type="checkbox" name="use_radius" checked="checked">
-											                    <label for="glr-24831095">Radius:
-											                        <span class="radius">30</span>
-											                        <span class="units">mi</span>
-											                    </label>
-											                    <div class="slider ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
-											                        <input name="radius" type="number" placeholder="Radius (mi)" value="30">
-											                        <div class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min" style="width: 0%;"></div>
-											                        <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 0%;"></span>
-											                    </div>
-											                </div>
-											            </div>
-											            <input type="hidden" name="post_type" value="azl_profile"><input type="hidden" name="role" value="vendor">
-											            <div class="submit">
-											                <input type="submit" value="Search">
-											                <i class="fas fa-search"></i>
-											            </div>
-											        </div>
-											    </form>
+    </head>
+    <body class="home page-template page-template-page-templates page-template-without-container page-template-page-templateswithout-container-php page page-id-4 nopaper">
+        <div class="wrapper">
+            <section class="">
+                <div class="row clearfix">
+                    <div class="col-lg-6 col-md-6 col-sm-12 main-top">
+                        <header id="masthead" class="site-header clearfix">
+                            <div class="header-main clearfix">
+                                <div class="header-parts container">
+                                    <div class="container">
+                                        <a class="site-title1" href="#"><img src="{% static 'images/logo.png' %}" alt="logo" /></a>
+                                    </div>
+                                    <div class="container">
+                                        <div class="header-my-account">
+                                            <div class="dropdown">
+                                                <input id="login-register-toggle" type="checkbox" />
+                                                <div class="link" data-toggle="modal" data-target="#loginModal">
+                                                    <a href="#">
+                                                        <span>Login / SignUp</span>
+                                                    </a>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </section>
+                                </div>
                             </div>
-				        </div>
+                            <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header border-bottom-0">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-title">
+                                                <ul class="nav nav-tabs">
+                                                    <li class="active">
+                                                        <a data-toggle="tab" href="#login" class="float-left"><h4>Login</h4></a>
+                                                    </li>
+                                                    <li>
+                                                        <a data-toggle="tab" href="#create-account" class="float-right"><h4>Create an account</h4></a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="tab-content">
+                                                <div id="login" class="tab-pane active">
+                                                    <div class="d-flex flex-column">
+                                                        <form name="registration" id="post_form" method="post" action="{% url 'signin_with_phone' %}">
+                                                            {% csrf_token %}
+                                                            <input type="hidden" name="hidden-contact-form" value="login_form" />
+
+                                                            <div class="form-group col-md-12">
+                                                                <label>Phone Number</label>
+                                                                <i class="fa fa-phone"></i>
+                                                                <input type="tel" name="phone_number" id="phone_number" class="form-control" placeholder="Enter Phone Number" />
+                                                                <small style="color: black;">(Format : 7527040408)</small>
+                                                            </div>
+                                                            <div class="signbtntype">
+                                                                <button type="submit" id="postbtn" class="signupbtn" name="step1_phone">Continue</button>
+                                                                {% if phone_error %}
+                                                                <div class="alert alert-danger alert-dismissible">
+                                                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                                                    <strong>Error !</strong> Invalid Phone Number.Please Try again in some-time
+                                                                </div>
+                                                                {% endif %}
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <div class="modal-footer d-flex justify-content-center"></div>
+                                                </div>
+                                                <div id="create-account" class="tab-pane fade">
+                                                    <div class="d-flex flex-column">
+                                                        <form method="post" enctype="multipart/form-data" action="{% url 'simplesignup' %}">
+                                                            {% csrf_token %}
+                                                            <input type="hidden" name="hidden-contact-form" value="signup_form" />
+                                                            <div class="form-group">
+                                                                <input type="text" class="form-control" name="username" placeholder="username" />
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input type="text" class="form-control" name="email" placeholder="email" />
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input type="text" class="form-control" name="phone" placeholder="phone" />
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input type="password" class="form-control" name="password1" placeholder="password" />
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input type="password" class="form-control" name="password2" placeholder="password" />
+                                                            </div>
+                                                            <button class="wtmodalsubmitbtn" type="submit">Submit</button>
+                                                            <input type="hidden" name="role" value="4" class="form-control hiddeninput" id="role_id" placeholder="customer" />
+                                                            <!-- hiddeninput -->
+                                                            <!--                          <button class="wtmodalsubmitbtn" name="step1_phone" type="submit">Submit</button>-->
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="middle" class="sidebar-container" role="complementary">
+                                <div class="sidebar-inner">
+                                    <div class="widget-area clearfix">
+                                        <div id="azh_widget-4" class="widget widget_azh_widget">
+                                            <section>
+                                                <div class="static-header homepage-header">
+                                                    <div class="container">
+                                                        <h1>Enter Your Delivery Location</h1>
+                                                        <p>Find restaurants, specials, and coupons for free</p>
+                                                        <form method="get" class="azqf-query-form profiles" data-name="profiles" action="">
+                                                            <span class="toggle"></span>
+                                                            <div class="wrapper">
+                                                                <div class="geo-location">
+                                                                    <div class="location">
+                                                                        <input name="location" type="text" placeholder="What is your location ?" class="pac-target-input" autocomplete="off" />
+                                                                        <input name="latitude" type="hidden" value="" />
+                                                                        <input name="longitude" type="hidden" value="" />
+                                                                        <span class="locate"></span>
+                                                                    </div>
+                                                                    <div class="radius">
+                                                                        <input id="glr-24831095" type="checkbox" name="use_radius" checked="checked" />
+                                                                        <label for="glr-24831095">
+                                                                            Radius:
+                                                                            <span class="radius">30</span>
+                                                                            <span class="units">mi</span>
+                                                                        </label>
+                                                                        <div class="slider ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
+                                                                            <input name="radius" type="number" placeholder="Radius (mi)" value="30" />
+                                                                            <div class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min" style="width: 0%;"></div>
+                                                                            <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 0%;"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <input type="hidden" name="post_type" value="azl_profile" /><input type="hidden" name="role" value="vendor" />
+                                                                <div class="submit">
+                                                                    <input type="submit" value="Search" />
+                                                                    <i class="fas fa-search"></i>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </section>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </header>
+                        <!-- End header -->
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-12 main-top">
+                        <div class="homepage-header-background-login" style="background-image: url('{% static 'images/login.jpg' %}');"></div>
                     </div>
                 </div>
-        </header>
-		<!-- End header -->
-		</div>
+            </section>
 
-		
-		
-				<div class="col-lg-6 col-md-6 col-sm-12 main-top">
-				    <div class="homepage-header-background-login" style="background-image: url('{% static 'images/login.jpg' %}')"></div>
-				</div>
-			</div>
-		</section>
-		
-            
-		
-		<!--- Start Ordering Steps --->
-		<section class="ordering-steps section dark" >
-		    <!--img src="{% static 'images/leaves.png' %}" alt="leaves" class="leaves">
+            <!--- Start Ordering Steps --->
+            <section class="ordering-steps section dark">
+                <!--img src="{% static 'images/leaves.png' %}" alt="leaves" class="leaves">
 		    <img src="{% static 'images/nuts.png' %}" alt="nuts" class="nuts"-->
-		    <div class="container">
-		        <h2 class="title">Easy 3 Step Order</h2>
-		            <div class="order-step-wrapper row">
-		                <div class="arrow solid" style="background-image: url(images/solid-arrow.png)"></div>
-		                <div class="arrow dotted" style="background-image: url(images/dotted-arrow.png)"></div>
-		                    <div class="order-step-inner">
-		                        <div class="col-sm-4 order-step">
-		                            <div class="order-step-border">
-		                                <div class="order-step-number">1</div>
-		                                <img src="{% static 'images/restaurant.png' %}" alt="restaurant" class="order-step-icon">
-		                            </div>
-		                            <h4>Choose a restaurant</h4>
-		                            <p>We’ve got your covered wuth menus from over 345 delivery restaurants online.</p>
-		                        </div>
-		                        <div class="col-sm-4 order-step">
-		                            <div class="order-step-border">
-		                                <div class="order-step-number">2</div>
-		                                <img src="{% static 'images/dish.png' %}" alt="dish" class="order-step-icon">
-		                            </div>
-		                            <h4>Choose a tasty dish</h4>
-		                            <p>We’ve got your covered wuth menus from over 345 delivery restaurants online.</p>
-		                        </div>
-		                        <div class="col-sm-4 order-step">
-		                            <div class="order-step-border">
-		                                <div class="order-step-number">3</div>
-		                                <img src="{% static 'images/delivery.png' %}" alt="delivery" class="order-step-icon">
-		                            </div>
-		                            <h4>Pick up or Delivery</h4>
-		                            <p>Get your food delivered! And enjoy your meal! Pay online on pickup or delivery</p>
-		                        </div>
-		                    </div>
-		            </div>
-		            
-		    </div>
-		</section>
-		<!--- End Ordering Steps --->
-		
-		<!---- Start Application ---->
-        <section class="application">
-            <div class="section app-section">
                 <div class="container">
-                    <div class="row">
-                        <div class="col-md-4 col-md-offset-1 col-sm-6">
-                            <img src="{% static 'images/app.png' %}" alt="application" class="app">
-                        </div>
-                        <div class="col-md-5 col-md-offset-1 col-sm-6">
-                            <h2>The Best Food Delivery App</h2>
-                            <p>Now you can make food happen pretty much wherever you are thanks to the free easy-to-use Food Delivery &amp; Takeout App.</p>
-                            <a href="#">
-							    <img src="{% static 'images/play.png' %}" alt="Play Market" class="app-button">
-							</a>
-                            <a href="#">
-							    <img src="{% static 'images/app-store.png' %}" alt="Apple Store" class="app-button">
-							</a>
+                    <h2 class="title">Easy 3 Step Order</h2>
+                    <div class="order-step-wrapper row">
+                        <div class="arrow solid" style="background-image: url(images/solid-arrow.png);"></div>
+                        <div class="arrow dotted" style="background-image: url(images/dotted-arrow.png);"></div>
+                        <div class="order-step-inner">
+                            <div class="col-sm-4 order-step">
+                                <div class="order-step-border">
+                                    <div class="order-step-number">1</div>
+                                    <img src="{% static 'images/restaurant.png' %}" alt="restaurant" class="order-step-icon" />
+                                </div>
+                                <h4>Choose a restaurant</h4>
+                                <p>We’ve got your covered wuth menus from over 345 delivery restaurants online.</p>
+                            </div>
+                            <div class="col-sm-4 order-step">
+                                <div class="order-step-border">
+                                    <div class="order-step-number">2</div>
+                                    <img src="{% static 'images/dish.png' %}" alt="dish" class="order-step-icon" />
+                                </div>
+                                <h4>Choose a tasty dish</h4>
+                                <p>We’ve got your covered wuth menus from over 345 delivery restaurants online.</p>
+                            </div>
+                            <div class="col-sm-4 order-step">
+                                <div class="order-step-border">
+                                    <div class="order-step-number">3</div>
+                                    <img src="{% static 'images/delivery.png' %}" alt="delivery" class="order-step-icon" />
+                                </div>
+                                <h4>Pick up or Delivery</h4>
+                                <p>Get your food delivered! And enjoy your meal! Pay online on pickup or delivery</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-        <!---- End Application ---->
+            </section>
+            <!--- End Ordering Steps --->
 
-
-    </div>
-	<!---- End wrapper ---->
-    <div class="pac-container pac-logo" style="display: none; width: 355px; position: absolute; left: 405px; top: 446px;"></div>
-</body>
+            <!---- Start Application ---->
+            <section class="application">
+                <div class="section app-section">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4 col-md-offset-1 col-sm-6">
+                                <img src="{% static 'images/app.png' %}" alt="application" class="app" />
+                            </div>
+                            <div class="col-md-5 col-md-offset-1 col-sm-6">
+                                <h2>The Best Food Delivery App</h2>
+                                <p>Now you can make food happen pretty much wherever you are thanks to the free easy-to-use Food Delivery &amp; Takeout App.</p>
+                                <a href="#">
+                                    <img src="{% static 'images/play.png' %}" alt="Play Market" class="app-button" />
+                                </a>
+                                <a href="#">
+                                    <img src="{% static 'images/app-store.png' %}" alt="Apple Store" class="app-button" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!---- End Application ---->
+        </div>
+        <!---- End wrapper ---->
+        <div class="pac-container pac-logo" style="display: none; width: 355px; position: absolute; left: 405px; top: 446px;"></div>
+    </body>
 </html>

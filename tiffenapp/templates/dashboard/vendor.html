@@ -46,7 +46,7 @@
                     <div class="wt-vendor-detail">
                       <img src="/media/{{ vendors.image }}" class="float-left images-fluid ">
 					  <div class="wt-vendor-detail-text">
-                      <h3>{{ vendors.name }}</h3>
+                      <h3>{{ vendors.username }}</h3>
                       <p>{{ vendors.email }}</p>
                           <p>{{ vendors.slug }}</p>
                       <a href="#"><i class="fas fa-phone-alt fontcall"></i>{{ vendors.phone }}</a>
@@ -102,7 +102,17 @@
                 <label>Alternate no.</label>
                 <input type="text" name="vendor_alternatphone" class="form-control" placeholder="">
               </div>
-        <input type="hiddin" name="role" value="3" class="form-control hiddeninput" id="id_role" placeholder="customer" />
+                 <div class="form-group col-md-12">
+                <label>Description</label>
+                       <textarea class="form-control" rows="3" name="vendor_description" ></textarea>
+              </div>
+<!--                <input type="hidden" name="longitude"  id="longitude" class="form-control" placeholder="">-->
+<!--                <input type="hidden" name="latitude" id="latitude" class="form-control" placeholder="">-->
+                   <div class="form-group col-md-12">
+                <label>Location</label>
+                <input type="text" class="form-control" name="vendor_location" id="vendor_location" placeholder="">
+              </div>
+        <input type="hidden" name="role" value="3" class="form-control hiddeninput" id="id_role" placeholder="customer" />
 
               <div class="form-group col-md-12">
                 <div class="wt-modal-btn">
@@ -200,7 +210,19 @@
                 <label>Alternate no.</label>
                 <input type="text" class="form-control" name="vendor_alternatphone" placeholder="">
               </div>
-<input type="hiddin" name="role" value="3" class="form-control hiddeninput" id="id_role" placeholder="customer" />
+                   <div class="form-group col-md-12">
+                <label>Description</label>
+                       <textarea class="form-control" rows="3" name="vendor_description" ></textarea>
+              </div>
+<!--                    <input type="hidden" name="longitude" id="longitude" class="form-control" placeholder="">-->
+<!--                <input type="hidden" name="latitude" id="latitude" class="form-control" placeholder="">-->
+                   <div class="form-group col-md-12">
+                <label>Location</label>
+                <input type="text" class="form-control" name="vendor_location" id="vendor_location" placeholder="">
+              </div>
+
+
+<input type="hidden" name="role" value="3" class="form-control hiddeninput" id="id_role" placeholder="customer" />
 
               <div class="form-group col-md-12">
                 <div class="wt-modal-btn">

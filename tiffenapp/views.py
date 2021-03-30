@@ -12,6 +12,7 @@ from .forms import SignUpForm, AttributeForm, ConfiguresForm, SubcategoryForm, S
     MaincategoryForm, ProductForm, VendorForm, CustomerForm, EmployeeForm, BlogForm, BlogcategoryForm, UserForm, \
     UserLoginForm, SimpleSignUpForm, SimpleLoginForm
 from django.contrib.auth import login, authenticate
+from geopy.geocoders import Nominatim
 from django.views.generic.edit import FormView
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
@@ -179,11 +180,38 @@ def user_customer_edit(request, slug):
     # return render(request, 'dashboard/customer-edit.html', {'form': form})
 
 
+def vendor_detail_index(request, slug):
+    post = get_object_or_404(User, slug=slug)
+    vendor_pro = Product.objects.filter(user__role__role='vendor') & Product.objects.filter(user__slug=slug)
+    return render(request, 'menu.html', locals())
+
+
+def user_current_location_index(request):
+    if request.method == "POST":
+        vaddress = request.POST['location']
+        geolocator = Nominatim(user_agent="tiffenapp")
+        location = geolocator.geocode(vaddress, timeout=10000)
+        print(location.address)
+    return render(request, 'index.html', locals())
+
+
 def user_vendor_list(request):
     if request.method == "POST":
+        vaddress = request.POST['vendor_location']
+        # vlongitude = request.POST['vendor_longitude']
+        # vlatitude = request.POST['vendor_latitude']
+        geolocator = Nominatim(user_agent="tiffenapp")
+        location = geolocator.geocode(vaddress, timeout=10000)
+        # vlonglocation = geolocator.geocode(vlongitude, timeout=10000)
+        # vlatlocation = geolocator.geocode(vlatitude, timeout=10000)
+        print(location.address)
+              # print(vlonglocation.longitude, vlatlocation.latitude)
         form = VendorForm(request.POST, request.FILES)
         if form.is_valid():
             ven = form.save(commit=False)
+            ven.vendor_location = location.address
+            # ven.vendor_longitude = vlonglocation.longitude
+            # ven.vendor_latitude = vlatlocation.latitude
             ven.role.role_id = 3
             ven.save()
             return redirect('user_vendor_list')
@@ -386,10 +414,6 @@ def add_attributes(request):
     return render(request, 'dashboard/add-attributes.html', {'form': form})
 
 
-# def attributeslug(request):
-#     abcd = Attribute.objects.values_list('slug')
-#     return redirect('add_attributes', {'abcd': abcd})
-
 def attribute_detail(request, slug):
     post = get_object_or_404(Attribute, slug=slug)
     return redirect('attributeslist')  # render(request, 'dashboard/attributes-detail.html', {'post': post})
@@ -540,129 +564,6 @@ def blogcategory_detail(request, slug):
         'blogcategory_list')  # return render(request, 'dashboard/blog-category-detail.html', {'post': post})
 
 
-############################################ Signup / Login otp ################################################
-
-# def signup(request):
-#     global check_message_sent
-#     check_contact = request.POST.get('hidden-contact-form')
-#     if 'signup_form' == str(check_contact):
-#         if request.method == 'POST':
-#             form = SignUpForm(request.POST, request.FILES)
-#             try:
-#                 if form.is_valid():
-#                     form.save()
-#                     email = form.cleaned_data.get('email')
-#                     raw_password = form.cleaned_data.get('password1')
-#                     user = authenticate(email=email, password=raw_password)
-#                     login(request, user)
-#                     return redirect('/')
-#             except Exception:
-#                 messages.error(request, "Email and password not recognize!")
-#         else:
-#             form = SignUpForm()
-#         return render(request, 'index.html', {'form': form})
-#     elif 'login_form' == str(check_contact):
-#                 # elif 'login_form' == str(check_contact):
-#         digits = [i for i in range(0, 10)]
-#         generated_otp = ""
-#         for i in range(5):
-#             index_1 = math.floor(random.random() * 10)
-#             generated_otp += str(digits[index_1])
-#         print(generated_otp)
-#         print('1111111')
-#         form = SignUpForm()
-#         print('22222')
-#         if 'step1_phone' in request.POST:
-#             entered_phone_number = request.POST['phone_number']
-#             print(entered_phone_number, type(entered_phone_number), '33333')
-#             if User.objects.filter(phone=entered_phone_number).exists():
-#                 print('~~~~~~~~')
-#                 user = User.objects.get(phone=entered_phone_number)
-#                 user.otp = generated_otp
-#                 user.set_password(generated_otp)
-#                 user.otp_expired = False
-#                 user.save()
-#                 print('35353535')
-#                 check_message_sent = sendotp(key, entered_phone_number, generated_otp)
-#                 print(check_message_sent, '44444')
-#                 if check_message_sent:
-#                     print('4545454545')
-#                     # return redirect('otp_check')
-#                     return render(request, 'confirm_otp.html', locals())
-#                 else:
-#                     phone_error = True
-#                     print('#######')
-#                     print("error")
-#                 print("exists")
-#                 print('bbbbbbbbb')
-#             else:
-#                 form = SignUpForm(request.POST)
-#                 print(form, '555555555')
-#                 # if form.is_valid():
-#                 user = User.objects.create_user(username=str(request.POST['phone_number']),
-#                                                 password=generated_otp,
-#                                                 is_active=False,
-#                                                 # is_seller = True,
-#                                                 otp=generated_otp,
-#                                                 otp_expired=False,
-#                                                 phone=str(request.POST['phone_number']))
-#                 print(user, '66666')
-#                 phone_number = request.POST['phone_number']
-#                 print('7777')
-#                 check_message_sent = sendotp(key, phone_number, generated_otp)
-#                 print('888888')
-#                 if check_message_sent:
-#                     return render(request, 'confirm_otp.html', locals())
-#                 else:
-#                     phone_error = True
-#                     print('10101001')
-#
-#         if 'otp_entered' in request.POST:
-#             entered_phone_number = request.POST['entered_phone_number']
-#             print('11-11-11-11-11')
-#             entered_otp = request.POST['otp']
-#             print('1212121212')
-#             user = User.objects.get(phone=entered_phone_number)
-#             print(user, '1313131313')
-#             if check_password(entered_otp, user.password):
-#                 print("matched")
-#                 if not user.otp_expired:
-#                     user.otp_expired = False
-#                     user.is_active = True
-#                     user.save()
-#                     print('14141414141414')
-#                     login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-#                     print('145145145')
-#                     # login(request, user)
-#                     return redirect('/')
-#                 elif user.otp_expired:
-#                     otp_expired = True
-#                     print('15151515115')
-#                     return render(request, 'confirm_otp.html', locals())
-#             else:
-#                 otp_expired = True
-#                 print('161616161616')
-#                 return render(request, 'confirm_otp.html', locals())
-#         return render(request, 'index.html', locals())
-#     return render(request, 'index.html', locals())
-
-
-# def otp_check(request):
-#     if request.method == 'POST':
-#         entered_otp = request.POST.get('otp', '')
-#         entered_phone_number = request.POST.get('entered_phone_number', '')
-#         user = User.objects.get(phone=entered_phone_number)
-#
-#         if entered_phone_number.password == entered_otp:
-#             return redirect('home')
-#         else:
-#             return HttpResponse('invalid OTP.')
-#     else:
-#         return render(request, 'otp_match.html', locals())
-#         # return render(request, 'otp_match.html')
-
-######################################################## end ############################################
-
 ##################################### simple login/signup & otplogin #############################
 
 
@@ -698,7 +599,8 @@ def simplesignup(request):
             messages.error(request, "Email and password not recognize!")
     else:
         form = SimpleSignUpForm()
-    return render(request, 'index.html', {'form': form})
+    vendors = User.objects.filter(role__role_id=3)
+    return render(request, 'index.html', {'form': form, 'vendors': vendors})
 
 
 def signin_with_phone(request):

@@ -2,7 +2,8 @@ from django.contrib import admin
 # import admin_thumbnails
 from django.utils.html import format_html
 from .models import User, Role, Product, Productgalleryimage, Productvariant, Maincategory, Supercategory, Subcategory,\
-    Attribute, Configure, Blog, Blogcategory, Country, City, Images, Color, Size, Variants, Weight, Healthy, checkboxcheck
+    Attribute, Configure, Blog, Blogcategory, Country, City, Images, Color, Size, Variants, Weight, Healthy, Currentlocation,\
+    checkboxcheck
 # from django.urls import reverse
 
 
@@ -12,12 +13,14 @@ class UserAdmin(admin.ModelAdmin):
         return format_html('<img src="/media/{}" width="100" height="100"/>'.format(obj.image))
 
     image_post.short_description = 'Image'
-    list_display = ['id', 'email', 'phone', 'username', 'image_post']
+    list_display = ['id', 'email', 'phone', 'username', 'image_post', 'role']
 
 
 admin.site.register(User, UserAdmin)
 admin.site.register(Role)
+admin.site.register(Currentlocation)
 # admin.site.register(Profile)
+
 
 # @admin_thumbnails.thumbnail('image')
 class ProductImageInline(admin.TabularInline):

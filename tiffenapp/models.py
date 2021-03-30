@@ -34,6 +34,11 @@ class Role(models.Model):
 #     return Role.objects.get_or_create(role_id=1)[0]
 
 
+class Currentlocation(models.Model):
+    # currentlocation = models.DecimalField(decimal_places=2, max_digits=4)
+    currentlocation = models.CharField(max_length=250, null=True, blank=True)
+
+
 class User(AbstractUser):
     id = models.AutoField(primary_key=True)
     email = models.EmailField(unique=True, null=False, blank=False)
@@ -44,12 +49,16 @@ class User(AbstractUser):
     slug = models.SlugField(unique=True, null=False, blank=False)
     is_staff = models.BooleanField(_('staff status'), default=True)
     is_active = models.BooleanField(_('active'), default=True)
-    otp = models.CharField(default="", max_length=30, null=True)
+    otp = models.CharField(default="", max_length=30, null=True, blank=True)
     otp_expired = models.BooleanField(default=True)
     published_date = models.DateTimeField(blank=True, null=True)
     # vendor
     vendor_gstno = models.IntegerField(unique=True, null=True, blank=True)
     vendor_alternatphone = models.CharField(max_length=10, null=True, blank=True)
+    vendor_location = models.CharField(max_length=250, null=True, blank=True)
+    vendor_description = models.TextField(blank=True, null=True, max_length=150)
+    vendor_longitude = models.DecimalField(decimal_places=2 , max_digits=4, blank=True, null=True)
+    vendor_latitude = models.DecimalField(decimal_places=2 , max_digits=4, blank=True, null=True)
     # customer
     customer_address = models.CharField(max_length=30, blank=True, null=True)
     # employee

@@ -10,13 +10,15 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
                   path('admin/', admin.site.urls),
                   # path('', include('django.contrib.auth.urls')),
-                  path('loginhere/', views.loginhere, name='loginhere'),
+                  path('', views.loginhere, name='loginhere'),
                   path('home/', views.home, name='home'),
                   path('dashboard/', views.dashboard, name='dashboard'),
                   # account url
+                    #INDEX
                   # path('', views.signup, name='signup'),
                   path('login/', views.signin_with_phone, name='signin_with_phone'),
-                  path('', views.simplesignup, name='simplesignup'),
+                  path('index/', views.simplesignup, name='simplesignup'),
+                  path('user_current_location_index/', views.user_current_location_index, name='user_current_location_index'),
                   # path('login/', views.simplelogin, name='simplelogin'),
                   path('otp_check/', views.otp_check, name='otp_check'),
                   path('logout/', auth_views.LogoutView.as_view(next_page='/'), name='logout'),
@@ -36,6 +38,9 @@ urlpatterns = [
                   path('dashboard/user/vendor/user-vendor-del/<slug:slug>/', views.user_vendor_del,name='user_vendor_del'),
                   path('dashboard/user/vendor/user-vendor-detail/<slug:slug>/', views.user_vendor_detail,name='user_vendor_detail'),
                   path('dashboard/user/vendor/vendor_allproducts/', views.vendor_allproducts, name='vendor_allproducts'),
+                    # index  vendor url
+                  path('index/user/vendor/vendor-detail-index/<slug:slug>/', views.vendor_detail_index, name='vendor_detail_index'),
+
                   #  customer url
                   path('dashboard/user/customer/user-customer-list/', views.user_customer_list,name='user_customer_list'),
                   path('dashboard/user/customer/user-customer-edit/<slug:slug>/', views.user_customer_edit,name='user_customer_edit'),

@@ -26,15 +26,14 @@
                   <span class="wtemid">Vendor ID : {{post.id}}</span>
                   <p class="wtemgmail">Email : {{post.email}}</p>
                   <p class="wtemdate">Slug : {{post.slug}}</p>
+                  <p class="wtemgmail">Address : {{post.vendor_location}}</p>
                   </div>
                           </div>
                            <div class="col-md-6">
                               <div class="wtadmindetailright1">
                                   <div class="wt-edit-pr">
                                       <a   data-toggle="modal" data-target="#wtadmineditpr{{post.slug}}" href="{% url 'user_vendor_edit' post.slug %}" ><i class="fas fa-edit"></i></a>
-
                                   </div>
-
                                   <ul>
                                       <li>GST. TIN : {{post.vendor_gstno}}</li>
                                       <li>Phone Number : {{post.phone}}</li>

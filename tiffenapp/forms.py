@@ -104,7 +104,8 @@ class VendorForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('image', 'phone', 'username', 'email', 'vendor_gstno', 'password1', 'password2', 'vendor_alternatphone','role')
+        fields = ('image', 'phone', 'username', 'email', 'vendor_gstno', 'password1', 'password2',
+                  'vendor_alternatphone', 'vendor_location', 'vendor_description', 'role')
 
 
 class CustomerForm(UserCreationForm):
@@ -161,7 +162,7 @@ class AttributeForm(forms.ModelForm):
 
     class Meta:
         model = Attribute
-        fields = ('atributesname', 'detail_text', 'slug')
+        fields = ('atributesname', 'detail_text')
 
 
 class ConfiguresForm(forms.ModelForm):

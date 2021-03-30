@@ -155,26 +155,27 @@
 		<section class="cd-gallery">
 		  <div class="container">
 			<ul  id="MixItUp21D3B0 posts-list-wrapper horizontal-list-2">
-			
+ {% for vendor in vendors %}
 				<li class="mix color-1 check1 radio2 option3">
 				        <div class="posts-list profile-item  horizontal-list-2" data-contents-per-item="1" data-width="108" data-height="108" data-stagepadding="0" data-margin="0" data-full-width="" data-center="" data-loop="">
 						    <div class="filterable beverages burgers pasta pizza sandwiches seafood soup-and-salads showed even">
-                                <div class="entry profile-item post-58 azl_profile type-azl_profile status-publish has-post-thumbnail hentry delivery-type-delivery delivery-type-pickup">
+
+								<div class="entry profile-item post-58 azl_profile type-azl_profile status-publish has-post-thumbnail hentry delivery-type-delivery delivery-type-pickup">
                                     <div class="entry-thumbnail">
-                                        <a href="#">
-                                            <div class="image " style="background-image: url(&quot;images/x.jpg&quot;); height: 108px;" data-width="108" data-height="108"></div>                 
-										</a>
+										<a href="{% url 'vendor_detail_index' vendor.slug %}">
+										<img src="/media/{{ vendor.image }}" class="float-left images-fluid ">
+											</a>
                                     </div>
                                     <div class="entry-data">
                                         <div class="entry-header">
 		                                    <h2 class="entry-title">
-		                                        <a href="#" rel="bookmark">Central caffe pizzeria</a>
+		                                        <a href="{% url 'vendor_detail_index' vendor.slug %}" rel="bookmark">{{ vendor.username }}</a>
 		                                    </h2>
 	                                    </div>
-                                        <div class="entry-summary">Burgers, American, Sandwiches, Fast Food, BBQ, Breakfast</div>
+                                        <div class="entry-summary" style="color:black;">{{ vendor.vendor_description }}</div>
                                         <div class="entry-footer">
-										<span class="meta-field address ">  
-										    <span class="value">68 5th Avenue New York 
+										<span class="meta-field address ">
+										    <span class="value" style="color:black;">{{ vendor.vendor_location }}
 										        <span class="units"></span>
 										    </span>
 										</span>                
@@ -190,427 +191,51 @@
                                         </div>
                                     </div>    
                                 </div>
-                            </div>
-						</div>
-					
-				
-				</li>
-				<li class="mix color-2 check2 radio2 option2">
-				    <div class="posts-list profile-item  horizontal-list-2" data-contents-per-item="1" data-width="108" data-height="108" data-stagepadding="0" data-margin="0" data-full-width="" data-center="" data-loop="">
-						    <div class="filterable beverages burgers pasta pizza sandwiches seafood soup-and-salads showed even">
-                                <div class="entry profile-item post-111 azl_profile type-azl_profile status-publish has-post-thumbnail hentry delivery-type-delivery delivery-type-pickup">
-                                    <div class="entry-thumbnail">
-                                        <a href="#">
-                                            <div class="image " style="background-image: url(&quot;images/x1.jpg&quot;); height: 108px;" data-width="108" data-height="108"></div>
-                                        </a>
-                                    </div>
-                                    <div class="entry-data">
-                                        <div class="entry-header">
-		                                    <h2 class="entry-title">
-		                                        <a href="#" rel="bookmark">Central pizzeria</a>
-		                                    </h2>
-	                                    </div>
-                                        <div class="entry-summary">Burgers, American, Sandwiches, Fast Food, BBQ, Breakfast</div>
-                                        <div class="entry-footer">
-										<span class="meta-field address ">  
-										    <span class="value">68 5th Avenue New York 
-										        <span class="units"></span>
-										    </span>
-										</span>                
-										<div class="star-rating" title="Rated 4.5 out of 5">
-                                            <span style="width:90%">
-                                                <strong class="rating">4.5</strong> out of <span>5</span>based on 
-												<span class="rating">2</span> user ratings                    
-											</span>
-                                        </div>
-                                        <span class="reviews">
-                                            <a href="#">
-	                                            <span class="count">12</span>
-	                                            <span class="label">Reviews</span>
-	                                        </a>
-                                        </span>
-                                        </div>
-                                    </div>    
-                                </div>
+
                             </div>
 						</div>
 				</li>
-				<li class="mix color-1 check3 radio3 option1">
-				    <div class="posts-list profile-item  horizontal-list-2" data-contents-per-item="1" data-width="108" data-height="108" data-stagepadding="0" data-margin="0" data-full-width="" data-center="" data-loop="">
-						    <div class="filterable beverages burgers pasta pizza sandwiches seafood soup-and-salads showed even">
-                                <div class="entry profile-item post-48 azl_profile type-azl_profile status-publish has-post-thumbnail hentry delivery-type-delivery delivery-type-pickup">
-                                    <div class="entry-thumbnail">
-                                        <a href="#">
-                                            <div class="image " style="background-image: url(&quot;images/fabio-108x108.jpg&quot;); height: 108px;" data-width="108" data-height="108"></div>
-                                        </a>
-                                    </div>
-                                    <div class="entry-data">
-                                        <div class="entry-header">
-		                                    <h2 class="entry-title">
-		                                        <a href="#" rel="bookmark">Fabio al porto ristorante</a>
-											</h2>
-		                                </div>
-                                        <div class="entry-summary">Burgers, American, Sandwiches, Fast Food, BBQ, Breakfast</div>
-                                        <div class="entry-footer">
-							                <span class="meta-field address ">  
-							                    <span class="value">68 5th Avenue New York 
-							                        <span class="units"></span>
-												</span>
-								            </span>                
-								            <div class="star-rating" title="Rated 5 out of 5">
-                                                <span style="width:100%">
-                                                    <strong class="rating">5</strong> out of <span>5</span> based on 
-										            <span class="rating">1</span> user rating                    
-									            </span>
-                                            </div>
-                                            <span class="reviews">
-                                                <a href="#"><span class="count">15</span><span class="label">Reviews</span></a>
-                                            </span>
-                                        </div>
-                                    </div>    
-                                </div>
-                            </div>
-						</div>
-				</li>
-				<li class="mix color-1 check3 radio2 option4">
-				   <div class="posts-list profile-item  horizontal-list-2" data-contents-per-item="1" data-width="108" data-height="108" data-stagepadding="0" data-margin="0" data-full-width="" data-center="" data-loop="">
-						    <div class="filterable beverages burgers pasta pizza sandwiches seafood soup-and-salads showed even">
-                                <div class="entry profile-item post-58 azl_profile type-azl_profile status-publish has-post-thumbnail hentry delivery-type-delivery delivery-type-pickup">
-                                    <div class="entry-thumbnail">
-                                        <a href="#">
-                                            <div class="image " style="background-image: url(&quot;images/x3.jpg&quot;); height: 108px;" data-width="108" data-height="108"></div>                 
-										</a>
-                                    </div>
-                                    <div class="entry-data">
-                                        <div class="entry-header">
-		                                    <h2 class="entry-title">
-		                                        <a href="#" rel="bookmark">Jagnetina na raznju</a>
-		                                    </h2>
-	                                    </div>
-                                        <div class="entry-summary">Burgers, American, Sandwiches, Fast Food, BBQ, Breakfast</div>
-                                        <div class="entry-footer">
-										<span class="meta-field address ">  
-										    <span class="value">68 5th Avenue New York 
-										        <span class="units"></span>
-										    </span>
-										</span>                
-										<div class="star-rating" title="Rated 5 out of 5">
-                                            <span style="width:100%">
-                                                <strong class="rating">5</strong> out of <span>5</span>based on
-												<span class="rating">1</span> user rating                    
-											</span>
-                                        </div>
-                                        <span class="reviews">
-                                            <a href="#"><span class="count">5</span><span class="label">Reviews</span></a>
-                                        </span>
-                                        </div>
-                                    </div>    
-                                </div>
-                            </div>
-						</div>
-				</li>
-				<li class="mix color-1 check1 radio3 option2">
-				    <div class="posts-list profile-item  horizontal-list-2" data-contents-per-item="1" data-width="108" data-height="108" data-stagepadding="0" data-margin="0" data-full-width="" data-center="" data-loop="">
-						    <div class="filterable beverages burgers pasta pizza sandwiches seafood soup-and-salads showed even">
-                                <div class="entry profile-item post-58 azl_profile type-azl_profile status-publish has-post-thumbnail hentry delivery-type-delivery delivery-type-pickup">
-                                    <div class="entry-thumbnail">
-                                        <a href="#">
-                                            <div class="image " style="background-image: url(&quot;images/xxx.jpg&quot;); height: 108px;" data-width="108" data-height="108"></div>                 
-										</a>
-                                    </div>
-                                    <div class="entry-data">
-                                        <div class="entry-header">
-		                                    <h2 class="entry-title">
-		                                        <a href="#" rel="bookmark">Maenaam Thai Restaurant</a>
-		                                    </h2>
-	                                    </div>
-                                        <div class="entry-summary">Burgers, American, Sandwiches, Fast Food, BBQ, Breakfast</div>
-                                        <div class="entry-footer">
-										<span class="meta-field address ">  
-										    <span class="value">68 5th Avenue New York 
-										        <span class="units"></span>
-										    </span>
-										</span>                
-										<div class="star-rating" title="Rated 5 out of 5">
-                                            <span style="width:100%">
-                                                <strong class="rating">5</strong> out of <span>5</span>based on
-												<span class="rating">1</span> user rating                    
-											</span>
-                                        </div>
-                                        <span class="reviews">
-                                            <a href="#"><span class="count">5</span><span class="label">Reviews</span></a>
-                                        </span>
-                                        </div>
-                                    </div>    
-                                </div>
-                            </div>
-						</div>
-				</li>
-				<li class="mix color-2 check2 radio3 option3">
-				    <div class="posts-list profile-item  horizontal-list-2" data-contents-per-item="1" data-width="108" data-height="108" data-stagepadding="0" data-margin="0" data-full-width="" data-center="" data-loop="">
-						    <div class="filterable beverages burgers pasta pizza sandwiches seafood soup-and-salads showed even">
-                                <div class="entry profile-item post-58 azl_profile type-azl_profile status-publish has-post-thumbnail hentry delivery-type-delivery delivery-type-pickup">
-                                    <div class="entry-thumbnail">
-                                        <a href="#">
-                                            <div class="image " style="background-image: url(&quot;images/tratoria-108x108.jpg&quot;); height: 108px;" data-width="108" data-height="108"></div>                 
-										</a>
-                                    </div>
-                                    <div class="entry-data">
-                                        <div class="entry-header">
-		                                    <h2 class="entry-title">
-		                                        <a href="#" rel="bookmark">Tratoria due Sarajevo</a>
-		                                    </h2>
-	                                    </div>
-                                        <div class="entry-summary">Burgers, American, Sandwiches, Fast Food, BBQ, Breakfast</div>
-                                        <div class="entry-footer">
-										<span class="meta-field address ">  
-										    <span class="value">68 5th Avenue New York 
-										        <span class="units"></span>
-										    </span>
-										</span>                
-										<div class="star-rating" title="Rated 5 out of 5">
-                                            <span style="width:100%">
-                                                <strong class="rating">5</strong> out of <span>5</span>based on
-												<span class="rating">1</span> user rating                    
-											</span>
-                                        </div>
-                                        <span class="reviews">
-                                            <a href="#"><span class="count">5</span><span class="label">Reviews</span></a>
-                                        </span>
-                                        </div>
-                                    </div>    
-                                </div>
-                            </div>
-						</div>
-				</li>
-				<li class="mix color-2 check2 radio2 option1">
-				    <div class="posts-list profile-item  horizontal-list-2" data-contents-per-item="1" data-width="108" data-height="108" data-stagepadding="0" data-margin="0" data-full-width="" data-center="" data-loop="">
-						    <div class="filterable beverages burgers pasta pizza sandwiches seafood soup-and-salads showed even">
-                                <div class="entry profile-item post-58 azl_profile type-azl_profile status-publish has-post-thumbnail hentry delivery-type-delivery delivery-type-pickup">
-                                    <div class="entry-thumbnail">
-                                        <a href="#">
-                                            <div class="image " style="background-image: url(&quot;images/x.jpg&quot;); height: 108px;" data-width="108" data-height="108"></div>                 
-										</a>
-                                    </div>
-                                    <div class="entry-data">
-                                        <div class="entry-header">
-		                                    <h2 class="entry-title">
-		                                        <a href="#" rel="bookmark">Central caffe pizzeria</a>
-		                                    </h2>
-	                                    </div>
-                                        <div class="entry-summary">Burgers, American, Sandwiches, Fast Food, BBQ, Breakfast</div>
-                                        <div class="entry-footer">
-										<span class="meta-field address ">  
-										    <span class="value">68 5th Avenue New York 
-										        <span class="units"></span>
-										    </span>
-										</span>                
-										<div class="star-rating" title="Rated 5 out of 5">
-                                            <span style="width:100%">
-                                                <strong class="rating">5</strong> out of <span>5</span>based on
-												<span class="rating">1</span> user rating                    
-											</span>
-                                        </div>
-                                        <span class="reviews">
-                                            <a href="#"><span class="count">5</span><span class="label">Reviews</span></a>
-                                        </span>
-                                        </div>
-                                    </div>    
-                                </div>
-                            </div>
-						</div>
-				</li>
-				<li class="mix color-1 check1 radio3 option4">
-				   <div class="posts-list profile-item  horizontal-list-2" data-contents-per-item="1" data-width="108" data-height="108" data-stagepadding="0" data-margin="0" data-full-width="" data-center="" data-loop="">
-						    <div class="filterable beverages burgers pasta pizza sandwiches seafood soup-and-salads showed even">
-                                <div class="entry profile-item post-111 azl_profile type-azl_profile status-publish has-post-thumbnail hentry delivery-type-delivery delivery-type-pickup">
-                                    <div class="entry-thumbnail">
-                                        <a href="#">
-                                            <div class="image " style="background-image: url(&quot;images/x1.jpg&quot;); height: 108px;" data-width="108" data-height="108"></div>
-                                        </a>
-                                    </div>
-                                    <div class="entry-data">
-                                        <div class="entry-header">
-		                                    <h2 class="entry-title">
-		                                        <a href="#" rel="bookmark">Central pizzeria</a>
-		                                    </h2>
-	                                    </div>
-                                        <div class="entry-summary">Burgers, American, Sandwiches, Fast Food, BBQ, Breakfast</div>
-                                        <div class="entry-footer">
-										<span class="meta-field address ">  
-										    <span class="value">68 5th Avenue New York 
-										        <span class="units"></span>
-										    </span>
-										</span>                
-										<div class="star-rating" title="Rated 4.5 out of 5">
-                                            <span style="width:90%">
-                                                <strong class="rating">4.5</strong> out of <span>5</span>based on 
-												<span class="rating">2</span> user ratings                    
-											</span>
-                                        </div>
-                                        <span class="reviews">
-                                            <a href="#">
-	                                            <span class="count">12</span>
-	                                            <span class="label">Reviews</span>
-	                                        </a>
-                                        </span>
-                                        </div>
-                                    </div>    
-                                </div>
-                            </div>
-						</div>
-				</li>
-				<li class="mix color-2 check1 radio2 option3">
-				    <div class="posts-list profile-item  horizontal-list-2" data-contents-per-item="1" data-width="108" data-height="108" data-stagepadding="0" data-margin="0" data-full-width="" data-center="" data-loop="">
-						    <div class="filterable beverages burgers pasta pizza sandwiches seafood soup-and-salads showed even">
-                                <div class="entry profile-item post-48 azl_profile type-azl_profile status-publish has-post-thumbnail hentry delivery-type-delivery delivery-type-pickup">
-                                    <div class="entry-thumbnail">
-                                        <a href="#">
-                                            <div class="image " style="background-image: url(&quot;images/fabio-108x108.jpg&quot;); height: 108px;" data-width="108" data-height="108"></div>
-                                        </a>
-                                    </div>
-                                    <div class="entry-data">
-                                        <div class="entry-header">
-		                                    <h2 class="entry-title">
-		                                        <a href="#" rel="bookmark">Fabio al porto ristorante</a>
-											</h2>
-		                                </div>
-                                        <div class="entry-summary">Burgers, American, Sandwiches, Fast Food, BBQ, Breakfast</div>
-                                        <div class="entry-footer">
-							                <span class="meta-field address ">  
-							                    <span class="value">68 5th Avenue New York 
-							                        <span class="units"></span>
-												</span>
-								            </span>                
-								            <div class="star-rating" title="Rated 5 out of 5">
-                                                <span style="width:100%">
-                                                    <strong class="rating">5</strong> out of <span>5</span> based on 
-										            <span class="rating">1</span> user rating                    
-									            </span>
-                                            </div>
-                                            <span class="reviews">
-                                                <a href="#"><span class="count">15</span><span class="label">Reviews</span></a>
-                                            </span>
-                                        </div>
-                                    </div>    
-                                </div>
-                            </div>
-						</div>
-				</li>
-				<li class="mix color-1 check3 radio2 option4">
-				    <div class="posts-list profile-item  horizontal-list-2" data-contents-per-item="1" data-width="108" data-height="108" data-stagepadding="0" data-margin="0" data-full-width="" data-center="" data-loop="">
-						    <div class="filterable beverages burgers pasta pizza sandwiches seafood soup-and-salads showed even">
-                                <div class="entry profile-item post-58 azl_profile type-azl_profile status-publish has-post-thumbnail hentry delivery-type-delivery delivery-type-pickup">
-                                    <div class="entry-thumbnail">
-                                        <a href="#">
-                                            <div class="image " style="background-image: url(&quot;images/x3.jpg&quot;); height: 108px;" data-width="108" data-height="108"></div>                 
-										</a>
-                                    </div>
-                                    <div class="entry-data">
-                                        <div class="entry-header">
-		                                    <h2 class="entry-title">
-		                                        <a href="#" rel="bookmark">Jagnetina na raznju</a>
-		                                    </h2>
-	                                    </div>
-                                        <div class="entry-summary">Burgers, American, Sandwiches, Fast Food, BBQ, Breakfast</div>
-                                        <div class="entry-footer">
-										<span class="meta-field address ">  
-										    <span class="value">68 5th Avenue New York 
-										        <span class="units"></span>
-										    </span>
-										</span>                
-										<div class="star-rating" title="Rated 5 out of 5">
-                                            <span style="width:100%">
-                                                <strong class="rating">5</strong> out of <span>5</span>based on
-												<span class="rating">1</span> user rating                    
-											</span>
-                                        </div>
-                                        <span class="reviews">
-                                            <a href="#"><span class="count">5</span><span class="label">Reviews</span></a>
-                                        </span>
-                                        </div>
-                                    </div>    
-                                </div>
-                            </div>
-						</div>
-				</li>
-				<li class="mix color-1 check3 radio3 option2">
-				    <div class="posts-list profile-item  horizontal-list-2" data-contents-per-item="1" data-width="108" data-height="108" data-stagepadding="0" data-margin="0" data-full-width="" data-center="" data-loop="">
-						    <div class="filterable beverages burgers pasta pizza sandwiches seafood soup-and-salads showed even">
-                                <div class="entry profile-item post-58 azl_profile type-azl_profile status-publish has-post-thumbnail hentry delivery-type-delivery delivery-type-pickup">
-                                    <div class="entry-thumbnail">
-                                        <a href="#">
-                                            <div class="image " style="background-image: url(&quot;images/xxx.jpg&quot;); height: 108px;" data-width="108" data-height="108"></div>                 
-										</a>
-                                    </div>
-                                    <div class="entry-data">
-                                        <div class="entry-header">
-		                                    <h2 class="entry-title">
-		                                        <a href="#" rel="bookmark">Maenaam Thai Restaurant</a>
-		                                    </h2>
-	                                    </div>
-                                        <div class="entry-summary">Burgers, American, Sandwiches, Fast Food, BBQ, Breakfast</div>
-                                        <div class="entry-footer">
-										<span class="meta-field address ">  
-										    <span class="value">68 5th Avenue New York 
-										        <span class="units"></span>
-										    </span>
-										</span>                
-										<div class="star-rating" title="Rated 5 out of 5">
-                                            <span style="width:100%">
-                                                <strong class="rating">5</strong> out of <span>5</span>based on
-												<span class="rating">1</span> user rating                    
-											</span>
-                                        </div>
-                                        <span class="reviews">
-                                            <a href="#"><span class="count">5</span><span class="label">Reviews</span></a>
-                                        </span>
-                                        </div>
-                                    </div>    
-                                </div>
-                            </div>
-						</div>
-				</li>
-				<li class="mix color-2 check1 radio3 option1">
-				    <div class="posts-list profile-item  horizontal-list-2" data-contents-per-item="1" data-width="108" data-height="108" data-stagepadding="0" data-margin="0" data-full-width="" data-center="" data-loop="">
-						    <div class="filterable beverages burgers pasta pizza sandwiches seafood soup-and-salads showed even">
-                                <div class="entry profile-item post-58 azl_profile type-azl_profile status-publish has-post-thumbnail hentry delivery-type-delivery delivery-type-pickup">
-                                    <div class="entry-thumbnail">
-                                        <a href="#">
-                                            <div class="image " style="background-image: url(&quot;images/tratoria-108x108.jpg&quot;); height: 108px;" data-width="108" data-height="108"></div>                 
-										</a>
-                                    </div>
-                                    <div class="entry-data">
-                                        <div class="entry-header">
-		                                    <h2 class="entry-title">
-		                                        <a href="#" rel="bookmark">Tratoria due Sarajevo</a>
-		                                    </h2>
-	                                    </div>
-                                        <div class="entry-summary">Burgers, American, Sandwiches, Fast Food, BBQ, Breakfast</div>
-                                        <div class="entry-footer">
-										<span class="meta-field address ">  
-										    <span class="value">68 5th Avenue New York 
-										        <span class="units"></span>
-										    </span>
-										</span>                
-										<div class="star-rating" title="Rated 5 out of 5">
-                                            <span style="width:100%">
-                                                <strong class="rating">5</strong> out of <span>5</span>based on
-												<span class="rating">1</span> user rating                    
-											</span>
-                                        </div>
-                                        <span class="reviews">
-                                            <a href="#"><span class="count">5</span><span class="label">Reviews</span></a>
-                                        </span>
-                                        </div>
-                                    </div>    
-                                </div>
-                            </div>
-						</div>
-				</li>
-				<li class="gap"></li>
-				<li class="gap"></li>
-				
+{% endfor %}
+<!--				<li class="mix color-2 check2 radio2 option2">-->
+<!--				    <div class="posts-list profile-item  horizontal-list-2" data-contents-per-item="1" data-width="108" data-height="108" data-stagepadding="0" data-margin="0" data-full-width="" data-center="" data-loop="">-->
+<!--						    <div class="filterable beverages burgers pasta pizza sandwiches seafood soup-and-salads showed even">-->
+<!--                                <div class="entry profile-item post-111 azl_profile type-azl_profile status-publish has-post-thumbnail hentry delivery-type-delivery delivery-type-pickup">-->
+<!--                                    <div class="entry-thumbnail">-->
+<!--                                        <a href="#">-->
+<!--                                            <div class="image " style="background-image: url(&quot;images/x1.jpg&quot;); height: 108px;" data-width="108" data-height="108"></div>-->
+<!--                                        </a>-->
+<!--                                    </div>-->
+<!--                                    <div class="entry-data">-->
+<!--                                        <div class="entry-header">-->
+<!--		                                    <h2 class="entry-title">-->
+<!--		                                        <a href="#" rel="bookmark">Central pizzeria</a>-->
+<!--		                                    </h2>-->
+<!--	                                    </div>-->
+<!--                                        <div class="entry-summary">Burgers, American, Sandwiches, Fast Food, BBQ, Breakfast</div>-->
+<!--                                        <div class="entry-footer">-->
+<!--										<span class="meta-field address ">  -->
+<!--										    <span class="value">68 5th Avenue New York -->
+<!--										        <span class="units"></span>-->
+<!--										    </span>-->
+<!--										</span>                -->
+<!--										<div class="star-rating" title="Rated 4.5 out of 5">-->
+<!--                                            <span style="width:90%">-->
+<!--                                                <strong class="rating">4.5</strong> out of <span>5</span>based on -->
+<!--												<span class="rating">2</span> user ratings                    -->
+<!--											</span>-->
+<!--                                        </div>-->
+<!--                                        <span class="reviews">-->
+<!--                                            <a href="#">-->
+<!--	                                            <span class="count">12</span>-->
+<!--	                                            <span class="label">Reviews</span>-->
+<!--	                                        </a>-->
+<!--                                        </span>-->
+<!--                                        </div>-->
+<!--                                    </div>    -->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--						</div>-->
+<!--				</li>-->
 			</ul>
 		  </div>
 		</section> <!-- cd-gallery -->
