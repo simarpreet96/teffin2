@@ -36,7 +36,10 @@ class Role(models.Model):
 
 class Currentlocation(models.Model):
     # currentlocation = models.DecimalField(decimal_places=2, max_digits=4)
-    currentlocation = models.CharField(max_length=250, null=True, blank=True)
+    address = models.CharField(max_length=250, null=True, blank=True)
+
+    def __str__(self):
+        return self.address
 
 
 class User(AbstractUser):

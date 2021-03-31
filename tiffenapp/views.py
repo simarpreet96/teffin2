@@ -1,5 +1,7 @@
+import json
 import math
 import random
+from json import JSONEncoder
 
 from django.contrib.sites import requests
 from django.shortcuts import render, redirect, get_object_or_404
@@ -10,7 +12,7 @@ from .models import User, Role, Product, Productgalleryimage, Maincategory, Supe
     Attribute, Configure, Blog, Blogcategory, Country, City, Variants, Images, Color, Size
 from .forms import SignUpForm, AttributeForm, ConfiguresForm, SubcategoryForm, SupercategoryForm, \
     MaincategoryForm, ProductForm, VendorForm, CustomerForm, EmployeeForm, BlogForm, BlogcategoryForm, UserForm, \
-    UserLoginForm, SimpleSignUpForm, SimpleLoginForm
+    UserLoginForm, SimpleSignUpForm, SimpleLoginForm, CurrentlocationForm
 from django.contrib.auth import login, authenticate
 from geopy.geocoders import Nominatim
 from django.views.generic.edit import FormView
@@ -60,8 +62,34 @@ from django.contrib.auth.decorators import login_required
 #         messages.error(request, 'can not found')
 #     return render(request, 'index.html', {'allpost': allpost, 'query': query})
 
+
 def loginhere(request):
-    return render(request, 'login.html')
+    if request.method == "POST":
+        vaddress = request.POST['address']
+        request.session['address'] = vaddress   #set session value
+        address = request.session.get('address')#get session value
+        return redirect('simplesignup')
+    return render(request, 'login.html', locals())
+
+
+# def loginhere(request):
+#     if request.method == "POST":
+#         vaddress = request.POST['location']
+#         geolocator = Nominatim(user_agent="tiffenapp")
+#         servicelocation = geolocator.geocode(vaddress, timeout=10000)
+#         print(servicelocation.address)
+#         request.session['location'] = servicelocation.address   #set session value
+#         location = request.session.get('location')      #get session value
+#         form = CurrentlocationForm(request.POST)
+#         if form.is_valid():
+#             ven = form.save(commit=False)
+#             ven.currentlocation = servicelocation.address
+#             # ven.save()
+#             return redirect('simplesignup')
+#     else:
+#         form = CurrentlocationForm()
+#         print(form)
+#     return render(request, 'login.html', locals())
 
 
 def home(request):
@@ -190,9 +218,40 @@ def user_current_location_index(request):
     if request.method == "POST":
         vaddress = request.POST['location']
         geolocator = Nominatim(user_agent="tiffenapp")
-        location = geolocator.geocode(vaddress, timeout=10000)
-        print(location.address)
+        servicelocation = geolocator.geocode(vaddress, timeout=10000)
+        print(servicelocation.address)
+        request.session['location'] = servicelocation.address   #set session value
+        location = request.session.get('location')      #get session value
+        form = CurrentlocationForm(request.POST)
+        if form.is_valid():
+            ven = form.save(commit=False)
+            ven.currentlocation = servicelocation.address
+            # ven.save()
+            return redirect('simplesignup')
+    else:
+        form = CurrentlocationForm()
+        print(form)
     return render(request, 'index.html', locals())
+
+
+# def user_current_location_index(request):
+#     if request.method == "POST":
+#         vaddress = request.POST['location']
+#         geolocator = Nominatim(user_agent="tiffenapp")
+#         location = geolocator.geocode(vaddress, timeout=10000)
+#         print(location.address)
+#         form = CurrentlocationForm(request.POST)
+#         print(form)
+#         if form.is_valid():
+#             ven = form.save(commit=False)
+#             ven.currentlocation = location.address
+#             ven.save()
+#             print(ven)
+#             return redirect('user_vendor_list')
+#     else:
+#         form = CurrentlocationForm()
+#         print(form)
+#     return render(request, 'index.html', locals())
 
 
 def user_vendor_list(request):
@@ -205,7 +264,7 @@ def user_vendor_list(request):
         # vlonglocation = geolocator.geocode(vlongitude, timeout=10000)
         # vlatlocation = geolocator.geocode(vlatitude, timeout=10000)
         print(location.address)
-              # print(vlonglocation.longitude, vlatlocation.latitude)
+        # print(vlonglocation.longitude, vlatlocation.latitude)
         form = VendorForm(request.POST, request.FILES)
         if form.is_valid():
             ven = form.save(commit=False)
@@ -576,7 +635,7 @@ def simplelogin(request):
                 raw_password = loginform.cleaned_data.get('password')
                 user = authenticate(email=email, password=raw_password)
                 login(request, user)
-                return redirect('/')
+                return redirect('simplelogin')
         except Exception:
             messages.error(request, "Email not exist!")
     else:
@@ -594,7 +653,7 @@ def simplesignup(request):
                 raw_password = form.cleaned_data.get('password1')
                 user = authenticate(email=email, password=raw_password)
                 login(request, user)
-                return redirect('/')
+                return redirect('simplesignup')
         except Exception:
             messages.error(request, "Email and password not recognize!")
     else:
@@ -659,7 +718,7 @@ def signin_with_phone(request):
                 user.save()
                 login(request, user, backend='django.contrib.auth.backends.ModelBackend')
                 # login(request, user)
-                return redirect('/')
+                return redirect('simplesignup')
             elif user.otp_expired:
                 otp_expired = True
                 return render(request, 'confirm_otp.html', locals())
@@ -673,6 +732,7 @@ def signin_with_phone(request):
 
 def otp_check(request):
     return render(request, 'confirm_otp.html', locals())
+
 
 ############################################# end otp ############################
 

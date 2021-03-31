@@ -3,13 +3,19 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.forms import TextInput, ClearableFileInput, Textarea, ChoiceField, Select
 import fileinput
 from .models import User, Attribute, Configure, Maincategory, Supercategory, Subcategory, Product, \
-    Blog, Blogcategory, Country, City
+    Blog, Blogcategory, Country, City, Currentlocation
 # from django_otp.forms import OTPAuthenticationForm
 
 
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from .models import User
+
+
+class CurrentlocationForm(forms.ModelForm):
+    class Meta:
+        model=Currentlocation
+        fields='__all__'
 
 
 class SignUpForm(UserCreationForm):

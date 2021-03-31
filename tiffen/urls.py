@@ -15,7 +15,6 @@ urlpatterns = [
                   path('dashboard/', views.dashboard, name='dashboard'),
                   # account url
                     #INDEX
-                  # path('', views.signup, name='signup'),
                   path('login/', views.signin_with_phone, name='signin_with_phone'),
                   path('index/', views.simplesignup, name='simplesignup'),
                   path('user_current_location_index/', views.user_current_location_index, name='user_current_location_index'),

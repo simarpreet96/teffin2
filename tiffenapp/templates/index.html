@@ -1,382 +1,419 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block content %}
 
-  <div id="middle" class="sidebar-container " role="complementary">
-                    <div class="sidebar-inner">
-                        <div class="widget-area clearfix">
-                            <div id="azh_widget-4" class="widget widget_azh_widget">
-					            <section>
-                                    <div class="homepage-header-background" style="background-image: url(#)">  <!-- {% static 'images/1.jpg' %}  -->
-							        </div>
-                                    <div class="static-header homepage-header">
-                                        <div class="container">
-								            <h1>Order Delivery &amp; Take-Out </h1>
-                                            <p>Find restaurants, specials, and coupons for free</p>
-                                                <form method="get" class="azqf-query-form profiles" data-name="profiles" action="">
-											        <span class="toggle"></span>
-													<div class="wrapper">
-													    <div class="geo-location">
-														    <div class="location">
-															    <input name="location" type="text" placeholder="What is your location ?" value="" class="pac-target-input" autocomplete="off">
-											                    <input name="latitude" type="hidden" value="">
-											                    <input name="longitude" type="hidden" value="">
-											                    <span class="locate"></span>
-															</div>
-											                <div class="radius">
-											                    <input id="glr-24831095" type="checkbox" name="use_radius" checked="checked">
-											                    <label for="glr-24831095">Radius:
-											                        <span class="radius">30</span>
-											                        <span class="units">mi</span>
-											                    </label>
-											                    <div class="slider ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
-											                        <input name="radius" type="number" placeholder="Radius (mi)" value="30">
-											                        <div class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min" style="width: 0%;"></div>
-											                        <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 0%;"></span>
-											                    </div>
-											                </div>
-											            </div>
-											            <input type="hidden" name="post_type" value="azl_profile"><input type="hidden" name="role" value="vendor">
-														<div class="submit">
-											                <input type="submit" value="Search">
-											                <i class="fas fa-search"></i>
-											            </div>
-											        </div>
-											    </form>
-                                            </div>
-                                    </div>
-                                </section>
-                            </div>
-				        </div>
+<div id="middle" class="sidebar-container" role="complementary">
+    <div class="sidebar-inner">
+        <div class="widget-area clearfix">
+            <div id="azh_widget-4" class="widget widget_azh_widget">
+                <section>
+                    <div class="homepage-header-background" style="background-image: url(#);"><!-- {% static 'images/1.jpg' %}  --></div>
+                    <div class="static-header homepage-header">
+                        <div class="container">
+                            <h1>Order Delivery &amp; Take-Out</h1>
+                            <p>Find restaurants, specials, and coupons for free</p>
+
+							 <form method="post" class="azqf-query-form profiles" data-name="profiles" action="{% url 'user_current_location_index' %}">
+                                 {% csrf_token %}
+								 <input name="location" id="location" type="text" placeholder="What is your location ?" class="pac-target-input" />
+								 <button type="submit" class="wtmodalsubmitbtn">Submit</button>
+                             </form>
+
+<!--                            <form method="get" class="azqf-query-form profiles" data-name="profiles" action="">-->
+<!--                                <span class="toggle"></span>-->
+<!--                                <div class="wrapper">-->
+<!--                                    <div class="geo-location">-->
+<!--                                        <div class="location">-->
+<!--                                            <input name="location" type="text" placeholder="What is your location ?" value="" class="pac-target-input" autocomplete="off" />-->
+<!--                                            <input name="latitude" type="hidden" value="" />-->
+<!--                                            <input name="longitude" type="hidden" value="" />-->
+<!--                                            <span class="locate"></span>-->
+<!--                                        </div>-->
+<!--                                        <div class="radius">-->
+<!--                                            <input id="glr-24831095" type="checkbox" name="use_radius" checked="checked" />-->
+<!--                                            <label for="glr-24831095">-->
+<!--                                                Radius:-->
+<!--                                                <span class="radius">30</span>-->
+<!--                                                <span class="units">mi</span>-->
+<!--                                            </label>-->
+<!--                                            <div class="slider ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">-->
+<!--                                                <input name="radius" type="number" placeholder="Radius (mi)" value="30" />-->
+<!--                                                <div class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min" style="width: 0%;"></div>-->
+<!--                                                <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 0%;"></span>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <input type="hidden" name="post_type" value="azl_profile" /><input type="hidden" name="role" value="vendor" />-->
+<!--                                    <div class="submit">-->
+<!--                                        <input type="submit" value="Search" />-->
+<!--                                        <i class="fas fa-search"></i>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </form>-->
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- slider ---->
+<section class="slider">
+    <div class="container">
+        <div id="myCarousel" class="carousel slide">
+            <!-- Indicators -->
+            <ul class="carousel-indicators">
+                <li class="item1 active"></li>
+                <li class="item2"></li>
+                <li class="item3"></li>
+            </ul>
+
+            <!-- The slideshow -->
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="row clearfix">
+                        <div class="col-lg-3 col-md-3 col-sm-12">
+                            <img src="{% static 'images/arxrrcjn6ktr6wno6uem.jpg' %}" />
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-12">
+                            <img src="{% static 'images/cb0fuky4kdrjyisnvox1.jpg' %}" />
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-12">
+                            <img src="{% static 'images/ft6ftbffbbyp7q0p8ip9.jpg' %}" />
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-12">
+                            <img src="{% static 'images/gubwz8cbugdx3prtieuj.jpg' %}" />
+                        </div>
                     </div>
                 </div>
-		<!-- slider ---->
-	    <section class="slider">
-	        <div class="container">
-		        <div id="myCarousel" class="carousel slide">
-
-                <!-- Indicators -->
-                <ul class="carousel-indicators">
-                  <li class="item1 active"></li>
-                  <li class="item2"></li>
-                  <li class="item3"></li>
-                </ul>
-
-                <!-- The slideshow -->
-                <div class="carousel-inner">
-                  <div class="carousel-item active">
-	               <div class="row clearfix">
-	                   <div class="col-lg-3 col-md-3 col-sm-12">
-		                    <img src="{% static 'images/arxrrcjn6ktr6wno6uem.jpg' %}" >
-		               </div>
-		               <div class="col-lg-3 col-md-3 col-sm-12">
-		                     <img src="{% static 'images/cb0fuky4kdrjyisnvox1.jpg' %}" >
-		               </div>
-		               <div class="col-lg-3 col-md-3 col-sm-12">
-		                    <img src="{% static 'images/ft6ftbffbbyp7q0p8ip9.jpg' %}" >
-		               </div>
-		               <div class="col-lg-3 col-md-3 col-sm-12">
-		                     <img src="{% static 'images/gubwz8cbugdx3prtieuj.jpg' %}" >
-		               </div>
-	               </div>
-                  </div>
-                  <div class="carousel-item">
+                <div class="carousel-item">
                     <div class="row clearfix">
-	                   <div class="col-lg-3 col-md-3 col-sm-12">
-		                    <img src="{% static 'images/kmewp8efed0ev7yvfyx6.jpg' %}" >
-		               </div>
-		               <div class="col-lg-3 col-md-3 col-sm-12">
-		                     <img src="{% static 'images/arxrrcjn6ktr6wno6uem.jpg' %}" >
-		               </div>
-		               <div class="col-lg-3 col-md-3 col-sm-12">
-		                    <img src="{% static 'images/lori508m4xps01tnywxf.jpg' %}" >
-		               </div>
-		               <div class="col-lg-3 col-md-3 col-sm-12">
-		                     <img src="{% static 'images/uhc7nykza1rhmluei3mr.jpg' %}" >
-		               </div>
-	               </div>
-                  </div>
-                  <div class="carousel-item">
-                    <div class="row clearfix">
-	                   <div class="col-lg-3 col-md-3 col-sm-12">
-		                    <img src="{% static 'images/tv9bd2le5braychhumhy.jpg' %}" >
-		               </div>
-		               <div class="col-lg-3 col-md-3 col-sm-12">
-		                     <img src="{% static 'images/uhc7nykza1rhmluei3mr.jpg' %}" >
-		               </div>
-		               <div class="col-lg-3 col-md-3 col-sm-12">
-		                    <img src="{% static 'images/rszuvkicuxog3t0msick.jpg' %}" >
-		               </div>
-		               <div class="col-lg-3 col-md-3 col-sm-12">
-		                     <img src="{% static 'images/lsg1evqypccmi4sbsfao.jpg' %}" >
-		               </div>
-	               </div>
-                  </div>
+                        <div class="col-lg-3 col-md-3 col-sm-12">
+                            <img src="{% static 'images/kmewp8efed0ev7yvfyx6.jpg' %}" />
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-12">
+                            <img src="{% static 'images/arxrrcjn6ktr6wno6uem.jpg' %}" />
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-12">
+                            <img src="{% static 'images/lori508m4xps01tnywxf.jpg' %}" />
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-12">
+                            <img src="{% static 'images/uhc7nykza1rhmluei3mr.jpg' %}" />
+                        </div>
+                    </div>
                 </div>
-  
-                <!-- Left and right controls -->
-                <a class="carousel-control-prev" href="#myCarousel">
-                  <span class="carousel-control-prev-icon"></span>
-                </a>
-                <a class="carousel-control-next" href="#myCarousel">
-                  <span class="carousel-control-next-icon"></span>
-                </a>
-              </div>
+                <div class="carousel-item">
+                    <div class="row clearfix">
+                        <div class="col-lg-3 col-md-3 col-sm-12">
+                            <img src="{% static 'images/tv9bd2le5braychhumhy.jpg' %}" />
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-12">
+                            <img src="{% static 'images/uhc7nykza1rhmluei3mr.jpg' %}" />
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-12">
+                            <img src="{% static 'images/rszuvkicuxog3t0msick.jpg' %}" />
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-12">
+                            <img src="{% static 'images/lsg1evqypccmi4sbsfao.jpg' %}" />
+                        </div>
+                    </div>
+                </div>
             </div>
-        </section>	
-        <!---- end slider ---->  
-	    
-		<!---- Start Restaurants ---->
-		
-		<!--- Main start --->
-		<main class="cd-main-content">
-		
-		<div class="cd-tab-filter-wrapper">
-			<div class="cd-tab-filter">
-			   
-				<ul class="cd-filters">
-				
-				    <h3>Featured restaurants</h3>
-					<li class="placeholder"> 
-						<a data-type="all" href="#0">Relevance</a> <!-- selected option on mobile -->
-					</li> 
-					<li class="filter"><a class="selected" href="#0" data-type="all">Relevance</a></li>
-					<li class="filter" data-filter=".color-1"><a href="#0" data-type="color-1">Cost For Two</a></li>
-					<li class="filter" data-filter=".color-2"><a href="#0" data-type="color-2">Delivery Time</a></li>
-					<li class="filter" data-filter=".color-3"><a href="#0" data-type="color-3">Rating</a></li>
-				    <li><a href="#0" class="cd-filter-trigger">Filters<i class="fas fa-utensils"></i></a>
-	            </li>
-				
-				</ul> <!-- cd-filters -->
-			</div> <!-- cd-tab-filter -->
-		</div> <!-- cd-tab-filter-wrapper -->
 
-		<section class="cd-gallery">
-		  <div class="container">
-			<ul  id="MixItUp21D3B0 posts-list-wrapper horizontal-list-2">
- {% for vendor in vendors %}
-				<li class="mix color-1 check1 radio2 option3">
-				        <div class="posts-list profile-item  horizontal-list-2" data-contents-per-item="1" data-width="108" data-height="108" data-stagepadding="0" data-margin="0" data-full-width="" data-center="" data-loop="">
-						    <div class="filterable beverages burgers pasta pizza sandwiches seafood soup-and-salads showed even">
+            <!-- Left and right controls -->
+            <a class="carousel-control-prev" href="#myCarousel">
+                <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a class="carousel-control-next" href="#myCarousel">
+                <span class="carousel-control-next-icon"></span>
+            </a>
+        </div>
+    </div>
+</section>
+<!---- end slider ---->
 
-								<div class="entry profile-item post-58 azl_profile type-azl_profile status-publish has-post-thumbnail hentry delivery-type-delivery delivery-type-pickup">
-                                    <div class="entry-thumbnail">
-										<a href="{% url 'vendor_detail_index' vendor.slug %}">
-										<img src="/media/{{ vendor.image }}" class="float-left images-fluid ">
-											</a>
+<!---- Start Restaurants ---->
+
+<!--- Main start --->
+<main class="cd-main-content">
+    <div class="cd-tab-filter-wrapper">
+        <div class="cd-tab-filter">
+            <ul class="cd-filters">
+                <h3>Featured restaurants</h3>
+                <li class="placeholder">
+                    <a data-type="all" href="#0">Relevance</a>
+                    <!-- selected option on mobile -->
+                </li>
+                <li class="filter"><a class="selected" href="#0" data-type="all">Relevance</a></li>
+                <li class="filter" data-filter=".color-1"><a href="#0" data-type="color-1">Cost For Two</a></li>
+                <li class="filter" data-filter=".color-2"><a href="#0" data-type="color-2">Delivery Time</a></li>
+                <li class="filter" data-filter=".color-3"><a href="#0" data-type="color-3">Rating</a></li>
+                <li>
+                    <a href="#0" class="cd-filter-trigger">Filters<i class="fas fa-utensils"></i></a>
+                </li>
+            </ul>
+            <!-- cd-filters -->
+        </div>
+        <!-- cd-tab-filter -->
+    </div>
+    <!-- cd-tab-filter-wrapper -->
+
+    <section class="cd-gallery">
+        <div class="container">
+            <ul id="MixItUp21D3B0 posts-list-wrapper horizontal-list-2">
+                <p>Tiffen service for location: {{ request.session.location }}</p>
+
+                {% for vendor in vendors %}
+					{% if vendor.vendor_location == request.session.location %}
+                <li class="mix color-1 check1 radio2 option3">
+                    <div class="posts-list profile-item horizontal-list-2" data-contents-per-item="1" data-width="108" data-height="108" data-stagepadding="0" data-margin="0" data-full-width="" data-center="" data-loop="">
+                        <div class="filterable beverages burgers pasta pizza sandwiches seafood soup-and-salads showed even">
+                            <div class="entry profile-item post-58 azl_profile type-azl_profile status-publish has-post-thumbnail hentry delivery-type-delivery delivery-type-pickup">
+                                <div class="entry-thumbnail">
+                                    <a href="{% url 'vendor_detail_index' vendor.slug %}">
+                                        <img src="/media/{{ vendor.image }}" class="float-left images-fluid" />
+                                    </a>
+                                </div>
+                                <div class="entry-data">
+                                    <div class="entry-header">
+                                        <h2 class="entry-title">
+                                            <a href="{% url 'vendor_detail_index' vendor.slug %}" rel="bookmark">{{ vendor.username }}</a>
+                                        </h2>
                                     </div>
-                                    <div class="entry-data">
-                                        <div class="entry-header">
-		                                    <h2 class="entry-title">
-		                                        <a href="{% url 'vendor_detail_index' vendor.slug %}" rel="bookmark">{{ vendor.username }}</a>
-		                                    </h2>
-	                                    </div>
-                                        <div class="entry-summary" style="color:black;">{{ vendor.vendor_description }}</div>
-                                        <div class="entry-footer">
-										<span class="meta-field address ">
-										    <span class="value" style="color:black;">{{ vendor.vendor_location }}
-										        <span class="units"></span>
-										    </span>
-										</span>                
-										<div class="star-rating" title="Rated 5 out of 5">
-                                            <span style="width:100%">
-                                                <strong class="rating">5</strong> out of <span>5</span>based on
-												<span class="rating">1</span> user rating                    
-											</span>
+                                    <div class="entry-summary" style="color: black;">{{ vendor.vendor_description }}</div>
+                                    <div class="entry-footer">
+                                        <span class="meta-field address">
+                                            <span class="value" style="color: black;">
+                                                {{ vendor.vendor_location }}
+                                                <span class="units"></span>
+                                            </span>
+                                        </span>
+                                        <div class="star-rating" title="Rated 5 out of 5">
+                                            <span style="width: 100%;"> <strong class="rating">5</strong> out of <span>5</span>based on <span class="rating">1</span> user rating </span>
                                         </div>
                                         <span class="reviews">
                                             <a href="#"><span class="count">5</span><span class="label">Reviews</span></a>
                                         </span>
-                                        </div>
-                                    </div>    
+                                    </div>
                                 </div>
-
                             </div>
-						</div>
-				</li>
-{% endfor %}
-<!--				<li class="mix color-2 check2 radio2 option2">-->
-<!--				    <div class="posts-list profile-item  horizontal-list-2" data-contents-per-item="1" data-width="108" data-height="108" data-stagepadding="0" data-margin="0" data-full-width="" data-center="" data-loop="">-->
-<!--						    <div class="filterable beverages burgers pasta pizza sandwiches seafood soup-and-salads showed even">-->
-<!--                                <div class="entry profile-item post-111 azl_profile type-azl_profile status-publish has-post-thumbnail hentry delivery-type-delivery delivery-type-pickup">-->
-<!--                                    <div class="entry-thumbnail">-->
-<!--                                        <a href="#">-->
-<!--                                            <div class="image " style="background-image: url(&quot;images/x1.jpg&quot;); height: 108px;" data-width="108" data-height="108"></div>-->
-<!--                                        </a>-->
-<!--                                    </div>-->
-<!--                                    <div class="entry-data">-->
-<!--                                        <div class="entry-header">-->
-<!--		                                    <h2 class="entry-title">-->
-<!--		                                        <a href="#" rel="bookmark">Central pizzeria</a>-->
-<!--		                                    </h2>-->
-<!--	                                    </div>-->
-<!--                                        <div class="entry-summary">Burgers, American, Sandwiches, Fast Food, BBQ, Breakfast</div>-->
-<!--                                        <div class="entry-footer">-->
-<!--										<span class="meta-field address ">  -->
-<!--										    <span class="value">68 5th Avenue New York -->
-<!--										        <span class="units"></span>-->
-<!--										    </span>-->
-<!--										</span>                -->
-<!--										<div class="star-rating" title="Rated 4.5 out of 5">-->
-<!--                                            <span style="width:90%">-->
-<!--                                                <strong class="rating">4.5</strong> out of <span>5</span>based on -->
-<!--												<span class="rating">2</span> user ratings                    -->
-<!--											</span>-->
-<!--                                        </div>-->
-<!--                                        <span class="reviews">-->
-<!--                                            <a href="#">-->
-<!--	                                            <span class="count">12</span>-->
-<!--	                                            <span class="label">Reviews</span>-->
-<!--	                                        </a>-->
-<!--                                        </span>-->
-<!--                                        </div>-->
-<!--                                    </div>    -->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--						</div>-->
-<!--				</li>-->
-			</ul>
-		  </div>
-		</section> <!-- cd-gallery -->
+                        </div>
+                    </div>
+                </li>
+					{% endif %}
 
-		<div class="cd-filter">
-			<form>
-			
-                <div class="cd-filter-block">
-				 
-					<div class="row clearfix">
-					<div class="col-lg-6 col-md-6 col-sm-12">
-					<ul class="cd-filter-content cd-filters list">
-						<li>
-							<input class="filter" data-filter=".check1" type="checkbox" id="checkbox1">
-			    			<label class="checkbox-label" for="checkbox1">restaurant</label>
-						</li>
+				{% if request.session.location == None %}
+                <li class="mix color-1 check1 radio2 option3">
+                    <div class="posts-list profile-item horizontal-list-2" data-contents-per-item="1" data-width="108" data-height="108" data-stagepadding="0" data-margin="0" data-full-width="" data-center="" data-loop="">
+                        <div class="filterable beverages burgers pasta pizza sandwiches seafood soup-and-salads showed even">
+                            <div class="entry profile-item post-58 azl_profile type-azl_profile status-publish has-post-thumbnail hentry delivery-type-delivery delivery-type-pickup">
+                                <div class="entry-thumbnail">
+                                    <a href="{% url 'vendor_detail_index' vendor.slug %}">
+                                        <img src="/media/{{ vendor.image }}" class="float-left images-fluid" />
+                                    </a>
+                                </div>
+                                <div class="entry-data">
+                                    <div class="entry-header">
+                                        <h2 class="entry-title">
+                                            <a href="{% url 'vendor_detail_index' vendor.slug %}" rel="bookmark">{{ vendor.username }}</a>
+                                        </h2>
+                                    </div>
+                                    <div class="entry-summary" style="color: black;">{{ vendor.vendor_description }}</div>
+                                    <div class="entry-footer">
+                                        <span class="meta-field address">
+                                            <span class="value" style="color: black;">
+                                                {{ vendor.vendor_location }}
+                                                <span class="units"></span>
+                                            </span>
+                                        </span>
+                                        <div class="star-rating" title="Rated 5 out of 5">
+                                            <span style="width: 100%;"> <strong class="rating">5</strong> out of <span>5</span>based on <span class="rating">1</span> user rating </span>
+                                        </div>
+                                        <span class="reviews">
+                                            <a href="#"><span class="count">5</span><span class="label">Reviews</span></a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+					{% endif %}
 
-						<li>
-							<input class="filter" data-filter=".check2" type="checkbox" id="checkbox2">
-							<label class="checkbox-label" for="checkbox2">restaurant</label>
-						</li>
+				{% endfor %}
+                <!--				<li class="mix color-2 check2 radio2 option2">-->
+                <!--				    <div class="posts-list profile-item  horizontal-list-2" data-contents-per-item="1" data-width="108" data-height="108" data-stagepadding="0" data-margin="0" data-full-width="" data-center="" data-loop="">-->
+                <!--						    <div class="filterable beverages burgers pasta pizza sandwiches seafood soup-and-salads showed even">-->
+                <!--                                <div class="entry profile-item post-111 azl_profile type-azl_profile status-publish has-post-thumbnail hentry delivery-type-delivery delivery-type-pickup">-->
+                <!--                                    <div class="entry-thumbnail">-->
+                <!--                                        <a href="#">-->
+                <!--                                            <div class="image " style="background-image: url(&quot;images/x1.jpg&quot;); height: 108px;" data-width="108" data-height="108"></div>-->
+                <!--                                        </a>-->
+                <!--                                    </div>-->
+                <!--                                    <div class="entry-data">-->
+                <!--                                        <div class="entry-header">-->
+                <!--		                                    <h2 class="entry-title">-->
+                <!--		                                        <a href="#" rel="bookmark">Central pizzeria</a>-->
+                <!--		                                    </h2>-->
+                <!--	                                    </div>-->
+                <!--                                        <div class="entry-summary">Burgers, American, Sandwiches, Fast Food, BBQ, Breakfast</div>-->
+                <!--                                        <div class="entry-footer">-->
+                <!--										<span class="meta-field address ">  -->
+                <!--										    <span class="value">68 5th Avenue New York -->
+                <!--										        <span class="units"></span>-->
+                <!--										    </span>-->
+                <!--										</span>                -->
+                <!--										<div class="star-rating" title="Rated 4.5 out of 5">-->
+                <!--                                            <span style="width:90%">-->
+                <!--                                                <strong class="rating">4.5</strong> out of <span>5</span>based on -->
+                <!--												<span class="rating">2</span> user ratings                    -->
+                <!--											</span>-->
+                <!--                                        </div>-->
+                <!--                                        <span class="reviews">-->
+                <!--                                            <a href="#">-->
+                <!--	                                            <span class="count">12</span>-->
+                <!--	                                            <span class="label">Reviews</span>-->
+                <!--	                                        </a>-->
+                <!--                                        </span>-->
+                <!--                                        </div>-->
+                <!--                                    </div>    -->
+                <!--                                </div>-->
+                <!--                            </div>-->
+                <!--						</div>-->
+                <!--				</li>-->
+            </ul>
+        </div>
+    </section>
+    <!-- cd-gallery -->
 
-						<li>
-							<input class="filter" data-filter=".check3" type="checkbox" id="checkbox3">
-							<label class="checkbox-label" for="checkbox3">restaurant</label>
-						</li>
-            			<li>
-							<input class="filter" data-filter=".check4" type="checkbox" id="checkbox4">
-							<label class="checkbox-label" for="checkbox4">restaurant</label>
-						</li>
-            			<li>
-							<input class="filter" data-filter=".check5" type="checkbox" id="checkbox5">
-							<label class="checkbox-label" for="checkbox5">restaurant</label>
-						</li>
-            			<li>
-							<input class="filter" data-filter=".check6" type="checkbox" id="checkbox6">
-							<label class="checkbox-label" for="checkbox6">restaurant</label>
-						</li>
-            			<li>
-							<input class="filter" data-filter=".check7" type="checkbox" id="checkbox7">
-							<label class="checkbox-label" for="checkbox7">restaurant</label>
-						</li>
-						<li>
-							<input class="filter" data-filter=".check8" type="checkbox" id="checkbox8">
-							<label class="checkbox-label" for="checkbox8">restaurant</label>
-						</li>
-						<li>
-							<input class="filter" data-filter=".check9" type="checkbox" id="checkbox9">
-							<label class="checkbox-label" for="checkbox9">restaurant</label>
-						</li>
-						<li>
-							<input class="filter" data-filter=".check10" type="checkbox" id="checkbox10">
-							<label class="checkbox-label" for="checkbox10">restaurant</label>
-						</li>
-						<li>
-							<input class="filter" data-filter=".check11" type="checkbox" id="checkbox11">
-							<label class="checkbox-label" for="checkbox11">restaurant</label>
-						</li>
-						<li>
-							<input class="filter" data-filter=".check12" type="checkbox" id="checkbox12">
-							<label class="checkbox-label" for="checkbox12">restaurant</label>
-						</li>
-		
-					</ul> <!-- cd-filter-content -->
-					</div>
+    <div class="cd-filter">
+        <form>
+            <div class="cd-filter-block">
+                <div class="row clearfix">
                     <div class="col-lg-6 col-md-6 col-sm-12">
-					
-					<ul class="cd-filter-content cd-filters list">
-						<li>
-							<input class="filter" data-filter=".check13" type="checkbox" id="checkbox13">
-			    			<label class="checkbox-label" for="checkbox13">restaurant</label>
-						</li>
+                        <ul class="cd-filter-content cd-filters list">
+                            <li>
+                                <input class="filter" data-filter=".check1" type="checkbox" id="checkbox1" />
+                                <label class="checkbox-label" for="checkbox1">restaurant</label>
+                            </li>
 
-						<li>
-							<input class="filter" data-filter=".check14" type="checkbox" id="checkbox14">
-							<label class="checkbox-label" for="checkbox14">restaurant</label>
-						</li>
+                            <li>
+                                <input class="filter" data-filter=".check2" type="checkbox" id="checkbox2" />
+                                <label class="checkbox-label" for="checkbox2">restaurant</label>
+                            </li>
 
-						<li>
-							<input class="filter" data-filter=".check15" type="checkbox" id="checkbox15">
-							<label class="checkbox-label" for="checkbox15">restaurant</label>
-						</li>
-            			<li>
-							<input class="filter" data-filter=".check16" type="checkbox" id="checkbox16">
-							<label class="checkbox-label" for="checkbox16">restaurant</label>
-						</li>
-            			<li>
-							<input class="filter" data-filter=".check17" type="checkbox" id="checkbox17">
-							<label class="checkbox-label" for="checkbox17">restaurant</label>
-						</li>
-            			<li>
-							<input class="filter" data-filter=".check18" type="checkbox" id="checkbox18">
-							<label class="checkbox-label" for="checkbox18">restaurant</label>
-						</li>
-            			<li>
-							<input class="filter" data-filter=".check19" type="checkbox" id="checkbox19">
-							<label class="checkbox-label" for="checkbox19">restaurant</label>
-						</li>
-						<li>
-							<input class="filter" data-filter=".check20" type="checkbox" id="checkbox20">
-							<label class="checkbox-label" for="checkbox3">restaurant</label>
-						</li>
-						<li>
-							<input class="filter" data-filter=".check21" type="checkbox" id="checkbox21">
-							<label class="checkbox-label" for="checkbox21">restaurant</label>
-						</li>
-						<li>
-							<input class="filter" data-filter=".check22" type="checkbox" id="checkbox22">
-							<label class="checkbox-label" for="checkbox22">restaurant</label>
-						</li>
-						<li>
-							<input class="filter" data-filter=".check23" type="checkbox" id="checkbox23">
-							<label class="checkbox-label" for="checkbox23">restaurant</label>
-						</li>
-						<li>
-							<input class="filter" data-filter=".check24" type="checkbox" id="checkbox24">
-							<label class="checkbox-label" for="checkbox24">restaurant</label>
-						</li>
-		
-					</ul> <!-- cd-filter-content -->
-					</div>
-					</div>
-				</div> <!-- cd-filter-block -->
+                            <li>
+                                <input class="filter" data-filter=".check3" type="checkbox" id="checkbox3" />
+                                <label class="checkbox-label" for="checkbox3">restaurant</label>
+                            </li>
+                            <li>
+                                <input class="filter" data-filter=".check4" type="checkbox" id="checkbox4" />
+                                <label class="checkbox-label" for="checkbox4">restaurant</label>
+                            </li>
+                            <li>
+                                <input class="filter" data-filter=".check5" type="checkbox" id="checkbox5" />
+                                <label class="checkbox-label" for="checkbox5">restaurant</label>
+                            </li>
+                            <li>
+                                <input class="filter" data-filter=".check6" type="checkbox" id="checkbox6" />
+                                <label class="checkbox-label" for="checkbox6">restaurant</label>
+                            </li>
+                            <li>
+                                <input class="filter" data-filter=".check7" type="checkbox" id="checkbox7" />
+                                <label class="checkbox-label" for="checkbox7">restaurant</label>
+                            </li>
+                            <li>
+                                <input class="filter" data-filter=".check8" type="checkbox" id="checkbox8" />
+                                <label class="checkbox-label" for="checkbox8">restaurant</label>
+                            </li>
+                            <li>
+                                <input class="filter" data-filter=".check9" type="checkbox" id="checkbox9" />
+                                <label class="checkbox-label" for="checkbox9">restaurant</label>
+                            </li>
+                            <li>
+                                <input class="filter" data-filter=".check10" type="checkbox" id="checkbox10" />
+                                <label class="checkbox-label" for="checkbox10">restaurant</label>
+                            </li>
+                            <li>
+                                <input class="filter" data-filter=".check11" type="checkbox" id="checkbox11" />
+                                <label class="checkbox-label" for="checkbox11">restaurant</label>
+                            </li>
+                            <li>
+                                <input class="filter" data-filter=".check12" type="checkbox" id="checkbox12" />
+                                <label class="checkbox-label" for="checkbox12">restaurant</label>
+                            </li>
+                        </ul>
+                        <!-- cd-filter-content -->
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <ul class="cd-filter-content cd-filters list">
+                            <li>
+                                <input class="filter" data-filter=".check13" type="checkbox" id="checkbox13" />
+                                <label class="checkbox-label" for="checkbox13">restaurant</label>
+                            </li>
 
-				
+                            <li>
+                                <input class="filter" data-filter=".check14" type="checkbox" id="checkbox14" />
+                                <label class="checkbox-label" for="checkbox14">restaurant</label>
+                            </li>
 
-				
-			</form>
-            <a href="#0" class="cd-close"><i class="fas fa-times"></i>  </a>
-			<a href="#0" class="cd-filter-trigger-heading"><i class="fas fa-utensils"></i>Filters</a>
-		</div> <!-- cd-filter -->
+                            <li>
+                                <input class="filter" data-filter=".check15" type="checkbox" id="checkbox15" />
+                                <label class="checkbox-label" for="checkbox15">restaurant</label>
+                            </li>
+                            <li>
+                                <input class="filter" data-filter=".check16" type="checkbox" id="checkbox16" />
+                                <label class="checkbox-label" for="checkbox16">restaurant</label>
+                            </li>
+                            <li>
+                                <input class="filter" data-filter=".check17" type="checkbox" id="checkbox17" />
+                                <label class="checkbox-label" for="checkbox17">restaurant</label>
+                            </li>
+                            <li>
+                                <input class="filter" data-filter=".check18" type="checkbox" id="checkbox18" />
+                                <label class="checkbox-label" for="checkbox18">restaurant</label>
+                            </li>
+                            <li>
+                                <input class="filter" data-filter=".check19" type="checkbox" id="checkbox19" />
+                                <label class="checkbox-label" for="checkbox19">restaurant</label>
+                            </li>
+                            <li>
+                                <input class="filter" data-filter=".check20" type="checkbox" id="checkbox20" />
+                                <label class="checkbox-label" for="checkbox3">restaurant</label>
+                            </li>
+                            <li>
+                                <input class="filter" data-filter=".check21" type="checkbox" id="checkbox21" />
+                                <label class="checkbox-label" for="checkbox21">restaurant</label>
+                            </li>
+                            <li>
+                                <input class="filter" data-filter=".check22" type="checkbox" id="checkbox22" />
+                                <label class="checkbox-label" for="checkbox22">restaurant</label>
+                            </li>
+                            <li>
+                                <input class="filter" data-filter=".check23" type="checkbox" id="checkbox23" />
+                                <label class="checkbox-label" for="checkbox23">restaurant</label>
+                            </li>
+                            <li>
+                                <input class="filter" data-filter=".check24" type="checkbox" id="checkbox24" />
+                                <label class="checkbox-label" for="checkbox24">restaurant</label>
+                            </li>
+                        </ul>
+                        <!-- cd-filter-content -->
+                    </div>
+                </div>
+            </div>
+            <!-- cd-filter-block -->
+        </form>
+        <a href="#0" class="cd-close"><i class="fas fa-times"></i> </a>
+        <a href="#0" class="cd-filter-trigger-heading"><i class="fas fa-utensils"></i>Filters</a>
+    </div>
+    <!-- cd-filter -->
+</main>
+<!--- Main End --->
 
-		
-	
-	</main><!--- Main End --->
-	
-	
-    <!---- End Restaurant ---->
+<!---- End Restaurant ---->
 
-	<!---- End wrapper ---->
-
+<!---- End wrapper ---->
 
 <div class="pac-container pac-logo" style="display: none; width: 355px; position: absolute; left: 405px; top: 446px;"></div>
 
