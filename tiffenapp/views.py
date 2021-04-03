@@ -48,26 +48,42 @@ from django.contrib.auth.decorators import login_required
 # def my_view(request):
 #     context['location'] = request.location
 
+def search_index(request):
+    return render(request, 'search.html', locals())
 
-# def search(request):
-#     query = request.GET['query']
-#     if len(query) > 50:
-#         allpost = Product.objects.none()
-#     else:
-#         allpost = Product.objects.filter(Q(name__icontains=query) |
-#                                          Q(category__icontains=query) |
-#                                          Q(detail_text__icontains=query) |
-#                                          Q(attribute__icontains=query))
-#     if allpost.count() == 0:
-#         messages.error(request, 'can not found')
-#     return render(request, 'index.html', {'allpost': allpost, 'query': query})
+
+def search(request):
+    query = request.GET['query']
+    if len(query) > 50:
+        allpost = Product.objects.none()
+    else:
+        allpost = Product.objects.filter(Q(name__icontains=query))
+    if allpost.count() == 0:
+        messages.error(request, 'can not found')
+    return render(request, 'search.html', locals())
+
+
+# def index_search(request):
+#     if request.method == "POST":
+#         vaddress = request.POST['address']
+#         request.session['address'] = vaddress     #set session value
+#         address = request.session.get('address')
+#         return redirect('simplesignup')
+#     return render(request, 'index.html', locals())
 
 
 def loginhere(request):
     if request.method == "POST":
         vaddress = request.POST['address']
-        request.session['address'] = vaddress   #set session value
-        address = request.session.get('address')#get session value
+        request.session['address'] = vaddress     #set session value
+        address = request.session.get('address')  #get session value
+
+        # geolocator = Nominatim(user_agent="tiffenapp")
+        # servicelocation = geolocator.geocode(vaddress, timeout=10000)
+        # print(servicelocation.address)
+        # request.session['address'] = vaddress.address
+        # address = request.session.get('address')
+
         return redirect('simplesignup')
     return render(request, 'login.html', locals())
 
@@ -256,19 +272,21 @@ def user_current_location_index(request):
 
 def user_vendor_list(request):
     if request.method == "POST":
-        vaddress = request.POST['vendor_location']
+        # vaddress = request.POST['address']
         # vlongitude = request.POST['vendor_longitude']
         # vlatitude = request.POST['vendor_latitude']
-        geolocator = Nominatim(user_agent="tiffenapp")
-        location = geolocator.geocode(vaddress, timeout=10000)
+
+        # geolocator = Nominatim(user_agent="tiffenapp")
+        # location = geolocator.geocode(vaddress, timeout=10000)
+        # print(location.address)
+
         # vlonglocation = geolocator.geocode(vlongitude, timeout=10000)
         # vlatlocation = geolocator.geocode(vlatitude, timeout=10000)
-        print(location.address)
         # print(vlonglocation.longitude, vlatlocation.latitude)
         form = VendorForm(request.POST, request.FILES)
         if form.is_valid():
             ven = form.save(commit=False)
-            ven.vendor_location = location.address
+            # ven.vendor_location = vaddress
             # ven.vendor_longitude = vlonglocation.longitude
             # ven.vendor_latitude = vlatlocation.latitude
             ven.role.role_id = 3
@@ -645,6 +663,9 @@ def simplelogin(request):
 
 def simplesignup(request):
     if request.method == 'POST':
+        vaddress = request.POST['address']
+        request.session['address'] = vaddress     #set session value
+        address = request.session.get('address')
         form = SimpleSignUpForm(request.POST, request.FILES)
         try:
             if form.is_valid():
@@ -659,7 +680,7 @@ def simplesignup(request):
     else:
         form = SimpleSignUpForm()
     vendors = User.objects.filter(role__role_id=3)
-    return render(request, 'index.html', {'form': form, 'vendors': vendors})
+    return render(request, 'index.html', locals())  #{'form': form, 'vendors': vendors}
 
 
 def signin_with_phone(request):

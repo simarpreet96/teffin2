@@ -1,75 +1,72 @@
-{% extends 'dashboard/base.html' %}
-{% load static %}
-
-{% block content %}
-         <!-- main section -->
-     <section>
-       <div class="container-fluid">
+{% extends 'dashboard/base.html' %} {% load static %} {% block content %}
+<!-- main section -->
+<section>
+    <div class="container-fluid">
         <div class="row">
-          <div class="col-md-12">
-            <div class="wt-body-wrap">
-              <div class="row">
-               <div class="col-md-6">
-                <h3 class="wt-toptitle"><i class="fas fa-users wttitlewticon"></i>Add Attributes</h3>
-               </div>
-               <div class="col-md-6">
-                <a href="{% url 'attributeslist' %}" class="wtadduser">Attributes List</a>
-               </div>
-              </div>
-              <div class="row mt-3">
-                <div class="col-md-12">
-                    <form method="post" class="form-row" action="{% url 'add_attributes' %}" >
-                {% csrf_token %}
-                      <div class="form-group col-md-12">
-                  <label>Title</label>
-                  <input type="text" class="form-control" placeholder=""  name="atributesname">
+            <div class="col-md-12">
+                <div class="wt-body-wrap">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3 class="wt-toptitle"><i class="fas fa-users wttitlewticon"></i>Add Attributes</h3>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="{% url 'attributeslist' %}" class="wtadduser">Attributes List</a>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12">
+                            <form method="post" class="form-row" action="{% url 'add_attributes' %}">
+                                {% csrf_token %}
+                                <div class="form-group col-md-12">
+                                    <label>Title</label>
+                                    <input type="text" class="form-control" placeholder="" name="atributesname" />
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label>Description</label>
+                                    <textarea class="form-control" rows="3" name="detail_text"></textarea>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label>slug</label>
+                                    <input type="text" class="form-control" placeholder="slug" name="slug" />
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <div class="wt-modal-btn">
+                                        <button class="wtmodalsubmitbtn" type="submit">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group col-md-12">
-                  <label>Description</label>
-                 <textarea class="form-control" rows="3" name="detail_text" ></textarea>
-                </div>
-          <div class="form-group col-md-12">
-                  <label>slug</label>
-                  <input type="text" class="form-control" placeholder="slug"  name="slug">
-          </div>
-                 <div class="form-group col-md-12">
-                  <div class="wt-modal-btn">
-                  <button class="wtmodalsubmitbtn" type="submit" >Submit</button>
-                </div>
-                </div>
-               </form>
-                </div>
-              </div>
             </div>
-          </div>
         </div>
-       </div>
-     </section>
-     <!-- main section close-->
+    </div>
+</section>
+<!-- main section close-->
 
 <!-- delete popup -->
 
-  <!-- Bootstrap core JavaScript-->
-  <script src="/static/dashboard/vendor/jquery/jquery.min.js"></script>
-  <script src="/static/dashboard/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="/static/dashboard/js/bootstrap.js"></script>
-    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
-  <script>
-    $(document).ready(function() {
-    $('#example').DataTable();
-  } );
-  </script>
-  <script>
-  $(document).ready(function () {
-    $('#selectall').click(function () {
-        $('.selectedId').prop('checked', this.checked);
+<!-- Bootstrap core JavaScript-->
+<script src="/static/dashboard/vendor/jquery/jquery.min.js"></script>
+<script src="/static/dashboard/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/static/dashboard/js/bootstrap.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#example").DataTable();
     });
+</script>
+<script>
+    $(document).ready(function () {
+        $("#selectall").click(function () {
+            $(".selectedId").prop("checked", this.checked);
+        });
 
-    $('.selectedId').change(function () {
-        var check = ($('.selectedId').filter(":checked").length == $('.selectedId').length);
-        $('#selectall').prop("checked", check);
+        $(".selectedId").change(function () {
+            var check = $(".selectedId").filter(":checked").length == $(".selectedId").length;
+            $("#selectall").prop("checked", check);
+        });
     });
-});
 </script>
 {% endblock %}

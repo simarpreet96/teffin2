@@ -58,7 +58,7 @@ class User(AbstractUser):
     # vendor
     vendor_gstno = models.IntegerField(unique=True, null=True, blank=True)
     vendor_alternatphone = models.CharField(max_length=10, null=True, blank=True)
-    vendor_location = models.CharField(max_length=250, null=True, blank=True)
+    address = models.CharField(max_length=250, null=True, blank=True)
     vendor_description = models.TextField(blank=True, null=True, max_length=150)
     vendor_longitude = models.DecimalField(decimal_places=2 , max_digits=4, blank=True, null=True)
     vendor_latitude = models.DecimalField(decimal_places=2 , max_digits=4, blank=True, null=True)
@@ -297,11 +297,26 @@ class Configure(models.Model):
         return self.configuresname
 
 
+class Cusine(models.Model):
+    id = models.AutoField(primary_key=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    cusinename = models.CharField(unique=True, max_length=255, db_index=True, default='')
+    slug = models.SlugField(unique=True, null=False, blank=False)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.cusinename)
+        super(Cusine, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.cusinename
+
+
 class Product(models.Model):
     objects = None
     STATUS_CHOICES = [
         ('veg', 'veg'),
         ('non-veg', 'non-veg'),
+        ('vegan', 'vegan'),
     ]
     STATUS = (
         ('True', 'True'),
@@ -324,6 +339,7 @@ class Product(models.Model):
     category = models.ForeignKey(Subcategory, on_delete=models.CASCADE, null=True, blank=True)
     attribute = models.ForeignKey(Attribute, on_delete=models.SET_NULL,  null=True, blank=True)
     configure = models.ForeignKey(Configure, on_delete=models.SET_NULL,  null=True, blank=True)
+    cusine = models.ForeignKey(Cusine, on_delete=models.SET_NULL,  null=True, blank=True)
     type = models.CharField(choices=STATUS_CHOICES, max_length=20, default=True)
     discount = models.IntegerField(null=True, blank=True, default=0)
     # location = models.PointField()

@@ -111,7 +111,7 @@ class VendorForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('image', 'phone', 'username', 'email', 'vendor_gstno', 'password1', 'password2',
-                  'vendor_alternatphone', 'vendor_location', 'vendor_description', 'role')
+                  'vendor_alternatphone', 'address', 'vendor_description', 'role')
 
 
 class CustomerForm(UserCreationForm):
@@ -182,7 +182,7 @@ class ProductForm(forms.ModelForm):
 
     class Meta:
         model = Product
-        fields = ('name','price','main_image','detail_text','category', 'type', 'discount', 'attribute', 'configure')
+        fields = ('name','price','main_image','detail_text','category', 'type', 'discount', 'attribute','configure', 'cusine')
         widgets = {
             'name': TextInput(attrs={'class': 'form-control'}),
             'price': TextInput(attrs={'class': "form-control"}),
@@ -193,6 +193,7 @@ class ProductForm(forms.ModelForm):
             'discount': TextInput(attrs={'class': 'form-control'}),
             'attribute': Select(attrs={'class': "form-control"}),
             'configure': Select(attrs={'class': 'form-control'}),
+            'cusine': Select(attrs={'class': 'form-control'}),
         }
 
     # def __init__(self, *args, **kwargs):

@@ -13,6 +13,8 @@ urlpatterns = [
                   path('', views.loginhere, name='loginhere'),
                   path('home/', views.home, name='home'),
                   path('dashboard/', views.dashboard, name='dashboard'),
+                  path('search/', views.search, name='search'),
+                  # path('search_index/', views.search_index, name='search_index'),
                   # account url
                     #INDEX
                   path('login/', views.signin_with_phone, name='signin_with_phone'),
@@ -99,6 +101,5 @@ urlpatterns = [
                   path('variant-display/', views.variant_display, name='variant_display'),
                   # path('attributeslug/', views.attributeslug, name='attributeslug')
                   # path('tiffin_location/', views.tiffin_location, name='tiffin_location'),
-                  # path('dashboard/search/', views.search, name='search'),
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL,
                                                                                            document_root=settings.MEDIA_ROOT)

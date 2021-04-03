@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.utils.html import format_html
 from .models import User, Role, Product, Productgalleryimage, Productvariant, Maincategory, Supercategory, Subcategory,\
     Attribute, Configure, Blog, Blogcategory, Country, City, Images, Color, Size, Variants, Weight, Healthy, Currentlocation,\
-    checkboxcheck
+    checkboxcheck, Cusine
 # from django.urls import reverse
 
 
@@ -42,8 +42,9 @@ class ProductgalleryimageInline(admin.TabularInline):
     extra = 1
     show_change_link = True
 
+
 class ProductAdmin(admin.ModelAdmin):
-    list_display =  ['id', 'name', 'user', 'price', 'category', 'type', 'attribute', 'configure', 'slug' ]
+    list_display =  ['id', 'name', 'user', 'price', 'category', 'type', 'attribute', 'configure', 'cusine', 'slug' ]
     list_filter = ['category']
     # readonly_fields = ('image_tag',)
     inlines = [ProductImageInline,ProductVariantsInline,ProductgalleryimageInline]
@@ -54,6 +55,8 @@ admin.site.register(Product, ProductAdmin)
 
 
 # admin.site.register(Role)
+
+admin.site.register(Cusine)
 admin.site.register(Productgalleryimage)
 admin.site.register(Productvariant)
 admin.site.register(Maincategory)

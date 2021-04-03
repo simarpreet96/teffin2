@@ -14926,7 +14926,7 @@ body.archive .site-main > div:not(.active-sidebar) #content.shop-product > ul.pr
   background-color: #fcfbf9;
   border: 1px solid #ededed;
   border-radius: 3px;
-  padding: 0 20px;
+
   line-height: 30px;
   font-weight: 600;
 }
@@ -72689,13 +72689,32 @@ span._38xdN {
 span._3RJsr i {
     font-size: 13px;
 }
-/*
-.sticky {
-position: fixed;
-top: 0;
-width: 100%;
+.search-section{
+background:#fff;
+height:80vh;
+}
+form {
+    display: flex;
+}
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    display: flex;
+}
+.search-filed {
+    padding: 100px 0;
+}
+button.search-btn {
+    padding: 25px 30px;
+    position: relative;
+    display: flex;
+    left: 10px;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+button.search-btn i {
+    margin-left: 10px;
 }
 
-.sticky + .site-main {
-padding-top: 102px;
-}*/

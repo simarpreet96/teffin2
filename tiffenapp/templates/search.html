@@ -1,0 +1,235 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+.search-section{
+background:#fff;
+height:80vh;
+}
+form {
+    display: flex;
+}
+.search-list a.nav-link {
+    color: #000;
+}
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    display: flex;
+}
+.search-filed {
+    padding: 100px 0;
+}
+button.search-btn {
+    padding: 25px 30px;
+    position: relative;
+    display: flex;
+    left: 10px;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+button.search-btn i {
+    margin-left: 10px;
+}
+.tab-content {
+padding:30px;
+    margin: auto;
+}
+
+</style>
+<section >
+    <!-- class="search-section"  -->
+    <div class="container">
+    <div class="search-filed">
+
+<!--<div>-->
+<!--		{% if allpost|length < 1  %}-->
+<!--		<p>your search <b>{{query}}</b> did not match any docoment </p>-->
+<!--		suggesitions:-->
+<!--		<ul>-->
+<!--		<li>Try different keyword</li>-->
+<!--		</ul>-->
+<!--		{% endif %}-->
+<!--	</div>-->
+
+        <form method="GET" action="{% url 'search' %}">
+            <input type="text" placeholder="Search.." name="query" id="query">
+            <button class="search-btn" type="submit">Search<i class="fa fa-search"></i></button>
+        </form>
+    </div>
+<div class="search-list">
+
+
+<ul class="nav nav-tabs" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" href="#resturents" role="tab" data-toggle="tab">Resturents</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#food" role="tab" data-toggle="tab">Food</a>
+  </li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+  <div role="tabpanel" class="tab-pane in active" id="resturents">
+      <li class="" style="display: inline-block;" data-bound="">
+                    <div class="profile-item horizontal-list-2" data-contents-per-item="1" data-width="108" data-height="108" data-stagepadding="0" data-margin="0" data-full-width="" data-center="" data-loop="">
+                        <div class="filterable showed">
+                            <div class="entry">
+                                <div class="entry-thumbnail">
+                                    <a href="">
+                                        <img src="/media/media/user/fabio-150x130_zLq8BcM.jpg" class="float-left images-fluid">
+                                    </a>
+                                </div>
+                                <div class="entry-data">
+                                    <div class="entry-header">
+                                        <h2 class="entry-title">
+                                            <a href="" >fabio</a>
+                                        </h2>
+                                    </div>
+                                    <div class="entry-summary" style="color: black;">tasty, pocket-friendly, comfortable</div>
+                                    <div class="entry-footer">
+                                        <span class="meta-field address">
+                                            <span class="value" style="color: black;">
+                                                45, Phase 3, Industrial Area, Sector 58, Sahibzada Ajit Singh Nagar, Punjab 160055, India
+                                                <span class="units"></span>
+                                            </span>
+                                        </span>
+                                        <div class="star-rating" title="Rated 5 out of 5">
+                                            <span style="width: 100%;"> <strong class="rating">5</strong> out of <span>5</span>based on <span class="rating">1</span> user rating </span>
+                                        </div>
+                                        <span class="reviews">
+                                            <a href="#"><span class="count">5</span><span class="label">Reviews</span></a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+  </div>
+  <div role="tabpanel" class="tab-pane fade" id="food">
+      <div class="row">
+{% for p in allpost %}
+          <div class="col-md-6">
+      <div class="group-posts">
+      <div class="filterable showed ">
+						                        <div class="profile-products  ">
+                                                    <div class="entry" itemscope="" itemtype="#">
+                                                        <div class="entry-thumbnail">
+                                                            <a href="#">
+																<img src="/media/media/products/rszuvkicuxog3t0msick_DrqkbKn.jpg" class="image" height="100px;" data-width="100" data-height="100">
+                                                            </a>
+                                                        </div>
+                                                        <div class="entry-data">
+                                                            <div class="entry-header">
+		                                                        <a class="entry-title" href="">
+                                                                    <h3 itemprop="name">{{p.name}}</h3>
+                                                                </a>
+                                                            </div>
+                                                            <div class="entry-summary">ftrfyugyuogyuhogyo</div>
+                                                        </div>
+                                                        <div class="entry-additions">
+                                                            <form class="variations_form cart" method="post" enctype="" data-product_id="171">
+                                                                <div>
+															<table class="variations" cellspacing="0">
+			                                                    <tbody>
+									                                <tr>
+						                                                <td class="label">
+																	        <label for="pa_size">Size</label>
+																	    </td>
+						                                                <td class="value">
+							                                                <select id="pa_size" class="" name="attribute_pa_size" data-attribute_name="attribute_pa_size" data-show_option_none="yes">
+																		        <option value="">Choose an option</option>
+																		        <option value="large">Large</option>
+																		        <option value="medium" selected="selected">Medium</option>
+																		        <option value="small">Small</option>
+																		    </select>
+																		    <a class="reset_variations" href="#">Clear</a>
+																	    </td>
+					                                                </tr>
+							                                    </tbody>
+		                                                    </table>
+                                                                    </div>
+
+</form>
+                                                            <div class="single_variation_wrap">
+                                                                <span class="currency">
+                                                                <span class="">$</span>
+                                                                </span> 500  <!-- 20 -->
+                                                                <span class="decimals">.00</span>
+                                                                </div>
+															<button class=" button " data-toggle="modal" data-target="#myModal">Add to cart</button>
+	                                                            <!-- Modal -->
+                                                                <div id="myModal" class="modal" role="dialog">
+                                                                    <div class="modal-dialog customize">
+
+                                                                        <!-- Modal content-->
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header header-cust">
+                                                                                <div class="hzcR7">
+																						    <h4 class="draJe">Customize “Cold Coffee Milkshake @ Rs 20”</h4>
+																				            <div class="_3GIu4">
+																							    <span class="ueSas"><i class="fas fa-rupee-sign"></i>20</span>
+																				            </div>
+																			            </div>
+                                                                                <button type="button" class="close cust" data-dismiss="modal">×</button>
+                                                                            </div>
+                                                                            <div class="modal-body">
+																			    <div>
+																				    <div class="div-that-scrolls"><br>
+																			            <h5>Addons</h5>
+                                                                                        <input type="checkbox" id="i1" name="i1"><label for="i1">Item 1<span class="_1RskK"><i class="fas fa-rupee-sign"></i>30</span></label><br>
+                                                                                        <input type="checkbox" id="i2" name="i2"><label for="i2">Item 2<span class="_1RskK"><i class="fas fa-rupee-sign"></i>30</span></label><br>
+                                                                                        <input type="checkbox" id="i3" name="i3"><label for="i3">Item 3<span class="_1RskK"><i class="fas fa-rupee-sign"></i>30</span></label><br>
+                                                                                        <input type="checkbox" id="i4" name="i4"><label for="i4">Item 4<span class="_1RskK"><i class="fas fa-rupee-sign"></i>30</span></label><br>
+                                                                                        <input type="checkbox" id="i5" name="i5"><label for="i5">Item 5<span class="_1RskK"><i class="fas fa-rupee-sign"></i>30</span></label><br>
+                                                                                        <input type="checkbox" id="i6" name="i6"><label for="i6">Item 6<span class="_1RskK"><i class="fas fa-rupee-sign"></i>30</span></label><br>
+                                                                                        <input type="checkbox" id="i7" name="i7"><label for="i7">Item 7<span class="_1RskK"><i class="fas fa-rupee-sign"></i>30</span></label><br>
+                                                                                        <input type="checkbox" id="i8" name="i8"><label for="i8">Item 8<span class="_1RskK"><i class="fas fa-rupee-sign"></i>30</span></label><br>
+                                                                                        <input type="checkbox" id="i9" name="i9"><label for="i9">Item 9<span class="_1RskK"><i class="fas fa-rupee-sign"></i>30</span></label><br>
+                                                                                        <input type="checkbox" id="i10" name="i10"><label for="i10">Item 10<span class="_1RskK"><i class="fas fa-rupee-sign"></i>30</span></label><br><br>
+																			            <h5>Pair with</h5>
+                                                                                        <input type="checkbox" id="i11" name="i11"><label for="i11">Item 11<span class="_1RskK"><i class="fas fa-rupee-sign"></i>30</span></label><br>
+                                                                                        <input type="checkbox" id="i12" name="i12"><label for="i12">Item 12<span class="_1RskK"><i class="fas fa-rupee-sign"></i>30</span></label><br>
+                                                                                        <input type="checkbox" id="i13" name="i13"><label for="i13">Item 13<span class="_1RskK"><i class="fas fa-rupee-sign"></i>30</span></label><br>
+                                                                                        <input type="checkbox" id="i14" name="i14"><label for="i14">Item 14<span class="_1RskK"><i class="fas fa-rupee-sign"></i>30</span></label><br>
+                                                                                        <input type="checkbox" id="i15" name="i15"><label for="i15">Item 15<span class="_1RskK"><i class="fas fa-rupee-sign"></i>30</span></label><br>
+                                                                                        <input type="checkbox" id="i16" name="i16"><label for="i16">Item 16<span class="_1RskK"><i class="fas fa-rupee-sign"></i>30</span></label><br>
+                                                                                        <input type="checkbox" id="i17" name="i17"><label for="i17">Item 17<span class="_1RskK"><i class="fas fa-rupee-sign"></i>30</span></label><br>
+                                                                                        <input type="checkbox" id="i18" name="i18"><label for="i18">Item 18<span class="_1RskK"><i class="fas fa-rupee-sign"></i>30</span></label><br>
+                                                                                        <input type="checkbox" id="i19" name="i19"><label for="i19">Item 19<span class="_1RskK"><i class="fas fa-rupee-sign"></i>30</span></label><br>
+                                                                                        <input type="checkbox" id="i20" name="i10"><label for="i10">Item 10<span class="_1RskK"><i class="fas fa-rupee-sign"></i>30</span></label><br>
+                                                                                        <input type="checkbox" id="i21" name="i21"><label for="i21">Item 21<span class="_1RskK"><i class="fas fa-rupee-sign"></i>30</span></label><br>
+                                                                                        <input type="checkbox" id="i22" name="i22"><label for="i22">Item 22<span class="_1RskK"><i class="fas fa-rupee-sign"></i>30</span></label><br>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="">
+                                                                                <div class="_3coNr">
+																					<span class="mmytI">Total
+																						<span class="_3RJsr"><i class="fas fa-rupee-sign"></i>20.00</span>
+																					</span>
+																					<span type="submit" class="_38xdN" value="submit" data-dismiss="modal">Add Item</span>
+																				</div>
+																			</div>
+                                                                        </div>
+																	</div>
+																</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+      </div>
+          </div>
+          {% endfor %}
+      </div>
+  </div>
+</div>
+</div>
+    </div>
+</section>
+{% endblock %}
